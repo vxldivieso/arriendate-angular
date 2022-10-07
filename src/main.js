@@ -1,9 +1,10 @@
-const { app, BrowserWindow, ipcMain, Notification } = require('electron');
+const { app, BrowserWindow, ipcMain, Notification, ipcRenderer } = require('electron');
 const path = require('path'); 
 let db = require('./database')
 
 let win;
 let winlogin;
+
 function createWindow () {
    win = new BrowserWindow({
     width: 800,
@@ -12,12 +13,12 @@ function createWindow () {
      // nodeIntegration: true,
      // contextIsolation:true,
      // devTools:false,
-      preload:path.join(__dirname, 'index.js')
+      preload:path.join(__dirname, './index.js')
       
     }
   })
 
-  win.loadFile('index.html')
+  win.loadFile('src/ui/index.html')
 }
 
 function loginWindow () {
@@ -28,12 +29,12 @@ function loginWindow () {
     // nodeIntegration: true,
     // contextIsolation:true,
     // devTools:false,
-     preload:path.join(__dirname, 'login.js')
+     preload:path.join(__dirname, './login.js')
      
    }
  })
 
- winlogin.loadFile('login.html')
+ winlogin.loadFile('src/ui/login.html')
 }
 
 
@@ -56,11 +57,12 @@ ipcMain.handle('login', (event, obj) => {
   validatelogin(obj)
 });
 
-
 function validatelogin(obj) {
- const { email, password } = obj 
- const sql = "SELECT * FROM user WHERE email=? AND password=?"
-  db.query(sql, [email, password], (error, results, fields) => {
+ const { run, password } = obj 
+ //const sql = "SELECT CONCAT(rut_emp, '-', rut_dv_emp ) FROM bdturismoreal.empleado WHERE RUT=? and PASS_EMP=?"
+ const sql = "SELECT * FROM empleado WHERE RUT_EMP=? AND PASS_EMP=?"
+
+ db.query(sql, [run, password], (error, results, fields) => {
     if(error){ console.log(error);}
 
     if(results.length > 0){
@@ -69,15 +71,34 @@ function validatelogin(obj) {
        winlogin.close()
      }else{
        new Notification({
-         title:"login",
-         body: 'email o password equivocado'
+         title:"Error Inicio de Sesión",
+         body: 'Usuario o Contraseña incorrecta.'
        }).show()
      }
     
   });
 }
 
+/*
+function mostrarPassword(){
+  var cambio = document.getElementById("txtPassword");
+  if(cambio.type == "password"){
+    cambio.type = "text";
+    $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+  }else{
+    cambio.type = "password";
+    $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
+  }
+} 
 
+$(document).ready(function () {
+//CheckBox mostrar contraseña
+$('#ShowPassword').click(function () {
+  $('#Password').attr('type', $(this).is(':checked') ? 'text' : 'password');
+});
+});
+
+*/
 
 ipcMain.handle('get', () => {
    getProducts()
@@ -103,7 +124,7 @@ ipcMain.handle('update', (event, obj) => {
   updateproduct(obj)    
 });
 
-
+/* 
 function getProducts()
 {
   
@@ -167,5 +188,5 @@ function updateproduct(obj)
      getProducts()  
    });
 }
-
+*/
 

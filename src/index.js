@@ -1,4 +1,4 @@
-const { ipcRenderer } = require('electron')
+/* const { ipcRenderer } = require('electron')
 
 let mylist;
 let idproduct
@@ -9,7 +9,7 @@ let btnUpdate;
 let btndelete;
 let btnedit;
 /*document.addEventListener("DOMContentLoaded", function() {
- })*/
+ })
 
 window.onload = function() { 
    
@@ -126,4 +126,4 @@ function clearinput()
    name.value = ""
    price.value = ""
 }
-
+*/
