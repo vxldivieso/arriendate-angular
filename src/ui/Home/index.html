@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  <!-- JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+  
+  <link rel="stylesheet" type="text/css" href="home.css">
+  
+  <title>Arriendate.cl</title>
+  </head>
+
+    <nav class="navbar navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Arriendate.cl</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Menú</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Perfil</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../Login/login.html" >Cerrar Sesión</a>
+              </li>
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+  <body>
+
+    <h1 class="welcome">Bienvenido/a</h1>
+
+    <section class="modules">
+        <div class="container w-75">
+          <div class="row row-cols-1 row-cols-md-2 g-4">
+            <div class="col">
+              <div class="card btn btn-outline-success" type="button" onclick="location.href='moduloReserva.html'" >
+                <div class="card-body" >
+                  <h5 class="card-title">Gestión de Reservas</h5>
+                  <p class="card-text">Check in, Check out, Realizar Reserva, Cancelar Reserva, Pago online</p>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card btn btn-outline-primary" type="button" onclick="location.href='moduloBusqueda.html'" >
+                
+                <div class="card-body"  >
+                  <h5 class="card-title">Búsqueda y Visualización</h5>
+                  <p class="card-text">Ver Arriendos Vigentes, Búsqueda de Departamentos, Ver fechas disponibles </p>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card btn btn-outline-danger" type="button" onclick="location.href='moduloAdm.html'">
+                
+                <div class="card-body" >
+                  <h5 class="card-title">Administración</h5>
+                  <p class="card-text">Gestión de inventario, Actualización de Estados Departamentos, Gestión de Usuarios</p>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card btn btn-outline-warning" type="button" onclick="location.href='moduloReporteria.html'">
+                
+                <div class="card-body" >
+                  <h5 class="card-title">Reportería</h5>
+                  <p class="card-text">Reportería, Gestión de Transporte, Programación de Mantención Departamentos  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+    </section>
+    
+  </body>
+</html>

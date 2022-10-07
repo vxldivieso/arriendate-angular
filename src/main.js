@@ -5,26 +5,11 @@ let db = require('./database')
 let win;
 let winlogin;
 
-function createWindow () {
-   win = new BrowserWindow({
-    width: 800,
-    height: 600,
-    webPreferences: {
-     // nodeIntegration: true,
-     // contextIsolation:true,
-     // devTools:false,
-      preload:path.join(__dirname, './index.js')
-      
-    }
-  })
-
-  win.loadFile('src/ui/index.html')
-}
-
+//Window Login
 function loginWindow () {
   winlogin = new BrowserWindow({
-   width: 800,
-   height: 600,
+   width: 1000,
+   height: 1000,
    webPreferences: {
     // nodeIntegration: true,
     // contextIsolation:true,
@@ -34,25 +19,45 @@ function loginWindow () {
    }
  })
 
- winlogin.loadFile('src/ui/login.html')
+ winlogin.loadFile('src/ui/Login/login.html')
 }
 
+//Window Home
+function createWindow () {
+   win = new BrowserWindow({
+    width: 1000,
+    height: 1000,
+    webPreferences: {
+     // nodeIntegration: true,
+     // contextIsolation:true,
+     // devTools:false,
+      preload:path.join(__dirname, './index.js')
+      
+    }
+  })
 
+  win.loadFile('src/ui/Home/index.html')
+}
 
+//First window
 app.whenReady().then(loginWindow)
 
+
+
+//
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit()
   }
 })
-
+//
 app.on('activate', () => {
   if (BrowserWindow.getAllWindows().length === 0) {
     createWindow()
   }
 })
 
+//Llamado validar credenciales
 ipcMain.handle('login', (event, obj) => {
   validatelogin(obj)
 });
@@ -66,7 +71,7 @@ function validatelogin(obj) {
     if(error){ console.log(error);}
 
     if(results.length > 0){
-       createWindow ()
+       createWindow()
        win.show()
        winlogin.close()
      }else{
@@ -79,6 +84,11 @@ function validatelogin(obj) {
   });
 }
 
+//Validar pantalla de inicio según Rol
+
+
+
+//Funcion para mostrar contraseña
 /*
 function mostrarPassword(){
   var cambio = document.getElementById("txtPassword");
@@ -100,6 +110,7 @@ $('#ShowPassword').click(function () {
 
 */
 
+//CRUD
 ipcMain.handle('get', () => {
    getProducts()
 });
@@ -123,6 +134,8 @@ ipcMain.handle('remove_product', (event, obj) => {
 ipcMain.handle('update', (event, obj) => {
   updateproduct(obj)    
 });
+
+//CRUD 2
 
 /* 
 function getProducts()
