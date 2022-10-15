@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChildren } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoginComponent } from 'src/app/pages/login/login.component';
 
 @Component({
@@ -7,10 +8,13 @@ import { LoginComponent } from 'src/app/pages/login/login.component';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  constructor() { }
+  constructor(private route:Router) { }
 
   ngOnInit(): void {
     
+  }
+  logout() {
+    this.route.navigate(['home'])
   }
 
 }
