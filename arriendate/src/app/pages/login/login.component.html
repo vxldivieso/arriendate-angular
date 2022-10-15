@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <base href="./">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Inicio de Sesión - Arriendate</title>  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body class="mat-typography">
+  <div class="vh-100 d-flex justify-content-center align-items-center">
+    <div class="container">
+      <div class="row d-flex justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+          <div class="card bg-white shadow-lg">
+            <div class="card-body p-5">
+              <form class="mb-3 mt-md-4" [formGroup]="loginForm">
+                <h2 class="fw-bold mb-2 text-uppercase ">Iniciar Sesión</h2>
+                <p class=" mb-5">Por favor introduce tu usuario y contraseña</p>
+                <!-- Con animación -->
+                <div class="form-floating mb-3">
+                  <input type="number" class="form-control" id="rut" formControlName="rut" placeholder="11111111" required>
+                  <label for="floatingInput">Ingresa tu RUN (sin DV)</label>
+                </div>
+                <div class="form-floating">
+                  <input type="password" class="form-control" id="password"  formControlName="password" placeholder="Password" required>
+                  <label for="floatingPassword">Ingresa tu Clave</label>
+                </div>
+                
+                <hr>
+                <div class="text-center">
+                  <p class="small"><a class="text-primary fw-bold" href="">¿Olvidaste tu contraseña?</a></p>
+                </div>
+                <div class="d-grid">
+                  <button class="btn btn-outline-dark" type="submit" id="login" (click)="onSubmit()">Iniciar Sesión</button> 
+                </div>
+              </form>
+              <div>
+                <p class="mb-0  text-center">¿Aún no tienes cuenta? Contactate con area de Soporte</p>
+              </div>
+              <div>
+                <label id="error-message"></label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
