@@ -9,6 +9,9 @@ import { RouterModule } from '@angular/router';
 import { ModuleComponent } from '../reservas/module.component';
 import { ReservaComponent } from '../reservas/reserva/reserva.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
 
 
 @NgModule({
@@ -16,9 +19,10 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     CommonModule,
     HomeRoutingModule,
-    HttpClientModule,
     MaterialModule,
-    RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

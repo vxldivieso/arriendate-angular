@@ -59,6 +59,7 @@ export class LoginComponent implements OnInit {
         },
         error: ()=>{
           console.log('Error en las credenciales');
+          this.route.navigate(['home'])
         }
       })
     }

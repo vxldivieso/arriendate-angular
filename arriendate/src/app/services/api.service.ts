@@ -13,6 +13,22 @@ export class ApiService{
         
     }
 
+
+    login(rut:any, password:any){
+        return this.http.get(`/v3/loginEmp/:${rut}/:${password}`)
+        .pipe(
+            catchError((error) =>{
+                return this.errorHandler(error);
+            }))
+    }
+
+    getSucursal(){
+        return this.http.get(`${this.apiURL}/listarSuc`).pipe(
+            catchError((error) =>{
+                return this.errorHandler(error);
+            }))
+    }
+    
     getEmployee(){
         return this.http.get(`${this.apiURL}/listarEmps`).pipe(
             catchError((error) =>{
@@ -21,9 +37,16 @@ export class ApiService{
 
     }
 
-    login(rut:any, password:any){
-        return this.http.get(`${this.apiURL}/loginEmp/:${rut}/:${password}`)
-        .pipe(
+    getDeptos(){
+        return this.http.get(`${this.apiURL}/listarDepto/`).pipe(
+            catchError((error) =>{
+                return this.errorHandler(error);
+            }))
+    }
+
+    //Modulo Reservas
+    doReserve(){
+        return this.http.get(`${this.apiURL}/doreserve`).pipe(
             catchError((error) =>{
                 return this.errorHandler(error);
             }))
