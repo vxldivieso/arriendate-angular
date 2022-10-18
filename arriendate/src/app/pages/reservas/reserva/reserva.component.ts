@@ -18,6 +18,8 @@ export class ReservaComponent implements OnInit {
 
   mascotas : String[] = [ 'Si', 'No']
   sucursal !: String [];
+
+  today = new Date();
   
   constructor(private acroute: ActivatedRoute, private location : Location, private fb: FormBuilder, private api:ApiService) { }
 
@@ -60,20 +62,13 @@ export class ReservaComponent implements OnInit {
     this.api.getSucursal().subscribe({
       next:(res)=>{
         this.sucursales = res;
-        Object.entries(res).forEach(([key, value]) => {
-          console.log(value)
-          for (let clave in value){
-            console.log(value[clave]);
-          }
-        });
-
-        for(const [key, value] of Object.entries(res)){
-          console.log(value)
-        }
-
-        this.sucursal = this.sucursales.nom_suc;
+        
       }
     })
+  }
+
+  sumServicios(){
+
   }
 
 

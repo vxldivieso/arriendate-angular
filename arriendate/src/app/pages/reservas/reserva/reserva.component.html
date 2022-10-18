@@ -29,8 +29,8 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="form-floating mb-3">
-                  <select class="form-select" id="id_sucursal" formControlName="id_sucursal"  *ngFor="let sucursal of sucursales" aria-label="Floating label select example">
-                    <option selected>{{sucursal}}</option>
+                  <select class="form-select" id="id_sucursal" formControlName="id_sucursal" aria-label="Floating label select example">
+                    <option>Sucursal</option>
                   </select>
                   <label for="id_sucursal">Seleccione Ciudad</label>
               </div>
@@ -48,29 +48,29 @@
               </div>
             </div>
             <div class="row">
-              <mat-form-field appearance="fill">
-                <mat-label>Enter a date range</mat-label>
-                <mat-date-range-input  [rangePicker]="picker">
-                  <input matStartDate formControlName="fec_desde" placeholder="Start date">
-                  <input matEndDate formControlName="fec_hasta" placeholder="End date">
-                </mat-date-range-input>
-                <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-date-range-picker #picker></mat-date-range-picker>
+              <div class="col-md-6 mb-3">
+                <label for="fec_desde">Fecha desde: </label>
+                <input class="form-control" type="date" id="fec_desde" required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="fec_hasta">Fecha hasta: </label>
+                <input id="fec_hasta" class="form-control" type="date" required>
+              </div>
               
-              </mat-form-field>
             </div>
             <div class="row">
-              <div class="col-md-6">
+              <div class="col-md-6 mb-3">
                 <label for="">Incluye mascotas</label>
-                
-                <mat-radio-group
-                  aria-labelledby="example-radio-group-label"
-                  class="example-radio-group" name="mascotas" color="primary" formControlName="mascotas">
-                  <mat-radio-button class="example-radio-button" *ngFor="let option of mascotas" [value]="option"  >
-                    {{option}}
-                  </mat-radio-button>
-                </mat-radio-group>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                  <label class="form-check-label" for="flexRadioDefault1">Si</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                  <label class="form-check-label" for="flexRadioDefault2">
+                    No
+                  </label>
+                </div>
               </div>
               <div class="col-md-6">
                 <div class="form-floating mb-3">
@@ -124,4 +124,22 @@
             <button type="submit" class="btn btn-primary mb-3">Generar Reserva</button>
             </div>
         </form>
+
+        <script>
+          var today = new Date();
+          var dd = today.getDate();
+          var mm = today.getMonth() + 1; //January is 0!
+          var yyyy = today.getFullYear();
+
+          if (dd < 10) {
+            dd = '0' + dd;
+          }
+
+          if (mm < 10) {
+            mm = '0' + mm;
+          } 
+              
+          today = yyyy + '-' + mm + '-' + dd;
+          document.getElementById('fec_desde').setAttribute('min', today);
+        </script>
     </div>
