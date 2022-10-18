@@ -3,6 +3,7 @@ import {FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validat
 import {ErrorStateMatcher} from '@angular/material/core';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
+import Swal from 'sweetalert2'
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -54,14 +55,31 @@ export class LoginComponent implements OnInit {
       this.api.login(this.rut, this.password).subscribe({
         next:(res)=>{
           console.log('Ingreso correcto');
-          this.login = true;
-          this.route.navigate(['home'])
         },
         error: ()=>{
           console.log('Error en las credenciales');
+          this.messageError()
         }
       })
     }
   }
+  //Message Error
+  messageError(){
+    const Toast = Swal.mixin({
+    toast: true,
+    position: 'bottom',
+    showConfirmButton: false,
+    timer: 2000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+    })
+    Toast.fire({
+    icon: 'error',
+    title: 'Ups.. Credenciales Inválidas'
+    })
+}
 
 }
