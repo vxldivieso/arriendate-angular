@@ -1,1 +1,24 @@
-<p>busqueda works!</p>
+<br>
+<div class="mb-3">
+  <button mat-fab color="accent" aria-label="" (click)="goBack()">
+    <mat-icon>keyboard_arrow_left</mat-icon>
+  </button>
+  <label for=""> &nbsp; Atrás</label>
+</div>
+<body>
+  <br>
+  <h2 class=" text-uppercase text-center">Ver Departamentos Disponibles</h2>
+  <div *ngFor="let data of deptos_detalle" >
+    <div class="card" style="width: 18rem;"  >
+      <img src="{{data.FOTO1}}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Departamento, {{data.TOTAL_PERSONAS}} personas</h5>
+        <p class="card-text">{{data.DESCRIPCION}}</p>
+        <a href="#" class="btn btn-primary" routerLink="/home/realizar_reserva">Reservar</a>
+      </div>
+    </div>
+    
+  </div>
+  
+</body>
+

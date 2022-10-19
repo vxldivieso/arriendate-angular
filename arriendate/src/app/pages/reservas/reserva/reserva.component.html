@@ -30,7 +30,12 @@
               <div class="col-md-6">
                 <div class="form-floating mb-3">
                   <select class="form-select" id="id_sucursal" formControlName="id_sucursal" aria-label="Floating label select example">
-                    <option>Sucursal</option>
+                    
+                    <option value="" >La Serena</option>
+                      <option value="" >Santiago</option>
+                        <option value="" >Valparaiso</option>
+                          <option value="" >Rancagua</option>
+                            <option value="" >Talca</option>
                   </select>
                   <label for="id_sucursal">Seleccione Ciudad</label>
               </div>
@@ -38,10 +43,11 @@
               <div class="col-md-6">
                 <div class="form-floating mb-3">
                   <select class="form-select" id="id_depto" formControlName="id_depto" aria-label="Floating label select example">
-                    <option selected>Dep. 12 - Santiago</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    <option selected>1</option>
+                    <option value="1">2</option>
+                    <option value="2">3</option>
+                    <option value="3">4</option>
+                    <option value="3">5</option>
                   </select>
                   <label for="id_depto">Seleccione Departamento</label>
               </div>
@@ -50,11 +56,11 @@
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="fec_desde">Fecha desde: </label>
-                <input class="form-control" type="date" id="fec_desde" required>
+                <input class="form-control" formControlName="fec_desde" type="date" id="fec_desde" required>
               </div>
               <div class="col-md-6 mb-3">
                 <label for="fec_hasta">Fecha hasta: </label>
-                <input id="fec_hasta" class="form-control" type="date" required>
+                <input id="fec_hasta" class="form-control" formControlName="fec_hasta" type="date" required>
               </div>
               
             </div>
@@ -74,7 +80,7 @@
               </div>
               <div class="col-md-6">
                 <div class="form-floating mb-3">
-                  <input type="number" class="form-control" id="floatingInput" placeholder="XXXXXXX-X">
+                  <input type="number" class="form-control" formControlName="cantpersonas" id="floatingInput" placeholder="XXXXXXX-X">
                   <label for="floatingInput">Cantidad de Personas</label>
               </div>
               </div>
@@ -125,21 +131,5 @@
             </div>
         </form>
 
-        <script>
-          var today = new Date();
-          var dd = today.getDate();
-          var mm = today.getMonth() + 1; //January is 0!
-          var yyyy = today.getFullYear();
-
-          if (dd < 10) {
-            dd = '0' + dd;
-          }
-
-          if (mm < 10) {
-            mm = '0' + mm;
-          } 
-              
-          today = yyyy + '-' + mm + '-' + dd;
-          document.getElementById('fec_desde').setAttribute('min', today);
-        </script>
+        
     </div>

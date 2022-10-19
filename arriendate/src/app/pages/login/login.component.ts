@@ -37,16 +37,8 @@ export class LoginComponent implements OnInit {
       password : ['',Validators.required]
     })
 
-    this.getEmployee()
   }
 
-  getEmployee(){
-    this.api.getEmployee().subscribe({
-      next:(res)=>{
-        console.log(res);
-      }
-    })
-  }
 
   onSubmit(){
     this.rut = this.loginForm.controls['rut'].value
@@ -54,10 +46,9 @@ export class LoginComponent implements OnInit {
     if(this.loginForm.valid){
       this.api.login(this.rut, this.password).subscribe({
         next:(res)=>{
-          console.log('Ingreso correcto');
+          res
         },
         error: ()=>{
-          console.log('Error en las credenciales');
           this.messageError()
         }
       })

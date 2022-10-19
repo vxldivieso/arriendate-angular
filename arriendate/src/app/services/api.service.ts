@@ -19,7 +19,6 @@ export class ApiService{
     login(rut:any, password:any){
         return this.http.get(`${this.apiURL}/loginEmp/${rut}/${password}`).pipe(
             (map((res:any)=>{
-                console.log(res[0]['ResultadoLogin']);
                 this.ingreso = res[0]['ResultadoLogin']
                 if(this.ingreso == 'aprobado'){
                     this.router.navigate(['home'])
@@ -58,8 +57,8 @@ export class ApiService{
     }
 
     //Modulo Reservas
-    doReserve(){
-        return this.http.get(`${this.apiURL}/doreserve`).pipe(
+    doReserve(data:any){
+        return this.http.post<any>(`${this.apiURL}/doreserve`,{reserva:data}).pipe(
             catchError((error) =>{
                 return this.errorHandler(error);
             }))

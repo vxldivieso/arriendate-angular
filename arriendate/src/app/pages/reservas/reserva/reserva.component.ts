@@ -13,11 +13,13 @@ import { ApiService } from 'src/app/services/api.service';
 export class ReservaComponent implements OnInit {
 
   reserveForm !: FormGroup;
-  deptos_detalle : any;
+  deptos_detalle :any;
   sucursales : any;
 
+  datosReserva !: String[];
   mascotas : String[] = [ 'Si', 'No']
   sucursal !: String [];
+
 
   today = new Date();
   
@@ -51,9 +53,9 @@ export class ReservaComponent implements OnInit {
   getDeptos(){
     this.api.getDeptos().subscribe({
       next:(res)=>{
-        this.deptos_detalle = res;
-        console.log(this.deptos_detalle);
-        
+        Object.entries(res).forEach(([key, value]) => {
+          this.deptos_detalle = value;
+        });
       }
     })
   }
@@ -61,10 +63,23 @@ export class ReservaComponent implements OnInit {
   getSucursal(){
     this.api.getSucursal().subscribe({
       next:(res)=>{
-        this.sucursales = res;
-        
+        Object.entries(res).forEach(([key, value]) => {
+          this.sucursales = value;
+        });
       }
     })
+  }
+
+  onSubmit(){
+    this.datosReserva = this.reserveForm.value;
+    if (this.reserveForm.valid){
+      this.api.doReserve(this.datosReserva).subscribe({
+        next:(res)=>{
+          this.sucursales = res;
+          console.log(typeof res);
+        }
+      })
+    }
   }
 
   sumServicios(){
