@@ -11,12 +11,20 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeRoutingModule } from './pages/home/home-routing.module';
 import { CommonModule } from '@angular/common';
+import { ListarDeptosComponent } from './pages/busqueda/listar-deptos/listar-deptos.component';
+import { ArriendosVigentesComponent } from './pages/busqueda/arriendos-vigentes/arriendos-vigentes.component';
+import { BusquedaComponent } from './pages/busqueda/busqueda.component';
+import { FechasDisponiblesComponent } from './pages/busqueda/fechas-disponibles/fechas-disponibles.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     NavbarComponent,
+    ListarDeptosComponent,
+    ArriendosVigentesComponent,
+    BusquedaComponent,
+    FechasDisponiblesComponent,
   ],
   imports: [
     CommonModule,

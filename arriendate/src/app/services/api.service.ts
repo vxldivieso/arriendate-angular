@@ -50,11 +50,6 @@ export class ApiService{
 
     }
 
-<<<<<<< HEAD
-    login(rut:any, password:any){
-        return this.http.get(/*`${this.apiURL}*/'https://api-turismoreal.azurewebsites.net/bd/loginEmp/${rut}/${password}')
-        .pipe(
-=======
     getDeptos(){
         return this.http.get(`${this.apiURL}/listarDepto/`).pipe(
             catchError((error) =>{
@@ -65,7 +60,6 @@ export class ApiService{
     //Modulo Reservas
     doReserve(){
         return this.http.get(`${this.apiURL}/doreserve`).pipe(
->>>>>>> 361811bd13891ff87fd51b0e664b81bac418d57d
             catchError((error) =>{
                 return this.errorHandler(error);
             }))
