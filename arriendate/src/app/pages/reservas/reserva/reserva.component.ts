@@ -27,7 +27,6 @@ export class ReservaComponent implements OnInit {
 
   ngOnInit(): void {
     this.reserveForm = this.fb.group({
-      id_reserva : new FormControl(''),
       rut : new FormControl(''),
       id_sucursal : new FormControl(''),
       id_depto : new FormControl(''),
@@ -35,12 +34,9 @@ export class ReservaComponent implements OnInit {
       fec_hasta: new FormControl<Date | null>(null),
       mascotas : new FormControl(Boolean),
       cantpersonas : new FormControl(Number),
-      priceDepto : new FormControl(''),
       total_reserva : new FormControl(''),
       monto_abonado : new FormControl(''),
       monto_servicios : new FormControl(''),
-      fec_reserva : new FormControl(Date),
-      id_detalle_reserva : new FormControl(''),
     })
     this.getDeptos()
     this.getSucursal()
@@ -53,8 +49,9 @@ export class ReservaComponent implements OnInit {
   getDeptos(){
     this.api.getDeptos().subscribe({
       next:(res)=>{
+        this.deptos_detalle = res;
         Object.entries(res).forEach(([key, value]) => {
-          this.deptos_detalle = value;
+          
         });
       }
     })
@@ -63,8 +60,9 @@ export class ReservaComponent implements OnInit {
   getSucursal(){
     this.api.getSucursal().subscribe({
       next:(res)=>{
+        this.sucursales = res;
         Object.entries(res).forEach(([key, value]) => {
-          this.sucursales = value;
+          
         });
       }
     })

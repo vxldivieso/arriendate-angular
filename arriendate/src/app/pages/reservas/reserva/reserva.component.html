@@ -13,12 +13,6 @@
             <h5 class="fw-bold mb-3 text-uppercase text-center">Ingrese los siguientes datos</h5>
             <div class="row">
               <div class="col-md-6">
-                <div class="form-floating mb-2">
-                  <input type="text" readonly class="form-control-plaintext" formControlName="id_reserva" id="id_arriendo" placeholder="123" value="123">
-                  <label for="id_arriendo">ID Reserva</label>
-                  </div>
-              </div>
-              <div class="col-md-6">
                 <div class="form-floating mb-3">
                   <input type="rut" class="form-control" formControlName="rut" id="rut_cli" placeholder="XXXXXXX-X">
                   <label for="rut_cli">Rut Titular</label>
@@ -30,12 +24,7 @@
               <div class="col-md-6">
                 <div class="form-floating mb-3">
                   <select class="form-select" id="id_sucursal" formControlName="id_sucursal" aria-label="Floating label select example">
-                    
-                    <option value="" >La Serena</option>
-                      <option value="" >Santiago</option>
-                        <option value="" >Valparaiso</option>
-                          <option value="" >Rancagua</option>
-                            <option value="" >Talca</option>
+                    <option [value]="item" *ngFor="let item of sucursales" >{{item.CIUDAD}}</option>
                   </select>
                   <label for="id_sucursal">Seleccione Ciudad</label>
               </div>
@@ -43,13 +32,9 @@
               <div class="col-md-6">
                 <div class="form-floating mb-3">
                   <select class="form-select" id="id_depto" formControlName="id_depto" aria-label="Floating label select example">
-                    <option selected>1</option>
-                    <option value="1">2</option>
-                    <option value="2">3</option>
-                    <option value="3">4</option>
-                    <option value="3">5</option>
+                    <option [value]="item" *ngFor="let item of deptos_detalle" >{{item.NOMBRE}}</option>
                   </select>
-                  <label for="id_depto">Seleccione Departamento</label>
+                  <label for="id_depto ">Seleccione Departamento</label>
               </div>
               </div>
             </div>
