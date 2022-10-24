@@ -50,7 +50,14 @@ export class ApiService{
     }
 
     getDeptos(){
-        return this.http.get(`${this.apiURL}/listarDepto/`).pipe(
+        return this.http.get(`${this.apiURL}/listarDepto`).pipe(
+            catchError((error) =>{
+                return this.errorHandler(error);
+            }))
+    }
+
+    getArriendos(){
+        return this.http.get(`${this.apiURL}/listarReservas`).pipe(
             catchError((error) =>{
                 return this.errorHandler(error);
             }))
