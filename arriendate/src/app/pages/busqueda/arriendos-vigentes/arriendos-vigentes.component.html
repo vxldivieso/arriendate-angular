@@ -7,16 +7,25 @@
 </div>
 
 <body>
-  <h2 class=" text-uppercase text-center">Ver Arriendos</h2>
-  <div class="container w-75">
-    <div class="card" style="width: 18rem;">
-      <img src="..." class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <a  class="btn btn-primary">Go somewhere</a>
+  <!-- Titulo con espacios  -->
+  <br>
+  <h2 class="text-uppercase text-center fw-bold">Ver Arriendos Vigentes</h2>
+  <br>
+  <!-- Cards  -->
+    <div class="container">
+      <div class="row g-3">
+        <div class="col-4" *ngFor="let data2 of vigentes_arriendos" >
+          <div class="card">
+            <img src=" " class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Check In: {{data2.CHECK_IN}}</h5>
+              <h5 class="card-title">Status: {{data2.ESTADO}}</h5>
+              <p class="card-text">Total arriendo: {{data2.TOTAL_ARRIENDO}}</p>
+             <!-- <a href="#" class="btn btn-primary" routerLink="/home/realizar_reserva">Reservar</a> -->
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
 </body>
 

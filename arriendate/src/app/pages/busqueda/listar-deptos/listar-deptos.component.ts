@@ -8,6 +8,7 @@ import { ApiService } from 'src/app/services/api.service';
   templateUrl: './listar-deptos.component.html',
   styleUrls: ['./listar-deptos.component.scss']
 })
+
 export class ListarDeptosComponent implements OnInit {
   deptos_detalle : any;
 
@@ -32,9 +33,11 @@ export class ListarDeptosComponent implements OnInit {
   ngOnInit(): void {
     this.getDeptos()
   }
+
   goBack(){
     this.location.back()
   }
+  
   getDeptos(){
     this.api.getDeptos().subscribe({
       next:(res:any)=>{
@@ -47,5 +50,4 @@ export class ListarDeptosComponent implements OnInit {
       }
     })
   }
-
 }

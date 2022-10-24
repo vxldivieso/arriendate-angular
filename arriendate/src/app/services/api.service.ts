@@ -59,12 +59,17 @@ export class ApiService{
     }
 
     getDeptos(){
+<<<<<<< HEAD
         return this.http.get(`/v3/listarDepto/`).pipe(
+=======
+        return this.http.get(`${this.apiURL}/listarDepto`).pipe(
+>>>>>>> 05654b6eb30d21eb0c82177bb81570c9fa01a8f5
             catchError((error) =>{
                 return this.errorHandler(error);
             }))
     }
 
+<<<<<<< HEAD
     getServices(){
         return this.http.get(`/v3/listarServicios`).pipe(
             catchError((error) =>{
@@ -89,6 +94,10 @@ export class ApiService{
     //Agregar Cliente
     newClient(data:any){
         return this.http.post<any>(`/v3/agregarCli`,{data:data}).pipe(
+=======
+    getArriendos(){
+        return this.http.get(`${this.apiURL}/listarReservas`).pipe(
+>>>>>>> 05654b6eb30d21eb0c82177bb81570c9fa01a8f5
             catchError((error) =>{
                 return this.errorHandler(error);
             }))

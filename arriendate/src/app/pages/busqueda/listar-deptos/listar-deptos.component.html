@@ -6,19 +6,26 @@
   <label for=""> &nbsp; Atrás</label>
 </div>
 <body>
+  <!-- Titulo con espacios -->
   <br>
-  <h2 class=" text-uppercase text-center">Ver Departamentos Disponibles</h2>
-  <div *ngFor="let data of deptos_detalle" >
-    <div class="card" style="width: 18rem;"  >
-      <img src="{{data.FOTO1}}" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Departamento, {{data.TOTAL_PERSONAS}} personas</h5>
-        <p class="card-text">{{data.DESCRIPCION}}</p>
-        <a href="#" class="btn btn-primary" routerLink="/home/realizar_reserva">Reservar</a>
+  <h2 class="text-uppercase text-center fw-bold">Ver Departamentos Disponibles</h2>
+  <br>
+  <!-- Cards -->
+    <div class="container">
+      <div class="row g-3">
+        <div class="col-4" *ngFor="let data of deptos_detalle" >
+          <div class="card">
+            <img src="{{data.FOTO1}}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">Departamento, {{data.TOTAL_PERSONAS}} personas</h5>
+              <h6 class="card-title">Ubicación: {{data.UBICACION}}</h6>
+              <p class="card-text">{{data.DESCRIPCION}}</p>
+              <h5 class="card-title fw-bold">Valor por día: ${{data.VALOR_DIA}}</h5>
+              <a href="#" class="btn btn-primary" routerLink="/home/realizar_reserva">Reservar</a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    
-  </div>
-  
 </body>
 
