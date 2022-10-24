@@ -12,10 +12,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
+import { AppModule } from 'src/app/app.module';
+import { CheckComponent } from '../reservas/check/check.component';
+import { CancelComponent } from '../reservas/cancel/cancel.component';
+import { PayComponent } from '../reservas/pay/pay.component';
 
 
 @NgModule({
-  declarations: [HomeComponent, ModuleComponent, ReservaComponent],
+  declarations: [HomeComponent, ModuleComponent, NavbarComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,

@@ -1,0 +1,5 @@
+npm install moment --save
+npm i
+npm install @angular/cli
+ng add @angular/material
+npm install sweetalert 
