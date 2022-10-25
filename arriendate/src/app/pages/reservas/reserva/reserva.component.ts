@@ -24,7 +24,7 @@ export class ReservaComponent implements OnInit {
   client : any;
   resultadoBusqueda : any;
   
-  servicioChecked !:number;
+  servicioChecked :any;
   total_reserva :any;
 
   today = new Date();
@@ -92,6 +92,13 @@ export class ReservaComponent implements OnInit {
         this.servicios = res;
       }
     })
+  }
+
+  checkboxService(){
+    if(this.servicioChecked ){
+      this.servicios.VALOR_SERVICIO 
+      
+    }
   }
 
   getClient(){

@@ -19,7 +19,7 @@ export class ApiService{
 
 
     login(rut:any, password:any){
-        return this.http.get(`/v3/loginEmp/${rut}/${password}`).pipe(
+        return this.http.get(`${this.apiURL}/loginEmp/${rut}/${password}`).pipe(
             (map((res:any)=>{
                 this.ingreso = res[0]['ResultadoLogin']
                 if(this.ingreso == 'aprobado'){
@@ -37,21 +37,30 @@ export class ApiService{
     }
 
     getSucursal(){
-        return this.http.get(`/v3/listarSuc`).pipe(
+        return this.http.get(`${this.apiURL}/listarSuc`).pipe(
             catchError((error) =>{
                 return this.errorHandler(error);
             }))
     }
 
     getReserveByID(id:any){
-        return this.http.get(`/v3/listarReservas/${id}`).pipe(
+        return this.http.get(`${this.apiURL}/listarReservas/${id}`).pipe(
             catchError((error) =>{
                 return this.errorHandler(error);
             }))
     }
+
+    getArriendos(){
+        return this.http.get(`${this.apiURL}/listarReservas`).pipe(
+            catchError((error) =>{
+                return this.errorHandler(error);
+            }))
+    }
+
+    
     
     getEmployee(){
-        return this.http.get(`/v3/listarEmps`).pipe(
+        return this.http.get(`${this.apiURL}/listarEmps`).pipe(
             catchError((error) =>{
                 return this.errorHandler(error);
             }))
@@ -59,19 +68,14 @@ export class ApiService{
     }
 
     getDeptos(){
-<<<<<<< HEAD
-        return this.http.get(`/v3/listarDepto/`).pipe(
-=======
-        return this.http.get(`${this.apiURL}/listarDepto`).pipe(
->>>>>>> 05654b6eb30d21eb0c82177bb81570c9fa01a8f5
+        return this.http.get(`${this.apiURL}/listarDepto/`).pipe(
             catchError((error) =>{
                 return this.errorHandler(error);
             }))
     }
 
-<<<<<<< HEAD
     getServices(){
-        return this.http.get(`/v3/listarServicios`).pipe(
+        return this.http.get(`${this.apiURL}/listarServicios`).pipe(
             catchError((error) =>{
                 return this.errorHandler(error);
             }))
@@ -79,7 +83,7 @@ export class ApiService{
     }
 
     getClient(){
-        return this.http.get(`/v3/listarCli`).pipe(
+        return this.http.get(`${this.apiURL}/listarCli`).pipe(
             catchError((error) =>{
                 return this.errorHandler(error)
             })
@@ -87,26 +91,24 @@ export class ApiService{
     }
 
     getClientId(rut_cli:any){
-        return this.http.get(`/v3/listarCli/${rut_cli}`)
+        return this.http.get(`${this.apiURL}/listarCli/${rut_cli}`)
             
     }
 
     //Agregar Cliente
     newClient(data:any){
-        return this.http.post<any>(`/v3/agregarCli`,{data:data}).pipe(
-=======
-    getArriendos(){
-        return this.http.get(`${this.apiURL}/listarReservas`).pipe(
->>>>>>> 05654b6eb30d21eb0c82177bb81570c9fa01a8f5
+        return this.http.post<any>(`${this.apiURL}/agregarCli`,{data:data}).pipe(
             catchError((error) =>{
                 return this.errorHandler(error);
             }))
     }
 
+    //
+
     //Modulo Reservas
     //Realizar Reserva
     doReserve(data:any){
-        return this.http.post<any>(`/v3/doreserve`,{reserva:data}).pipe(
+        return this.http.post<any>(`${this.apiURL}/doreserve`,{reserva:data}).pipe(
             catchError((error) =>{
                 return this.errorHandler(error);
             }))
@@ -114,7 +116,7 @@ export class ApiService{
 
     //Cancelar Reserva
     cancelReserve(id_reserva:any, estado:any){
-        return this.http.post<any>(`/v3/${id_reserva}/cancel`,{estado:estado}).pipe(
+        return this.http.post<any>(`${this.apiURL}/${id_reserva}/cancel`,{estado:estado}).pipe(
             catchError((error) =>{
                 return this.errorHandler(error)
             })
@@ -124,7 +126,7 @@ export class ApiService{
 
     //Realizar Check in
     checkin(id_reserva:any,checkin:any){
-        return this.http.post<any>(`/v3/${id_reserva}/checkin`,{checkin:checkin}).pipe(
+        return this.http.post<any>(`${this.apiURL}/${id_reserva}/checkin`,{checkin:checkin}).pipe(
             catchError((error) =>{
                 return this.errorHandler(error)
             })
@@ -133,7 +135,7 @@ export class ApiService{
 
     //Realizar Check out
     checkout(id_reserva:any,checkout:any){
-    return this.http.post<any>(`/v3/${id_reserva}/checkout`,{checkout:checkout}).pipe(
+    return this.http.post<any>(`${this.apiURL}/${id_reserva}/checkout`,{checkout:checkout}).pipe(
         catchError((error) =>{
             return this.errorHandler(error)
         })
