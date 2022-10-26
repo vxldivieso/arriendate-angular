@@ -21,7 +21,7 @@
               <h6 class="card-title">Ubicación: {{data.UBICACION}}</h6>
               <p class="card-text">{{data.DESCRIPCION}}</p>
               <h5 class="card-title fw-bold">Valor por día: ${{data.VALOR_DIA}}</h5>
-              <a href="#" class="btn btn-primary" routerLink="/home/realizar_reserva">Reservar</a>
+              <a class="btn btn-primary" (click)="reservarDepto(data.ID_DEPTO)" >Reservar</a>
             </div>
           </div>
         </div>

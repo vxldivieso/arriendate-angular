@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -11,8 +11,7 @@ import { ApiService } from 'src/app/services/api.service';
 
 export class ListarDeptosComponent implements OnInit {
   deptos_detalle : any;
-
-  id_depto:any;
+  
   descripcion:any;
   estacionamiento:any;
   estado_depto:any;
@@ -27,8 +26,10 @@ export class ListarDeptosComponent implements OnInit {
   total_personas:any;
   ubicacion:any;
   valor_dia:any;
-  
-  constructor(private acroute: ActivatedRoute, private location : Location, private api : ApiService) { }
+
+  @Input() id_depto:any;
+
+  constructor(private acroute: ActivatedRoute, private location : Location, private api : ApiService, private route : Router) { }
 
   ngOnInit(): void {
     this.getDeptos()
@@ -49,5 +50,12 @@ export class ListarDeptosComponent implements OnInit {
         });
       }
     })
+  }
+
+  reservarDepto(id_depto:any){
+    this.id_depto = id_depto;
+    console.log(this.id_depto);
+    
+    this.route.navigate(['home/realizar_reserva']);
   }
 }

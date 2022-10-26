@@ -126,6 +126,7 @@ export class ApiService{
 
     //Realizar Check in
     checkin(id_reserva:any,checkin:any){
+        let header = new HttpHeaders()
         return this.http.post<any>(`${this.apiURL}/${id_reserva}/checkin`,{checkin:checkin}).pipe(
             catchError((error) =>{
                 return this.errorHandler(error)
@@ -140,6 +141,15 @@ export class ApiService{
             return this.errorHandler(error)
         })
     )
+    }
+
+    //Buscar depto por id
+
+    getDeptoById(id:any){
+        return this.http.get(`${this.apiURL}/listarDepto/${id}`).pipe(
+            catchError((error) =>{
+                return this.errorHandler(error)
+            }))
     }
 
     errorHandler(error:HttpErrorResponse){

@@ -1,9 +1,10 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChildren } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { ApiService } from 'src/app/services/api.service';
+import { ListarDeptosComponent } from '../../busqueda/listar-deptos/listar-deptos.component';
 
 @Component({
   selector: 'app-reserva',
@@ -19,18 +20,26 @@ export class ReservaComponent implements OnInit {
   sucursales : any;
 
   datosReserva !: String[];
-  mascotas : String[] = [ 'Si', 'No']
+  
   servicios :any;
   client : any;
   resultadoBusqueda : any;
   
-  servicioChecked :any;
+  servicioChecked = 0;
   total_reserva :any;
+  deptoSelected :any;
+  valor_dia:any;
+  total_personas:any;
+  estacionamiento:any;
+  mascotas : any;
+  
 
   today = new Date();
 
   id_cli : any;
   
+  
+
   constructor(private acroute: ActivatedRoute, private location : Location, private fb: FormBuilder, private api:ApiService) { }
 
   ngOnInit(): void {
@@ -95,9 +104,8 @@ export class ReservaComponent implements OnInit {
   }
 
   checkboxService(){
-    if(this.servicioChecked ){
-      this.servicios.VALOR_SERVICIO 
-      
+    if(document.getElementById('servicio')?.ariaChecked ){
+      this.servicioChecked == 1;
     }
   }
 
@@ -152,8 +160,38 @@ export class ReservaComponent implements OnInit {
 
 
 
+  deptoSeleccionado(){
+    this.api.getDeptoById(this.deptos_detalle.SUCURSAL_ID_SUC).subscribe({
+      next:(res)=>{
+        this.deptoSelected = res;
+        this.valor_dia = this.deptoSelected[0].VALOR_DIA ;
+        this.total_personas = this.deptoSelected[0].TOTAL_PERSONAS;
+        this.estacionamiento = this.deptoSelected[0].ESTACIONAMIENTO;
+        this.mascotas = this.deptoSelected[0].MASCOTAS;
+
+
+      },
+      error:()=>{
+        console.log('Error al buscar depto');
+        
+      }
+    })
+
+  }
+
+  reservaExterna(){
+    
+  }
+
+  sumarValores(){
+
+    console.log(document.getElementById('servicio')?.accessKey);
+    
+
+  }
+
   transformData(){
-    console.log(this.reserveForm.value);
+
   }
 
   onSubmit(){
