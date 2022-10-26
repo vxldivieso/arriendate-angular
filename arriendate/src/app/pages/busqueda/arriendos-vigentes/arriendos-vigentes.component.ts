@@ -12,8 +12,6 @@ export class ArriendosVigentesComponent implements OnInit {
  
   vigentes_arriendos : any;
 
-  arriendos:any;
-
   id_reserva:any;
   fec_reserva:any;
   id_depto:any;
@@ -43,7 +41,8 @@ export class ArriendosVigentesComponent implements OnInit {
   getArriendos(){
     this.api.getArriendos().subscribe({
       next:(res:any)=>{
-        this.arriendos = res;
+        this.vigentes_arriendos = res;
+
         Object.entries(res).forEach(([key, value]) => {
           //Aquí recibimos cada variable del esquema de la base de datos, en el html se interpolan de manera directa ej: {{id_depto}}
           

@@ -18,6 +18,10 @@ export class ApiService{
     }
 
 
+    obtener_localstorage(){
+
+    }
+
     login(rut:any, password:any){
         return this.http.get(`${this.apiURL}/loginEmp/${rut}/${password}`).pipe(
             (map((res:any)=>{
@@ -57,8 +61,6 @@ export class ApiService{
             }))
     }
 
-    
-    
     getEmployee(){
         return this.http.get(`${this.apiURL}/listarEmps`).pipe(
             catchError((error) =>{
