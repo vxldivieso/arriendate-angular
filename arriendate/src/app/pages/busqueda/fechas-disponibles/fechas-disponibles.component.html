@@ -14,8 +14,9 @@
   <!-- Comienzo del div-->
   <div class="container w-75">
     <!-- Form -->
-    <form class="mb-3 mt-md-4">
+    <form class="mb-3 mt-md-4" [formGroup]="buscarDeptoForm">
       <div class="row">
+        
         <div class="col-md-6 text-center">
           <div class="form-floating mb-3">
             <input type="text" class="form-control" formControlName="ID_DEPTO" id="ID_DEPTO" placeholder="XXXXXXX-X">
@@ -23,8 +24,14 @@
           </div>
         </div>
         <div class="col-md-6">
-          <button type="submit" class="btn btn-primary mb-3">Buscar Departamento</button>
+          <button type="submit" class="btn btn-primary mb-3" (click)="getLastDate()">Buscar Departamento</button>
         </div>
+      </div>
+      <div *ngIf="ultima_reserva != null">
+        <p  >{{ultima_reserva}}</p>
+        <mat-card class="demo-inline-calendar-card" >
+          <mat-calendar [minDate]="ultima_reserva" ></mat-calendar>
+        </mat-card>
       </div>
     </form>
   </div>

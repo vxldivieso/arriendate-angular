@@ -14,13 +14,13 @@
             <div class="row">
               <div class="col-md-6 text-center">
                 <div class="form-floating mb-3">
-                  <input type="text" class="form-control" [(ngModel)]="id_cli" formControlName="id_cli" id="id_cli" placeholder="XXXXXXX-X">
+                  <input type="text" class="form-control" [(ngModel)]="id_cli" formControlName="ID_CLI" id="id_cli" placeholder="XXXXXXX-X">
                   <label for="id_cli">Rut Titular</label>
                 </div>
               </div>
               <div class="col-md-6">
                 
-                <button type="submit" class="btn btn-primary mb-3" [disabled]="!reserveForm.controls['id_cli'].value" (click)="searchClient()" >Buscar Cliente</button>
+                <button type="submit" class="btn btn-primary mb-3" [disabled]="!reserveForm.controls['ID_CLI'].value" (click)="searchClient()" >Buscar Cliente</button>
               </div>
             </div>
 
@@ -131,7 +131,7 @@
               <div class="row" >
                 <div class="col-md-6" >
                   <div class="form-floating mb-3">
-                    <select class="form-select" [(ngModel)]="sucursales.ID_SUC" id="id_sucursal" formControlName="id_suc" name="id_suc" aria-label="Floating label select example">
+                    <select class="form-select" [(ngModel)]="sucursales.ID_SUC" id="id_sucursal" formControlName="ID_SUC" name="ID_SUC" aria-label="Floating label select example">
                       <option  *ngFor="let item of sucursales" [ngValue]="item.ID_SUC" >{{item.CIUDAD}}</option>
                     </select>
                     <label for="id_sucursal">Seleccione Ciudad</label>
@@ -139,7 +139,7 @@
                 </div>
                 <div class="col-md-6" >
                   <div class="form-floating mb-3">
-                    <select class="form-select" id="id_depto" [(ngModel)]="deptos_detalle.SUCURSAL_ID_SUC" (change)="deptoSeleccionado()" formControlName="id_depto" name="id_depto" aria-label="Floating label select example">
+                    <select class="form-select" id="id_depto" [(ngModel)]="deptos_detalle.SUCURSAL_ID_SUC" (change)="deptoSeleccionado()" formControlName="ID_DEPTO" name="ID_DEPTO" aria-label="Floating label select example">
                       <option *ngFor="let item of deptos_detalle" [hidden]='!(sucursales.ID_SUC == item.SUCURSAL_ID_SUC)'  [ngValue]="item.ID_DEPTO" >{{item.NOMBRE}}</option>
                     </select>
                     <label for="id_depto ">Seleccione Departamento</label>
@@ -149,11 +149,11 @@
               <div class="row">
                 <div class="col-md-6 mb-3">
                   <label for="fec_desde">Fecha desde: </label>
-                  <input class="form-control" formControlName="fec_desde" type="date" id="fec_desde" required>
+                  <input class="form-control" formControlName="FEC_DESDE" type="date" id="fec_desde" required>
                 </div>
                 <div class="col-md-6 mb-3">
                   <label for="fec_hasta">Fecha hasta: </label>
-                  <input id="fec_hasta" class="form-control" formControlName="fec_hasta" type="date" required>
+                  <input id="fec_hasta" class="form-control" formControlName="FEC_HASTA" type="date" required>
                 </div>
                 
               </div>
@@ -183,27 +183,22 @@
               <div class="row">
                 <div class="col-md-6 mb-3">
                   <label for="">Servicios Extras</label>
-                  <div *ngFor="let item of servicios" class="col-md-6 ">
-                    <label >
-                      <input type="checkbox" id="servicio" [value]="item.ID_SERV" (change)="sumarValores()">
-                      <span> &nbsp; {{item.NOM_SERV}} ${{item.VALOR_SERVICIO}} </span>
-                    </label>
-                  </div>
+                  
                 </div>
                 <div class="col-md-6">
                     <div class="input-group mb-3">
                     <span class="input-group-text">TOTAL $</span>
-                    <input type="number" class="form-control" [(ngModel)]="valor_dia" formControlName="total_reserva" aria-label="Amount (to the nearest dollar)">
+                    <input type="text" class="form-control" [(ngModel)]="total" formControlName="TOTAL_RESERVA" aria-label="Amount (to the nearest dollar)">
                     <span class="input-group-text"></span>
                     </div>
                     <div class="input-group mb-3">
                       <span class="input-group-text">Monto a abonar $</span>
-                      <input type="number" class="form-control" formControlName="monto_abonado" aria-label="Amount (to the nearest dollar)">
+                      <input type="number" class="form-control" [(ngModel)]="monto_abono" formControlName="MONTO_ABONADO" aria-label="Amount (to the nearest dollar)">
                       <span class="input-group-text"></span>
                     </div>
                     <div class="input-group mb-3">
                       <span class="input-group-text">Monto Servicios $</span>
-                      <input type="number" class="form-control" formControlName="monto_servicios" aria-label="Amount (to the nearest dollar)">
+                      <input type="number" class="form-control" [(ngModel)]="monto_servicios" formControlName="MONTO_SERVICIOS" aria-label="Amount (to the nearest dollar)">
                       <span class="input-group-text"></span>
                     </div>
                 </div>
@@ -212,7 +207,7 @@
             </div>
             
             <div class="text-center p-3">
-            <button type="submit" class="btn btn-primary mb-3" (click)="transformData()" >Generar Reserva</button>
+            <button type="submit" class="btn btn-primary mb-3" (click)="onSubmit()" >Generar Reserva</button>
             </div>
         </form>
 

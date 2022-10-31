@@ -1,8 +1,8 @@
 {
     "/v3/*":{
         "target": "https://api-turismoreal.azurewebsites.net/bd",
-        "secure": false,
+        "secure": true,
         "logLevel": "debug",
-        "changeOrigin":true
+        "changeOrigin":false
     }
 }

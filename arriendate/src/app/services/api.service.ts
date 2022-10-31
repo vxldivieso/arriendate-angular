@@ -154,6 +154,15 @@ export class ApiService{
             }))
     }
 
+    //Listar ultima fecha reservada por id depto
+
+    getLastDate(id:any){
+        return this.http.get(`${this.apiURL}/fechaDisponible/${id}`).pipe(
+            catchError((error) =>{
+                return this.errorHandler(error)
+            }))
+    }
+
     errorHandler(error:HttpErrorResponse){
         if(error instanceof HttpErrorResponse){
             if(error.error instanceof ErrorEvent){

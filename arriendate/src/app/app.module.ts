@@ -19,6 +19,7 @@ import { ReservaComponent } from './pages/reservas/reserva/reserva.component';
 import { CheckComponent } from './pages/reservas/check/check.component';
 import { CancelComponent } from './pages/reservas/cancel/cancel.component';
 import { PayComponent } from './pages/reservas/pay/pay.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { PayComponent } from './pages/reservas/pay/pay.component';
     HomeRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
+    MatDatepickerModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,

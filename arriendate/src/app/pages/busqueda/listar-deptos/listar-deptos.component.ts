@@ -29,16 +29,20 @@ export class ListarDeptosComponent implements OnInit {
 
   @Input() id_depto:any;
 
+  
+
   constructor(private acroute: ActivatedRoute, private location : Location, private api : ApiService, private route : Router) { }
 
   ngOnInit(): void {
     this.getDeptos()
+    
+
   }
 
   goBack(){
     this.location.back()
   }
-  
+
   getDeptos(){
     this.api.getDeptos().subscribe({
       next:(res:any)=>{
@@ -55,6 +59,7 @@ export class ListarDeptosComponent implements OnInit {
   reservarDepto(id_depto:any){
     this.id_depto = id_depto;
     console.log(this.id_depto);
+    localStorage.setItem('depto_seleccionado', this.id_depto);
     
     this.route.navigate(['home/realizar_reserva']);
   }
