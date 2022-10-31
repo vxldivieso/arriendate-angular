@@ -9,7 +9,25 @@
 <body>
   <!-- Titulo con espacios  -->
   <br>
-  <h2 class="text-uppercase text-center fw-bold">Fechas Disponibles</h2>
+  <h2 class="text-uppercase text-center fw-bold">Fechas Disponibles de Agendamiento</h2>
   <br>
+  <!-- Comienzo del div-->
+  <div class="container w-75">
+    <!-- Form -->
+    <form class="mb-3 mt-md-4">
+      <div class="row">
+        <div class="col-md-6 text-center">
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" formControlName="ID_DEPTO" id="ID_DEPTO" placeholder="XXXXXXX-X">
+            <label for="ID_DEPTO">Número de Departamento</label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <button type="submit" class="btn btn-primary mb-3">Buscar Departamento</button>
+        </div>
+      </div>
+    </form>
+  </div>
+    
 </body>
 
