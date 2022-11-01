@@ -7,20 +7,20 @@
 </div>
 
 
-<h2 class=" text-uppercase text-center">Realizar Reserva</h2>
+<h2 class="welcome text-center">Check in - Check out</h2>
     <div class="container w-75">
         <form class="mb-3 mt-md-4" [formGroup]="searchReserveForm">
-            <h5 class="fw-bold mb-3 text-uppercase text-center">Ingrese los siguientes datos</h5>
+            <h5 class="mb-3 text-uppercase text-center" style="color:white">Ingrese el ID de la Reserva</h5>
             <div class="row">
               <div class="col-md-6 text-center">
-                <div class="form-floating mb-3">
-                  <input type="text" class="form-control" formControlName="ID_RESERVA" id="ID_RESERVA" placeholder="XXXXXXX-X">
-                  <label for="ID_RESERVA">Número de Reserva</label>
-                </div>
+                <mat-form-field appearance="fill" color="accent">
+                  <mat-label>Número de Reserva</mat-label>
+                  <input matInput formControlName="ID_RESERVA" id="ID_RESERVA" required>
+                </mat-form-field>
               </div>
               <div class="col-md-6">
+                <button mat-raised-button color="accent" [disabled]="!searchReserveForm.controls['ID_RESERVA'].value" (click)="searchReserve()" >Buscar Reserva</button>
                 
-                <button type="submit" class="btn btn-primary mb-3" [disabled]="!searchReserveForm.controls['ID_RESERVA'].value" (click)="searchReserve()" >Buscar Reserva</button>
               </div>
             </div>
         </form>
@@ -32,93 +32,93 @@
                 <form action="" *ngIf="reserva" >
                   <div class="row" > 
                     <div class="col-md-4">
-                        <div class="form-floating mb-3">
-                          <input type="text" class="form-control"  id="ID_CLI" name="ID_CLI" [(ngModel)]="reserva.ID_CLI"  readonly>
-                          <label for="ID_CLI">Id Cliente</label>
-                        </div>
-                      </div>
+                      <mat-form-field appearance="fill" color="accent">
+                        <mat-label>Id Cliente</mat-label>
+                        <input matInput id="ID_CLI" name="ID_CLI" [(ngModel)]="reserva.ID_CLI"  readonly>
+                      </mat-form-field>
+                    </div>
                     <div class="col-md-4">
-                      <div class="form-floating mb-3">
-                        <input type="text" class="form-control"  id="FEC_RESERVA" name="FEC_RESERVA" [(ngModel)]="reserva.FEC_RESERVA"  readonly>
-                        <label for="FEC_RESERVA">Reserva Generada</label>
-                      </div>
+                      <mat-form-field appearance="fill" color="accent">
+                        <mat-label>Reserva Generada</mat-label>
+                        <input matInput  id="FEC_RESERVA" name="FEC_RESERVA" [(ngModel)]="reserva.FEC_RESERVA"  readonly>
+                      </mat-form-field>
                     </div>
                     
                     <div class="col-md-4">
-                        <div class="form-floating mb-3">
-                          <input type="text" class="form-control"  id="ID_DEPTO" name="ID_DEPTO" [(ngModel)]="reserva.ID_DEPTO"  readonly>
-                          <label for="ID_DEPTO">Id Departamento</label>
-                        </div>
+                      <mat-form-field appearance="fill" color="accent">
+                        <mat-label>Id Departamento</mat-label>
+                        <input matInput  id="ID_DEPTO" name="ID_DEPTO" [(ngModel)]="reserva.ID_DEPTO" readonly>
+                      </mat-form-field>
                       </div>
                   </div>
                   <div class="row">
                     <div class="col-md-4">
-                      <div class="form-floating mb-3">
-                        <input type="number" class="form-control" id="ID_SUC" name="ID_SUC"  [(ngModel)]="reserva.ID_SUC" >
-                        <label for="ID_SUC">Id Ciudad</label>
-                      </div>
+                      <mat-form-field appearance="fill" color="accent">
+                        <mat-label>Id Ciudad</mat-label>
+                        <input matInput id="ID_SUC" name="ID_SUC"  [(ngModel)]="reserva.ID_SUC" readonly>
+                      </mat-form-field>
                     </div>
                     <div class="col-md-4">
-                      <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="DESDE" name="DESDE" [(ngModel)]="reserva.DESDE">
-                        <label for="DESDE">Fecha Desde</label>
-                      </div>
+                      <mat-form-field appearance="fill" color="accent">
+                        <mat-label>Fecha Desde</mat-label>
+                        <input matInput id="DESDE" name="DESDE" [(ngModel)]="reserva.DESDE" readonly>
+                      </mat-form-field>
                     </div>
                     <div class="col-md-4">
-                        <div class="form-floating mb-3">
-                          <input type="text" class="form-control" id="MASCOTAS" name="MASCOTAS" [(ngModel)]="reserva.MASCOTAS">
-                          <label for="MASCOTAS">Mascotas</label>
-                        </div>
+                      <mat-form-field appearance="fill" color="accent">
+                        <mat-label>Mascotas</mat-label>
+                        <input matInput id="MASCOTAS" name="MASCOTAS" [(ngModel)]="reserva.MASCOTAS" readonly>
+                      </mat-form-field>
                       </div>
                   </div>
                   <div class="row">
                     <div class="col-md-4">
-                      <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="MONTO_ABONADO" name="MONTO_ABONADO"  [(ngModel)]="reserva.MONTO_ABONADO" >
-                        <label for="MONTO_ABONADO">Monto Abonado</label>
-                      </div>
+                      <mat-form-field appearance="fill" color="accent">
+                        <mat-label>Monto Abonado</mat-label>
+                        <input matInput id="MONTO_ABONADO" name="MONTO_ABONADO"  [(ngModel)]="reserva.MONTO_ABONADO" readonly>
+                      </mat-form-field>
                     </div>
                     <div class="col-md-4">
-                      <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="MONTO_SERVICIOS" name="MONTO_SERVICIOS" [(ngModel)]="reserva.MONTO_SERVICIOS">
-                        <label for="MONTO_SERVICIOS">Monto Servicios</label>
-                      </div>
+                      <mat-form-field appearance="fill" color="accent">
+                        <mat-label>Monto Servicios</mat-label>
+                        <input matInput id="MONTO_SERVICIOS" name="MONTO_SERVICIOS" [(ngModel)]="reserva.MONTO_SERVICIOS" readonly>
+                      </mat-form-field>
                     </div>
                     <div class="col-md-4">
-                        <div class="form-floating mb-3">
-                          <input type="text" class="form-control" id="TOTAL_ARRIENDO" name="TOTAL_ARRIENDO" [(ngModel)]="reserva.TOTAL_ARRIENDO">
-                          <label for="TOTAL_ARRIENDO">Total Arriendo</label>
-                        </div>
+                      <mat-form-field appearance="fill" color="accent">
+                        <mat-label>Total Arriendo</mat-label>
+                        <input matInput id="TOTAL_ARRIENDO" name="TOTAL_ARRIENDO" [(ngModel)]="reserva.TOTAL_ARRIENDO" readonly>
+                      </mat-form-field>
                       </div>
                   </div>
                   <div class="row">
                     <div class="col-md-4">
-                      <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="ESTADO" name="ESTADO"  [(ngModel)]="reserva.ESTADO" >
-                        <label for="ESTADO">Estado Reserva</label>
-                      </div>
+                      <mat-form-field appearance="fill" color="accent">
+                        <mat-label>Estado Reserva</mat-label>
+                        <input matInput id="ESTADO" name="ESTADO"  [(ngModel)]="reserva.ESTADO" readonly>
+                      </mat-form-field>
                     </div>
                     <div class="col-md-4">
-                      <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="CHECK_IN" name="CHECK_IN" [(ngModel)]="reserva.CHECK_IN">
-                        <label for="CHECK_IN">Check in</label>
-                      </div>
+                      <mat-form-field appearance="fill" color="accent">
+                        <mat-label>Check in</mat-label>
+                        <input matInput id="CHECK_IN" name="CHECK_IN" [(ngModel)]="reserva.CHECK_IN" readonly>
+                      </mat-form-field>
                     </div>
                     <div class="col-md-4">
-                        <div class="form-floating mb-3">
-                          <input type="text" class="form-control" id="CHECK_OUT" name="CHECK_OUT" [(ngModel)]="reserva.CHECK_OUT">
-                          <label for="CHECK_OUT">Check out</label>
-                        </div>
+                      <mat-form-field appearance="fill" color="accent">
+                        <mat-label>Check out</mat-label>
+                        <input matInput id="CHECK_OUT" name="CHECK_OUT" [(ngModel)]="reserva.CHECK_OUT" readonly>
+                      </mat-form-field>
                       </div>
                   </div>
 
                   <div class="row mb-3 text-center">
                     <div class="col-md-6">
-                        <button type="submit" class="btn btn-primary mb-3" [disabled]="reserva.CHECK_IN != null " (click)="checkIn()" >Realizar Check in</button>
+                        <button mat-raised-button color="accent" [disabled]="reserva.CHECK_IN != null || reserva.ESTADO == 'CANCELADO' " (click)="checkIn()" >Realizar Check in</button>
 
                     </div>
                     <div class="col-md-6">
-                        <button type="submit" class="btn btn-primary mb-3" [disabled]="reserva.CHECK_OUT != null " (click)="searchReserve()" >Realizar Check out</button>
+                        <button mat-raised-button color="accent" [disabled]="reserva.CHECK_OUT != null || reserva.ESTADO == 'CANCELADO' " (click)="searchReserve()" >Realizar Check out</button>
 
                     </div>
                   </div>

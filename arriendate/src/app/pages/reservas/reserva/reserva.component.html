@@ -1,4 +1,5 @@
-<br>
+<body>
+  <br>
 <div class="mb-3">
   <button mat-fab color="accent" aria-label="" (click)="goBack()">
     <mat-icon>keyboard_arrow_left</mat-icon>
@@ -7,20 +8,20 @@
 </div>
 
 
-<h2 class=" text-uppercase text-center">Realizar Reserva</h2>
+<h2 class="welcome text-center">Realizar Reserva</h2>
     <div class="container w-75">
-        <form class="mb-3 mt-md-4" [formGroup]="reserveForm" *ngIf="sucursales" >
-            <h5 class="fw-bold mb-3 text-uppercase text-center">Ingrese los siguientes datos</h5>
+        <form class="mb-3 mt-md-4" [formGroup]="reserveForm"  *ngIf="sucursales" >
+            <h5 class="mb-3 text-uppercase text-center">Ingrese los siguientes datos</h5>
             <div class="row">
               <div class="col-md-6 text-center">
-                <div class="form-floating mb-3">
-                  <input type="text" class="form-control" [(ngModel)]="id_cli" formControlName="ID_CLI" id="id_cli" placeholder="XXXXXXX-X">
-                  <label for="id_cli">Rut Titular</label>
-                </div>
+                <mat-form-field appearance="fill" color="accent" >
+                  <mat-label>Rut Títular</mat-label>
+                  <input matInput placeholder="XX.XXX.XXX-X" formControlName="ID_CLI" required>
+                </mat-form-field>
               </div>
               <div class="col-md-6">
+                <button mat-raised-button color="accent" [disabled]="!reserveForm.controls['ID_CLI'].value" (click)="searchClient()"  >Buscar Cliente</button>
                 
-                <button type="submit" class="btn btn-primary mb-3" [disabled]="!reserveForm.controls['ID_CLI'].value" (click)="searchClient()" >Buscar Cliente</button>
               </div>
             </div>
 
@@ -33,49 +34,51 @@
               <form action="" [formGroup]="createClientForm">
                 <div class="row">
                   <div class="col-md-3">
-                    <div class="form-floating mb-3">
-                      <input type="text" class="form-control"  formControlName="RUT_CLI" id="rut_cli" placeholder="XXXXXXX-X">
-                      <label for="rut_cli">Rut Cliente</label>
-                      
-                    </div>
+                    <mat-form-field appearance="fill" color="accent" >
+                      <mat-label>Rut Cliente</mat-label>
+                      <input matInput placeholder="XX.XXX.XXX-X" formControlName="RUT_CLI" id="rut_cli" required>
+                    </mat-form-field>
                   </div>
                   <div class="col-md-3">
-                    <div class="form-floating mb-3">
-                      <input type="text" class="form-control" formControlName="FIRST_NAME" id="first_name" placeholder="John">
-                      <label for="first_name">Nombre</label>
-                    </div>
+                    <mat-form-field appearance="fill" color="accent" >
+                      <mat-label>Nombre</mat-label>
+                      <input matInput placeholder="John" formControlName="FIRST_NAME" id="first_name" required>
+                    </mat-form-field>
                   </div>
                   <div class="col-md-3">
-                    <div class="form-floating mb-3">
-                      <input type="text" class="form-control" formControlName="LAST_NAME" id="last_name" placeholder="Doe">
-                      <label for="last_name">Apellido</label>
-                    </div>
+                    <mat-form-field appearance="fill" color="accent" >
+                      <mat-label>Apellido</mat-label>
+                      <input matInput placeholder="Doe" formControlName="LAST_NAME" id="last_name" required>
+                    </mat-form-field>
                   </div>
                   <div class="col-md-3">
-                    <div class="form-floating mb-3">
-                      <input type="number" class="form-control" formControlName="TELEFONO" id="telefono" placeholder="9XXXXXXXX">
-                      <label for="telefono">Celular</label>
-                    </div>
+                    <mat-form-field appearance="fill" color="accent" >
+                      <mat-label>Celular</mat-label>
+                      <input matInput formControlName="TELEFONO" id="telefono"  required>
+                    </mat-form-field>
                   </div>
                 </div>
-                <div class="row">
+                <div class="row mb-3">
                   <div class="col-md-4">
-                    <div class="form-input mb-3">
-                      <label for="birthday">Fecha de Nacimiento </label>
-                      <input class="form-control" formControlName="BIRTHDAY" type="date" id="birthday" required>
-                    </div>
+                    <mat-form-field appearance="fill" color="accent">
+                      <mat-label>Fecha de Nacimiento</mat-label>
+                      <input formControlName="BIRTHDAY" matInput [matDatepicker]="picker">
+                      <mat-hint>MM/DD/YYYY</mat-hint>
+                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
                   </div>
                   <div class="col-md-4">
-                    <div class="form-floating mb-3">
-                      <input type="email" class="form-control" formControlName="EMAIL" id="email" placeholder="alguien@mail.com">
-                      <label for="email">Email</label>
-                    </div>
+                    <mat-form-field appearance="fill" color="accent" >
+                      <mat-label>Email</mat-label>
+                      <input matInput formControlName="EMAIL" id="email"  required>
+                    </mat-form-field>
                   </div>
                   <div class="col-md-4">
-                    <div class="form-floating mb-3">
-                      <input type="password" class="form-control" formControlName="PASSWORD" id="password" placeholder="XXXXXXX">
-                      <label for="password">Password</label>
-                    </div>
+                    <mat-form-field appearance="fill" color="accent" >
+                      <mat-label>Password</mat-label>
+                      <input type="password" matInput formControlName="PASSWORD" id="password"  required>
+                    </mat-form-field>
                   </div>
                 </div>
 
@@ -94,30 +97,30 @@
                 <form action="" *ngIf="resultadoBusqueda" >
                   <div class="row" > 
                     <div class="col-md-6">
-                      <div class="form-floating mb-3">
-                        <input type="text" class="form-control"  id="FIRST_NAME" name="FIRST_NAME" [(ngModel)]="resultadoBusqueda.FIRST_NAME"  readonly>
-                        <label for="FIRST_NAME">Nombre</label>
-                      </div>
+                      <mat-form-field appearance="fill" color="accent" >
+                        <mat-label>Nombre</mat-label>
+                        <input matInput id="FIRST_NAME" name="FIRST_NAME" [(ngModel)]="resultadoBusqueda.FIRST_NAME"  readonly>
+                      </mat-form-field>
                     </div>
                     <div class="col-md-6">
-                      <div class="form-floating mb-3">
-                        <input type="text" class="form-control"  id="LAST_NAME" name="LAST_NAME" [(ngModel)]="resultadoBusqueda.LAST_NAME"  readonly>
-                        <label for="LAST_NAME">Apellido</label>
-                      </div>
+                      <mat-form-field appearance="fill" color="accent" >
+                        <mat-label>Apellido</mat-label>
+                        <input matInput id="LAST_NAME" name="LAST_NAME" [(ngModel)]="resultadoBusqueda.LAST_NAME"  readonly>
+                      </mat-form-field>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-6">
-                      <div class="form-floating mb-3">
-                        <input type="number" class="form-control" id="TELEFONO" name="TELEFONO"  [(ngModel)]="resultadoBusqueda.TELEFONO" >
-                        <label for="TELEFONO">Celular</label>
-                      </div>
+                      <mat-form-field appearance="fill" color="accent" >
+                        <mat-label>Celular</mat-label>
+                        <input matInput id="TELEFONO" name="TELEFONO"  [(ngModel)]="resultadoBusqueda.TELEFONO"  readonly>
+                      </mat-form-field>
                     </div>
                     <div class="col-md-6">
-                      <div class="form-floating mb-3">
-                        <input type="email" class="form-control" id="EMAIL" name="EMAIL" [(ngModel)]="resultadoBusqueda.EMAIL">
-                        <label for="EMAIL">Email</label>
-                      </div>
+                      <mat-form-field appearance="fill" color="accent" >
+                        <mat-label>Email</mat-label>
+                        <input matInput id="EMAIL" name="EMAIL" [(ngModel)]="resultadoBusqueda.EMAIL" readonly>
+                      </mat-form-field>
                     </div>
                   </div>
   
@@ -130,86 +133,83 @@
             <div *ngIf="deptos_detalle">
               <div class="row" >
                 <div class="col-md-6" >
-                  <div class="form-floating mb-3">
-                    <select class="form-select" [(ngModel)]="sucursales.ID_SUC" id="id_sucursal" formControlName="ID_SUC" name="ID_SUC" aria-label="Floating label select example">
-                      <option  *ngFor="let item of sucursales" [ngValue]="item.ID_SUC" >{{item.CIUDAD}}</option>
-                    </select>
-                    <label for="id_sucursal">Seleccione Ciudad</label>
-                </div>
-                </div>
-                <div class="col-md-6" >
-                  <div class="form-floating mb-3">
-                    <select class="form-select" id="id_depto" [(ngModel)]="deptos_detalle.SUCURSAL_ID_SUC" (change)="deptoSeleccionado()" formControlName="ID_DEPTO" name="ID_DEPTO" aria-label="Floating label select example">
-                      <option *ngFor="let item of deptos_detalle" [hidden]='!(sucursales.ID_SUC == item.SUCURSAL_ID_SUC)'  [ngValue]="item.ID_DEPTO" >{{item.NOMBRE}}</option>
-                    </select>
-                    <label for="id_depto ">Seleccione Departamento</label>
-                </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6 mb-3">
-                  <label for="fec_desde">Fecha desde: </label>
-                  <input class="form-control" formControlName="FEC_DESDE" type="date" id="fec_desde" required>
-                </div>
-                <div class="col-md-6 mb-3">
-                  <label for="fec_hasta">Fecha hasta: </label>
-                  <input id="fec_hasta" class="form-control" formControlName="FEC_HASTA" type="date" required>
-                </div>
-                
-              </div>
-              <div class="row">
-                <div class="col-md-6 mb-3">
-                  <label for="">Incluye mascotas</label>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDisabled" id="mascotas1" >
-                    <label class="form-check-label" for="mascotas1">
-                      Si
-                    </label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDisabled" id="mascotas2">
-                    <label class="form-check-label" for="mascotas2">
-                      No
-                    </label>
-                  </div>
-                </div>
-                <div class="col-md-6" >
-                  <div class="form-floating mb-3">
-                    <input [(ngModel)]="total_personas" name="TOTAL_PERSONAS" [ngModelOptions]="{standalone: true}" class="form-control"  id="cant_personas" readonly>
-                    <label for="cant_personas">Capacidad máxima de personas:  </label>
-                </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6 mb-3">
-                  <label for="">Servicios Extras</label>
+                  <mat-form-field appearance="fill" color="accent">
+                    <mat-label>Seleccione Ciudad</mat-label>
+                    <mat-select [(ngModel)]="sucursales.ID_SUC" id="id_sucursal" formControlName="ID_SUC" name="ID_SUC">
+                      <mat-option  *ngFor="let item of sucursales" [value]="item.ID_SUC" >{{item.CIUDAD}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
                   
                 </div>
+                <div class="col-md-6" >
+                  <mat-form-field appearance="fill" color="accent">
+                    <mat-label>Seleccione Departamento</mat-label>
+                    <mat-select [(ngModel)]="deptos_detalle.SUCURSAL_ID_SUC"  formControlName="ID_DEPTO" name="ID_DEPTO">
+                      <mat-option  *ngFor="let item of deptos_detalle" [hidden]='!(sucursales.ID_SUC == item.SUCURSAL_ID_SUC)' [value]="item.ID_DEPTO" (click)="deptoSeleccionado()" >{{item.NOMBRE}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row mb-3">
                 <div class="col-md-6">
-                    <div class="input-group mb-3">
-                    <span class="input-group-text">TOTAL $</span>
-                    <input type="text" class="form-control" [(ngModel)]="total" formControlName="TOTAL_RESERVA" aria-label="Amount (to the nearest dollar)">
-                    <span class="input-group-text"></span>
-                    </div>
-                    <div class="input-group mb-3">
-                      <span class="input-group-text">Monto a abonar $</span>
-                      <input type="number" class="form-control" [(ngModel)]="monto_abono" formControlName="MONTO_ABONADO" aria-label="Amount (to the nearest dollar)">
-                      <span class="input-group-text"></span>
-                    </div>
-                    <div class="input-group mb-3">
-                      <span class="input-group-text">Monto Servicios $</span>
-                      <input type="number" class="form-control" [(ngModel)]="monto_servicios" formControlName="MONTO_SERVICIOS" aria-label="Amount (to the nearest dollar)">
-                      <span class="input-group-text"></span>
-                    </div>
+                  <mat-form-field appearance="fill" color="accent" >
+                    <mat-label>Seleccione la fecha de inicio y término de su estadía</mat-label>
+                    <mat-date-range-input [rangePicker]="picker" >
+                      <input matStartDate formControlName="FEC_DESDE" (change)="deptoSeleccionado()" [min]="ultima_reserva" placeholder="Desde">
+                      <input matEndDate formControlName="FEC_HASTA" placeholder="Hasta">
+                    </mat-date-range-input>
+                    <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-date-range-picker #picker></mat-date-range-picker>
+                  
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field appearance="fill" color="accent" >
+                    <mat-label>Cantidad máxima de personas</mat-label>
+                    <input matInput [(ngModel)]="total_personas" name="TOTAL_PERSONAS" [ngModelOptions]="{standalone: true}" readonly="">
+                  </mat-form-field>
                 </div>
                 
+              </div>
+              <div class="row mb-3">
+                <div class="col-md-6 mb-3">
+                  <section class="example-section" [formGroup]="serviceForm">
+                    <label class="mb-3" for="" id="label-float">Servicios Extras</label>
+                    <p><mat-checkbox style="color:white" formControlName="transporte">Transporte $10.000</mat-checkbox></p>
+                    <p><mat-checkbox style="color:white" formControlName="bufet">Bufet  $10.000</mat-checkbox></p>
+                    <p><mat-checkbox style="color:white" formControlName="tour">Tour  $20.000</mat-checkbox></p>
+                    <p><mat-checkbox style="color:white" formControlName="desayuno">Desayuno  $5.000</mat-checkbox></p>
+                  </section>
+                  
+                </div>
+                <div class="col-md-6 mb-3">
+                  <mat-form-field appearance="fill" color="accent" floatLabel="always">
+                    <mat-label>Total</mat-label>
+                    <input matInput type="number" [(ngModel)]="total" (change)="deptoSeleccionado()" formControlName="TOTAL_RESERVA" class="example-right-align" placeholder="0">
+                    <span matPrefix>$&nbsp;</span>
+                  </mat-form-field>
+                  <mat-form-field appearance="fill" color="accent" floatLabel="always">
+                    <mat-label>Monto Abono</mat-label>
+                    <input matInput type="number" [(ngModel)]="monto_abono" formControlName="MONTO_ABONADO" class="example-right-align" placeholder="0">
+                    <span matPrefix>$&nbsp;</span>
+                  </mat-form-field>
+                  <mat-form-field appearance="fill" color="accent" floatLabel="always">
+                    <mat-label>Monto Servicios</mat-label>
+                    <input matInput type="number" [(ngModel)]="monto_servicios" formControlName="MONTO_SERVICIOS" class="example-right-align" placeholder="0" value="0">
+                    <span matPrefix>$&nbsp;</span>
+                  </mat-form-field>
+                
+                  
+                </div>
               </div>
             </div>
             
             <div class="text-center p-3">
-            <button type="submit" class="btn btn-primary mb-3" (click)="onSubmit()" >Generar Reserva</button>
+            <button mat-raised-button color="accent" (click)="onSubmit()" >Generar Reserva</button>
             </div>
         </form>
 
         
     </div>
+</body>

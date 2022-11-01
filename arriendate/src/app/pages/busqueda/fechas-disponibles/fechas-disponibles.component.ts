@@ -35,6 +35,7 @@ export class FechasDisponiblesComponent implements OnInit {
           this.detalle = res
           console.log(this.detalle[0].HASTA);
           this.ultima_reserva = this.detalle[0].HASTA
+          
         }
       })
     }

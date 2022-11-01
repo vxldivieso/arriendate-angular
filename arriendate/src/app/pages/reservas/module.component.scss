@@ -1,3 +1,19 @@
+.card{
+  height: 100px;
+  .card-body{
+   display: grid;
+   justify-content: center;
+   align-items: center;
+   padding-top: 40px;
+   padding-bottom: 40px;
+   padding-left: 40px;
+   padding-right: 40px;
+   .card-title{
+     font-weight: bold;
+   }
+  }
+  
+ }
 h1 {
     text-align: center;
     padding-top: 20px;
@@ -9,7 +25,8 @@ h1 {
   }
   
   .card:hover{
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+    transform: scale(1.01); 
+    transition: transform .5s; 
   }
 
 .functions{

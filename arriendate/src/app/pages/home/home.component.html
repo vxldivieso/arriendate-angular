@@ -1,5 +1,6 @@
 <app-navbar></app-navbar>
-    <h1 class="welcome">Bienvenido/a</h1>
+<body>
+  <h1 class="welcome">Bienvenido/a</h1>
 
     <section class="modules">
         <div class="container w-75">
@@ -22,7 +23,7 @@
               </div>
             </div>
             <div class="col">
-              <div class="card text-bg-danger text-center" type="button" onclick="location.href='moduloAdm.html'">
+              <div class="card text-bg-danger text-center" type="button" routerLink="/home/administracion">
                 
                 <div class="card-body" >
                   <h5 class="card-title">Administración</h5>
@@ -31,7 +32,7 @@
               </div>
             </div>
             <div class="col">
-              <div class="card text-bg-warning text-center" type="button" onclick="location.href='moduloReporteria.html'">
+              <div class="card text-bg-warning text-center" type="button" routerLink="/home/modulo_reporteria">
                 
                 <div class="card-body" >
                   <h5 class="card-title">Reportería</h5>
@@ -43,4 +44,6 @@
 
         </div>
     </section>
+    
+</body>
     

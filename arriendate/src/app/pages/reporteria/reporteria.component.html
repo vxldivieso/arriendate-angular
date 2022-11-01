@@ -1,0 +1,41 @@
+<br>
+<div class="mb-3">
+  <button mat-fab class="bg-warning" aria-label="" (click)="goBack()">
+    <mat-icon>keyboard_arrow_left</mat-icon>
+  </button>
+  <label for=""> &nbsp; Atrás</label>
+</div>
+
+
+<h1 class="welcome">Seleccione un módulo</h1>
+
+
+    <section class="functions">
+        <div class="container w-75">
+          <div class="row row-cols-1 row-cols-md-2 g-4">
+            <div class="col">
+              <div class="card text-bg-warning text-center" type="button" routerLink="/home/reporteria">
+                <div class="card-body" >
+                  <h5 class="card-title">Reportería General</h5>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+                <div class="card text-bg-warning text-center" type="button" routerLink="/home/gestion_transporte" >
+                <div class="card-body"  >
+                  <h5 class="card-title">Gestión de Transporte</h5>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <!-- <div class="card text-center" style="background-color: #69f0ae; color:black;" type="button" routerLink="/home/fechas_disponibles"> -->
+                <div class="card text-bg-warning text-center" type="button" routerLink="/home/mantencion">
+                <div class="card-body" >
+                  <h5 class="card-title">Mantención a Departamentos</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+

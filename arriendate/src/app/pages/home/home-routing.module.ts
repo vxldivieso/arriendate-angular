@@ -1,9 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdministracionComponent } from '../administracion/administracion.component';
+import { EstadosdeptoComponent } from '../administracion/estadosdepto/estadosdepto.component';
+import { GestionusuariosComponent } from '../administracion/gestionusuarios/gestionusuarios.component';
+import { InventarioComponent } from '../administracion/inventario/inventario.component';
 import { ArriendosVigentesComponent } from '../busqueda/arriendos-vigentes/arriendos-vigentes.component';
 import { BusquedaComponent } from '../busqueda/busqueda.component';
 import { FechasDisponiblesComponent } from '../busqueda/fechas-disponibles/fechas-disponibles.component';
 import { ListarDeptosComponent } from '../busqueda/listar-deptos/listar-deptos.component';
+import { GestiontransporteComponent } from '../reporteria/gestiontransporte/gestiontransporte.component';
+import { MantenciondeptosComponent } from '../reporteria/mantenciondeptos/mantenciondeptos.component';
+import { ModuloReporteriaComponent} from '../reporteria/reporteria.component';
+import { ReporteriaComponent } from '../reporteria/reporteria/reporteria.component';
 import { CancelComponent } from '../reservas/cancel/cancel.component';
 import { CheckComponent } from '../reservas/check/check.component';
 import { ModuleComponent } from '../reservas/module.component';
@@ -22,7 +30,15 @@ const routes: Routes = [
     {path: 'busqueda', component: BusquedaComponent},
     {path: 'arriendos_vigentes', component: ArriendosVigentesComponent},
     {path: 'fechas_disponibles', component: FechasDisponiblesComponent},
-    {path: 'listar_deptos', component: ListarDeptosComponent}
+    {path: 'listar_deptos', component: ListarDeptosComponent},
+    {path: 'administracion', component: AdministracionComponent},
+    {path: 'actualizar_estado', component: EstadosdeptoComponent},
+    {path: 'gestion_usuarios', component: GestionusuariosComponent},
+    {path: 'inventario', component: InventarioComponent},
+    {path: 'modulo_reporteria', component: ModuloReporteriaComponent},
+    {path: 'gestion_transporte', component: GestiontransporteComponent},
+    {path: 'mantencion', component: MantenciondeptosComponent},
+    {path: 'reporteria', component: ReporteriaComponent}
 ];
 
 @NgModule({

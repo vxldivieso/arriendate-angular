@@ -25,20 +25,20 @@ export class ReservaComponent implements OnInit {
   deptos_detalle :any;
   sucursales : any;
 
-  datosReserva !: String[];
+  datosReserva :any;
   
   servicios :any;
   client : any;
   resultadoBusqueda : any;
   
-  total:any;
-  monto_abono:any;
-  monto_servicios = 0;
+  total :any;
+  monto_abono :any;
+  monto_servicios :any;
   deptoSelected :any;
   valor_dia:any;
   total_personas:any;
   estacionamiento:any;
-  mascotas : any;
+  mascotas: string[] = ['Si', 'No'];
   total_dias_reserva:any;
   fecha_desde:any;
   fecha_hasta:any;
@@ -48,6 +48,10 @@ export class ReservaComponent implements OnInit {
   today = new Date();
 
   id_cli : any;
+  id_depto:any;
+  detalle:any;
+  ultima_reserva:any;
+  minDate:any;
   
   dato:any;
   
@@ -76,7 +80,7 @@ export class ReservaComponent implements OnInit {
       MASCOTAS : new FormControl(''),
       TOTAL_RESERVA : new FormControl('', Validators.required),
       MONTO_ABONADO : new FormControl('', Validators.required),
-      MONTO_SERVICIOS : new FormControl('', Validators.required),
+      MONTO_SERVICIOS : new FormControl(''),
     })
 
     
@@ -183,12 +187,20 @@ export class ReservaComponent implements OnInit {
       next:(res)=>{
         
         this.deptoSelected = res;
+        this.id_depto = this.deptoSelected[0].ID_DEPTO;
         this.valor_dia = this.deptoSelected[0].VALOR_DIA ;
         this.total_personas = this.deptoSelected[0].TOTAL_PERSONAS;
-        this.estacionamiento = this.deptoSelected[0].ESTACIONAMIENTO;
-        this.mascotas = this.deptoSelected[0].MASCOTAS;
-        this.total = this.valor_dia;
-        this.monto_abono = (this.total / 2)
+        
+
+        //buscar fecha minima de reserva
+        if(this.id_depto != null){
+          this.getLastReserve()
+          this.totalReserva()
+        }else{
+          return
+        }
+
+
       },
       error:()=>{
         console.log('Error al buscar depto');
@@ -198,61 +210,52 @@ export class ReservaComponent implements OnInit {
 
   }
 
-  reservaExterna(){
-    
+  getLastReserve(){
+    this.api.getLastDate(this.id_depto).subscribe({
+      next:(res)=>{
+        const format = 'MM-DD-YYYY'
+        this.detalle = res
+        if(this.detalle[0].HASTA != null){
+          this.ultima_reserva = new Date (this.detalle[0].HASTA);
+          this.minDate = moment(this.ultima_reserva).add('1','days').format(format)
+        }else{
+          console.log('este depto no tiene ninguna reserva a su nombre');
+          
+        }
+        
+      }
+    })
   }
 
-  transporteCheck(){
-    if (document.getElementById('transporte')){
-      this.total = this.valor_dia + 10000
-    } else{
+  totalReserva(){
+    if(this.reserveForm.controls['FEC_DESDE'].valid && this.reserveForm.controls['FEC_HASTA'].valid){
+      const desde = moment(new Date(this.reserveForm.controls['FEC_DESDE'].value))
+      const hasta = moment(new Date(this.reserveForm.controls['FEC_HASTA'].value))
+      const resta = hasta.diff(desde, 'days')
+      this.total= this.valor_dia * resta
+      this.monto_abono = (this.total / 2)
+    }else{
       this.total = this.valor_dia
+      this.monto_abono = (this.total / 2)
     }
-  }
-  bufetCheck(){
-    if (document.getElementById('bufet') ){
-      this.total = this.valor_dia + 10000
-    } else{
-      this.total = this.valor_dia
-    }
-  }
-  tourCheck(){
-    if (this.serviceForm.controls['tour'].value == true){
-      this.total = this.valor_dia + 20000
-    }
-  }
-  desayunoCheck(){
-    if (this.serviceForm.controls['desayuno'].value == true){
-      this.total = this.valor_dia + 5000
-    }
-  }
-
-  transformData(){
-    const format = 'YYYY-MM-DD'
-    let objDesde = new Date (this.reserveForm.controls['fec_desde'].value).getDate()
-    let objHasta = new Date (this.reserveForm.controls['fec_hasta'].value)
-
-    this.fecha_desde = moment(objDesde).format(format)
-    this.fecha_hasta = moment(objHasta).format(format)
-
-    this.total_dias_reserva = this.fecha_desde
-    console.log(objDesde, objHasta);
-    
-
-
-
-    
-
-    this.total = (this.valor_dia * this.total_dias_reserva);
-
-    console.log(this.reserveForm.value);
-    
   }
 
   onSubmit(){
-    this.datosReserva = this.reserveForm.value;
+    const format = 'MM-DD-YYYY'
+    const desde = moment(this.reserveForm.controls['FEC_DESDE'].value).format(format)
+    const hasta = moment(this.reserveForm.controls['FEC_HASTA'].value).format(format)
+
+    //Estructura JSON 
+    this.datosReserva = {ID_CLI:this.id_cli,ID_SUC:this.reserveForm.controls['ID_SUC'].value, 
+    ID_DEPTO:this.reserveForm.controls['ID_DEPTO'].value,FEC_DESDE: desde, 
+    FEC_HASTA:hasta,MONTO_ABONADO:this.reserveForm.controls['MONTO_ABONADO'].value, 
+    MONTO_TOTAL:this.reserveForm.controls['TOTAL_RESERVA'].value, 
+    MONTO_SERVICIOS:this.reserveForm.controls['MONTO_SERVICIOS'].value};
+
+
     console.log(this.datosReserva);
-    
+
+    //Petición a api
     if (this.reserveForm.valid){
       this.api.doReserve(this.datosReserva).subscribe({
         next:(res)=>{

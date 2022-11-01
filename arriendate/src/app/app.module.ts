@@ -20,6 +20,14 @@ import { CheckComponent } from './pages/reservas/check/check.component';
 import { CancelComponent } from './pages/reservas/cancel/cancel.component';
 import { PayComponent } from './pages/reservas/pay/pay.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { AdministracionComponent } from './pages/administracion/administracion.component';
+import { InventarioComponent } from './pages/administracion/inventario/inventario.component';
+import { EstadosdeptoComponent } from './pages/administracion/estadosdepto/estadosdepto.component';
+import { GestionusuariosComponent } from './pages/administracion/gestionusuarios/gestionusuarios.component';
+import { GestiontransporteComponent } from './pages/reporteria/gestiontransporte/gestiontransporte.component';
+import { MantenciondeptosComponent } from './pages/reporteria/mantenciondeptos/mantenciondeptos.component';
+import { ModuloReporteriaComponent } from './pages/reporteria/reporteria.component';
+import { ReporteriaComponent } from './pages/reporteria/reporteria/reporteria.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +40,15 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     ReservaComponent,
     CheckComponent, 
     CancelComponent, 
-    PayComponent,
+    PayComponent, 
+    AdministracionComponent,
+    InventarioComponent, 
+    EstadosdeptoComponent, 
+    GestionusuariosComponent, 
+    GestiontransporteComponent, 
+    MantenciondeptosComponent,
+    ModuloReporteriaComponent,
+    ReporteriaComponent
   ],
   imports: [
     CommonModule,

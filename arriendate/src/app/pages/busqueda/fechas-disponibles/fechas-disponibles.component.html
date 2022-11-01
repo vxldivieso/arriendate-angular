@@ -1,6 +1,6 @@
 <br>
 <div class="mb-3">
-  <button mat-fab color="accent" aria-label="" (click)="goBack()">
+  <button mat-fab class="bg-primary" aria-label="" (click)="goBack()">
     <mat-icon>keyboard_arrow_left</mat-icon>
   </button>
   <label for=""> &nbsp; Atrás</label>
@@ -9,7 +9,7 @@
 <body>
   <!-- Titulo con espacios  -->
   <br>
-  <h2 class="text-uppercase text-center fw-bold">Fechas Disponibles de Agendamiento</h2>
+  <h2 class="welcome text-center">Fechas Disponibles de Agendamiento</h2>
   <br>
   <!-- Comienzo del div-->
   <div class="container w-75">
@@ -18,21 +18,31 @@
       <div class="row">
         
         <div class="col-md-6 text-center">
-          <div class="form-floating mb-3">
-            <input type="text" class="form-control" formControlName="ID_DEPTO" id="ID_DEPTO" placeholder="XXXXXXX-X">
-            <label for="ID_DEPTO">Número de Departamento</label>
-          </div>
+          <mat-form-field appearance="fill" color="accent" >
+            <mat-label>Número de Departamento</mat-label>
+            <input matInput formControlName="ID_DEPTO" id="ID_DEPTO" required>
+          </mat-form-field>
         </div>
         <div class="col-md-6">
-          <button type="submit" class="btn btn-primary mb-3" (click)="getLastDate()">Buscar Departamento</button>
+          <button mat-raised-button color="accent" (click)="getLastDate()">Buscar Departamento</button>
         </div>
       </div>
-      <div *ngIf="ultima_reserva != null">
-        <p  >{{ultima_reserva}}</p>
-        <mat-card class="demo-inline-calendar-card" >
-          <mat-calendar [minDate]="ultima_reserva" ></mat-calendar>
-        </mat-card>
-      </div>
+
+      <section>
+        <div class="row">
+          <div class="col-md-12">
+            <div *ngIf="ultima_reserva != null">
+              <mat-form-field class="example-full-width" appearance="fill" color="accent">
+                <mat-label>Presione para ver fechas disponibles</mat-label>
+                <input matInput [matDatepicker]="picker" [min]="ultima_reserva">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker touchUi #picker></mat-datepicker>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </section>
+      
     </form>
   </div>
     

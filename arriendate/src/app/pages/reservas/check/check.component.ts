@@ -23,7 +23,7 @@ export class CheckComponent implements OnInit {
 
   ngOnInit(): void {
     this.searchReserveForm = this.fb.group({
-      ID_RESERVA : new FormControl('', [Validators.minLength(8), Validators.maxLength(10)] )
+      ID_RESERVA : new FormControl('',  Validators.required )
     })
   }
 
@@ -48,9 +48,12 @@ export class CheckComponent implements OnInit {
 
 
   checkIn(){
-
     console.log(this.today);
     this.messageSuccessfullCheckin()
+  }
+
+  checkout(){
+    this.messageErrorCheckout()
   }
 
   messageSuccessfullCheckin(){
@@ -95,6 +98,48 @@ export class CheckComponent implements OnInit {
       title: 'Ups.. Check in Erroneo'
       })
   }
+
+  messageSuccessfullCheckout(){
+    Swal.fire({
+      icon: 'info',
+      title: '¿Desea realizar Check out?',
+      showConfirmButton: true,
+      confirmButtonText: `Aceptar`, 
+      showDenyButton: true,
+      denyButtonText: `Cancelar`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        this.api.checkout(this.reserva.ID_RESERVA, JSON.stringify(this.today)).subscribe({
+          next:(res:any)=>{
+            console.log(res);
+          },
+          error:(error)=>{
+            this.messageErrorCheckout()
+            this.reserva = error['error']['text']
+          }
+        })
+      }
+    })
+  }
+  //Message Error Check in 
+  messageErrorCheckout(){
+    const Toast = Swal.mixin({
+    toast: true,
+    position: 'bottom',
+    showConfirmButton: false,
+    timer: 2000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+    })
+    Toast.fire({
+    icon: 'error',
+    title: 'Ups.. Check out Erroneo'
+    })
+}
   
 //Message Error
 messageError(){
