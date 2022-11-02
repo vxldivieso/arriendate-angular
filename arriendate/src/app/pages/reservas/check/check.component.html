@@ -101,13 +101,13 @@
                     <div class="col-md-4">
                       <mat-form-field appearance="fill" color="accent">
                         <mat-label>Check in</mat-label>
-                        <input matInput id="CHECK_IN" name="CHECK_IN" [(ngModel)]="reserva.CHECK_IN" readonly>
+                        <input matInput id="CHECK_IN" name="CHECK_IN" [(ngModel)]="reserva.CHECK_IN" (change)="checkIn()" readonly>
                       </mat-form-field>
                     </div>
                     <div class="col-md-4">
                       <mat-form-field appearance="fill" color="accent">
                         <mat-label>Check out</mat-label>
-                        <input matInput id="CHECK_OUT" name="CHECK_OUT" [(ngModel)]="reserva.CHECK_OUT" readonly>
+                        <input matInput id="CHECK_OUT" name="CHECK_OUT" [(ngModel)]="reserva.CHECK_OUT" (change)="checkout()" readonly>
                       </mat-form-field>
                       </div>
                   </div>

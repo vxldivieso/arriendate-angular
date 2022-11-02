@@ -33,7 +33,7 @@ export class ReservaComponent implements OnInit {
   
   total :any;
   monto_abono :any;
-  monto_servicios :any;
+  monto_servicios =0;
   deptoSelected :any;
   valor_dia:any;
   total_personas:any;
@@ -52,6 +52,9 @@ export class ReservaComponent implements OnInit {
   detalle:any;
   ultima_reserva:any;
   minDate:any;
+
+  id_ultima_reserva:any;
+  id_reserva:any
   
   dato:any;
   
@@ -97,6 +100,7 @@ export class ReservaComponent implements OnInit {
     this.getSucursal()
     this.getServices()
     this.getClient()
+    this.getLastReservas()
   }
 
 
@@ -142,6 +146,16 @@ export class ReservaComponent implements OnInit {
     this.api.getClient().subscribe({
       next:(res)=>{
         this.client = res;
+      }
+    })
+  }
+
+  getLastReservas(){
+    this.api.getLastReserve().subscribe({
+      next:(res)=>{
+        this.id_ultima_reserva = res;
+        console.log(this.id_ultima_reserva);
+        this.id_reserva = this.id_ultima_reserva[0].ID_RESERVA
       }
     })
   }
@@ -241,23 +255,26 @@ export class ReservaComponent implements OnInit {
   }
 
   onSubmit(){
-    const format = 'MM-DD-YYYY'
+    const format = 'YYYY-MM-DD'
     const desde = moment(this.reserveForm.controls['FEC_DESDE'].value).format(format)
     const hasta = moment(this.reserveForm.controls['FEC_HASTA'].value).format(format)
 
-    //Estructura JSON 
-    this.datosReserva = {ID_CLI:this.id_cli,ID_SUC:this.reserveForm.controls['ID_SUC'].value, 
-    ID_DEPTO:this.reserveForm.controls['ID_DEPTO'].value,FEC_DESDE: desde, 
-    FEC_HASTA:hasta,MONTO_ABONADO:this.reserveForm.controls['MONTO_ABONADO'].value, 
-    MONTO_TOTAL:this.reserveForm.controls['TOTAL_RESERVA'].value, 
-    MONTO_SERVICIOS:this.reserveForm.controls['MONTO_SERVICIOS'].value};
-
+    const ID_CLI = this.id_cli
+    const ID_DEPTO = this.reserveForm.controls['ID_DEPTO'].value
+    const ID_SUC = this.reserveForm.controls['ID_SUC'].value
+    const FEC_DESDE = desde
+    const FEC_HASTA = hasta
+    const MONTO_ABONADO = this.reserveForm.controls['MONTO_ABONADO'].value
+    const MONTO_SERVICIOS = this.reserveForm.controls['MONTO_SERVICIOS'].value
+    const MONTO_TOTAL = this.reserveForm.controls['TOTAL_RESERVA'].value
+    const MASCOTAS = 0;
+    const ID_RESERVA = this.id_reserva + 1
 
     console.log(this.datosReserva);
 
     //Petición a api
     if (this.reserveForm.valid){
-      this.api.doReserve(this.datosReserva).subscribe({
+      this.api.doReserve(ID_DEPTO, ID_SUC, ID_CLI,MONTO_ABONADO, MONTO_SERVICIOS, FEC_DESDE, FEC_HASTA,  MONTO_TOTAL, MASCOTAS, ID_RESERVA).subscribe({
         next:(res)=>{
           res
           console.log('Reserva hecha exitosamente');

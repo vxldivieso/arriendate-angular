@@ -35,8 +35,6 @@ export class CheckComponent implements OnInit {
     this.api.getReserveByID(this.searchReserveForm.controls['ID_RESERVA'].value).subscribe({
       next:(res:any)=>{
         this.reserva = res[0];
-        console.log(this.reserva);
-        
       },
       error:(error)=>{
         this.messageError()
@@ -48,7 +46,6 @@ export class CheckComponent implements OnInit {
 
 
   checkIn(){
-    console.log(this.today);
     this.messageSuccessfullCheckin()
   }
 
@@ -67,9 +64,10 @@ export class CheckComponent implements OnInit {
       }).then((result) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
-          this.api.checkin(this.reserva.ID_RESERVA, JSON.stringify(this.today)).subscribe({
+          this.api.checkin(this.reserva.ID_RESERVA, this.today).subscribe({
             next:(res:any)=>{
               console.log(res);
+              this.messageExito();
             },
             error:(error)=>{
               this.messageErrorCheckin()
@@ -79,6 +77,27 @@ export class CheckComponent implements OnInit {
         }
       })
     }
+
+    //Message Exito 
+    messageExito(){
+      const Toast = Swal.mixin({
+      toast: true,
+      position: 'bottom',
+      showConfirmButton: false,
+      timer: 2000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+      })
+      Toast.fire({
+      icon: 'success',
+      title: 'Operación exitosa'
+      })
+  }
+
+
 
     //Message Error Check in 
     messageErrorCheckin(){
@@ -110,9 +129,10 @@ export class CheckComponent implements OnInit {
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        this.api.checkout(this.reserva.ID_RESERVA, JSON.stringify(this.today)).subscribe({
+        this.api.checkout(this.reserva.ID_RESERVA, this.today).subscribe({
           next:(res:any)=>{
             console.log(res);
+            this.messageExito();
           },
           error:(error)=>{
             this.messageErrorCheckout()
