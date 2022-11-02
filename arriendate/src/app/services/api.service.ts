@@ -92,6 +92,15 @@ export class ApiService{
         )
     }
 
+    //Listar clientes para Administracion
+    getClient2(){
+        return this.http.get(`${this.apiURL}/listarCli2`).pipe(
+            catchError((error) =>{
+                return this.errorHandler(error)
+            })
+        )
+    }
+
     getClientId(rut_cli:any){
         return this.http.get(`${this.apiURL}/listarCli/${rut_cli}`)
             

@@ -18,6 +18,7 @@ import { CdkTableModule } from "@angular/cdk/table";
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { MatIconModule } from "@angular/material/icon";
+import { MatTooltipModule } from '@angular/material/tooltip';
  
 @NgModule({
     exports:[
@@ -38,7 +39,8 @@ import { MatIconModule } from "@angular/material/icon";
         MatPaginatorModule,
         CdkTableModule,
         MatCheckboxModule,
-        MatExpansionModule
+        MatExpansionModule,
+        MatTooltipModule
     ]
 })
 
