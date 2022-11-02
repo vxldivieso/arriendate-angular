@@ -60,7 +60,6 @@ export class ListarDeptosComponent implements OnInit {
     this.id_depto = id_depto;
     console.log(this.id_depto);
     localStorage.setItem('depto_seleccionado', this.id_depto);
-    
     this.route.navigate(['home/realizar_reserva']);
   }
 }
