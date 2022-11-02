@@ -53,7 +53,7 @@ export class CheckComponent implements OnInit {
   }
 
   checkout(){
-    this.messageErrorCheckout()
+    this.messageSuccessfullCheckout()
   }
 
   messageSuccessfullCheckin(){

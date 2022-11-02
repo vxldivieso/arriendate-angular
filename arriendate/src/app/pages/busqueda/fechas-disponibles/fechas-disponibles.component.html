@@ -24,7 +24,7 @@
           </mat-form-field>
         </div>
         <div class="col-md-6">
-          <button mat-raised-button color="accent" (click)="getLastDate()">Buscar Departamento</button>
+          <button type="button" class="btn btn-primary" (click)="getLastDate()">Buscar Departamento</button>
         </div>
       </div>
 
@@ -34,7 +34,7 @@
             <div *ngIf="ultima_reserva != null">
               <mat-form-field class="example-full-width" appearance="fill" color="accent">
                 <mat-label>Presione para ver fechas disponibles</mat-label>
-                <input matInput [matDatepicker]="picker" [min]="ultima_reserva">
+                <input matInput [matDatepicker]="picker" (change)="getLastDate()" [min]="ultima_reserva">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker touchUi #picker></mat-datepicker>
               </mat-form-field>

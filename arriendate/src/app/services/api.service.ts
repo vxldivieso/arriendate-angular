@@ -110,7 +110,10 @@ export class ApiService{
     //Modulo Reservas
     //Realizar Reserva
     doReserve(data:any){
-        return this.http.post<any>(`${this.apiURL}/doreserve`,{reserva:data}).pipe(
+        let header = new HttpHeaders()
+        .set('Type-content','aplication/json')
+
+        return this.http.post<any>(`${this.apiURL}/doreserve`,{reserva:data},{headers:header}).pipe(
             catchError((error) =>{
                 return this.errorHandler(error);
             }))
@@ -129,7 +132,9 @@ export class ApiService{
     //Realizar Check in
     checkin(id_reserva:any,checkin:any){
         let header = new HttpHeaders()
-        return this.http.post<any>(`${this.apiURL}/${id_reserva}/checkin`,{checkin:checkin}).pipe(
+        .set('Type-content','aplication/json')
+
+        return this.http.post<any>(`${this.apiURL}/${id_reserva}/checkin`,{checkin:checkin},{headers:header}).pipe(
             catchError((error) =>{
                 return this.errorHandler(error)
             })
