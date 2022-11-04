@@ -15,10 +15,12 @@ import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import { MatSort } from "@angular/material/sort";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { CdkTableModule } from "@angular/cdk/table";
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatExpansionModule} from '@angular/material/expansion';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from "@angular/material/icon";
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
  
 @NgModule({
     exports:[
@@ -33,14 +35,15 @@ import { MatTooltipModule } from '@angular/material/tooltip';
         MatNativeDateModule,
         MatDatepickerModule,
         MatDialogModule,
-        MatButtonModule,
         MatSnackBarModule,
         MatTableModule,
         MatPaginatorModule,
         CdkTableModule,
         MatCheckboxModule,
         MatExpansionModule,
-        MatTooltipModule
+        MatTooltipModule,
+        FlexLayoutModule,
+        MatButtonModule
     ]
 })
 

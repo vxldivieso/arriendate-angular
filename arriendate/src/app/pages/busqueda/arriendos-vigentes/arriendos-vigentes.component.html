@@ -18,11 +18,11 @@
           <div class="card" >
             <img src=" " class="card-img-top" alt="...">
             <div class="card-body">
-              <h5 class="card-title">Check In: {{data2.CHECK_IN}}</h5>
+              <h5 class="card-title">Check In: {{data2.CHECK_IN | date: 'dd/MM/yyyy'}}</h5>
               <h5 class="card-title">Status: {{data2.ESTADO}}</h5>
               <p class="card-text">Total arriendo: {{data2.TOTAL_ARRIENDO}}</p>
-             <!-- <a href="#" class="btn btn-primary" routerLink="/home/realizar_reserva">Reservar</a> -->
-            </div>
+              <button class="bg-primary" mat-raised-button (click)="openDialog()">Detalles</button>
+            </div> 
           </div>
         </div>
       </div>

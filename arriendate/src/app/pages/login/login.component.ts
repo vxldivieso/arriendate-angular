@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
-import {ErrorStateMatcher} from '@angular/material/core';
+import { Component, OnInit} from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material/core';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import Swal from 'sweetalert2'
@@ -21,15 +21,30 @@ export class LoginComponent implements OnInit {
   hide = true;
   loginForm !: FormGroup;
 
+  searchReserveForm!: FormGroup;
+
   rut:any;
   password:any;
-
-  rutapi:any;
-  passapi:any;
+  
 
   login = false;
 
   constructor(private formBuilder: FormBuilder, private api:ApiService, private route: Router) { }
+  
+  
+  /*
+  searchReserve(){
+    this.api.getReserveByID(this.searchReserveForm.controls['RUT_EMP'].value).subscribe({
+      next:(res:any)=>{
+        this.ruti = res[0];
+      },
+      error:(error)=>{
+        this.messageError()
+        this.ruti = error['error']['text']
+      }
+    })
+  }
+  */
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({

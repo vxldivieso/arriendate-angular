@@ -12,7 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomeRoutingModule } from './pages/home/home-routing.module';
 import { CommonModule } from '@angular/common';
 import { ListarDeptosComponent } from './pages/busqueda/listar-deptos/listar-deptos.component';
-import { ArriendosVigentesComponent } from './pages/busqueda/arriendos-vigentes/arriendos-vigentes.component';
+import { ArriendosVigentesComponent, DialogElementsExampleDialog } from './pages/busqueda/arriendos-vigentes/arriendos-vigentes.component';
 import { BusquedaComponent } from './pages/busqueda/busqueda.component';
 import { FechasDisponiblesComponent } from './pages/busqueda/fechas-disponibles/fechas-disponibles.component';
 import { ReservaComponent } from './pages/reservas/reserva/reserva.component';
@@ -28,6 +28,13 @@ import { GestiontransporteComponent } from './pages/reporteria/gestiontransporte
 import { MantenciondeptosComponent } from './pages/reporteria/mantenciondeptos/mantenciondeptos.component';
 import { ModuloReporteriaComponent } from './pages/reporteria/reporteria.component';
 import { ReporteriaComponent } from './pages/reporteria/reporteria/reporteria.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatToolbarModule}  from '@angular/material/toolbar';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -48,7 +55,8 @@ import { ReporteriaComponent } from './pages/reporteria/reporteria/reporteria.co
     GestiontransporteComponent, 
     MantenciondeptosComponent,
     ModuloReporteriaComponent,
-    ReporteriaComponent
+    ReporteriaComponent,
+    DialogElementsExampleDialog 
   ],
   imports: [
     CommonModule,
@@ -61,6 +69,13 @@ import { ReporteriaComponent } from './pages/reporteria/reporteria/reporteria.co
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    FlexLayoutModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatCardModule,
+    MatToolbarModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent],

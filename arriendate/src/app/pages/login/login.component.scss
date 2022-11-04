@@ -1,27 +1,16 @@
-.example-form {
-  min-width: 150px;
-  max-width: 500px;
-  width: 100%;
+//body/form
+.main-div mat-card {
+  padding: 0px;
+}
+
+.login-form {
+  padding: 20px;
 }
 
 body {
   background-image: url('../login/img/back.jpg');
   height: 100%; 
-  color:black;
-  /* Center and scale the image nicely */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-}
-
-.example-full-width {
-  width: 100%;
-}
-.full-width-input,
-button {
-  width: 100%;
-}
-
-.separator {
-  margin-bottom: 2rem;
 }
