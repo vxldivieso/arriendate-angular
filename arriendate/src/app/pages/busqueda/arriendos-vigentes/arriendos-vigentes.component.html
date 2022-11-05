@@ -15,14 +15,14 @@
     <div class="container" >
       <div class="row g-3">
         <div class="col-4" *ngFor="let data2 of vigentes_arriendos" >
-          <div class="card" >
-            <img src=" " class="card-img-top" alt="...">
+          <div class="card">
+            <img src="travel.jpg" class="card-img-top" alt="...">
             <div class="card-body">
-              <h5 class="card-title">Check In: {{data2.CHECK_IN | date: 'dd/MM/yyyy'}}</h5>
-              <h5 class="card-title">Status: {{data2.ESTADO}}</h5>
-              <p class="card-text">Total arriendo: {{data2.TOTAL_ARRIENDO}}</p>
-              <button class="bg-primary" mat-raised-button (click)="openDialog()">Detalles</button>
-            </div> 
+              <h5 class="card-title"><b class="fw-bold">Check In:</b> {{data2.CHECK_IN | date: 'dd/MM/yyyy'}}</h5>
+              <h5 class="card-title"><b class="fw-bold">Status:</b> {{data2.ESTADO}}</h5>
+              <!-- <p class="card-text">Total arriendo: {{data2.TOTAL_ARRIENDO}}</p> -->
+              <button class="bg-primary" mat-raised-button (click)="openDialog()">Más detalles</button>
+            </div>    
           </div>
         </div>
       </div>
