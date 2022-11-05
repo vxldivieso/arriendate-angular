@@ -5,6 +5,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { ApiService } from 'src/app/services/api.service';
 import { ListarDeptosComponent } from '../../busqueda/listar-deptos/listar-deptos.component';
+import Swal from 'sweetalert2'
 import * as moment from 'moment';
 
 
@@ -154,7 +155,6 @@ export class ReservaComponent implements OnInit {
     this.api.getLastReserve().subscribe({
       next:(res)=>{
         this.id_ultima_reserva = res;
-        console.log(this.id_ultima_reserva);
         this.id_reserva = this.id_ultima_reserva[0].ID_RESERVA
       }
     })
@@ -168,9 +168,10 @@ export class ReservaComponent implements OnInit {
         next:(res:any)=>{
           this.resultadoBusqueda = res[0];
           this.id_cli = this.resultadoBusqueda.ID_CLI;
+          console.log(this.id_cli);
+          
         },
         error:(error)=>{
-          this.resultadoBusqueda = error['error']['text']
         }
       })
     }
@@ -179,19 +180,44 @@ export class ReservaComponent implements OnInit {
 
 
   addClient(){
-    console.log(JSON.stringify(this.createClientForm.value));
+    const format = 'YYYY-MM-DD'
+    const RUT_CLI = this.createClientForm.controls['RUT_CLI'].value
+    const FIRST_NAME = this.createClientForm.controls['FIRST_NAME'].value
+    const LAST_NAME =this.createClientForm.controls['LAST_NAME'].value
+    const BIRTHDAY = moment(this.createClientForm.controls['BIRTHDAY'].value).format(format)
+    const TELEFONO = this.createClientForm.controls['TELEFONO'].value
+    const EMAIL = this.createClientForm.controls['EMAIL'].value
+    const PASSWORD = this.createClientForm.controls['PASSWORD'].value
+
+    console.log(RUT_CLI, FIRST_NAME, LAST_NAME, BIRTHDAY, TELEFONO, EMAIL, PASSWORD);
+    
     if(this.createClientForm.valid){
-      this.api.newClient(JSON.stringify(this.createClientForm.value)).subscribe({
+      this.api.newClient(RUT_CLI, FIRST_NAME, LAST_NAME, BIRTHDAY, TELEFONO, EMAIL, PASSWORD).subscribe({
         next:(res)=>{
           console.log(res);
+          this.messageExitoCliente()
+          this.searchClient()
           
         },
         error:()=>{
           console.log('Error al crear Cliente');
-          
+          this.searchClient()
+          this.messageErrorCliente()
         }
       })
     }
+  }
+
+  buscarClienteNuevo(){
+    this.api.getClientId(this.createClientForm.controls['RUT_CLI'].value).subscribe({
+      next:(res:any)=>{
+        this.resultadoBusqueda = res[0];
+        this.id_cli = this.resultadoBusqueda.ID_CLI;
+      },
+      error:(error)=>{
+        this.resultadoBusqueda = error['error']['text']
+      }
+    })
   }
 
 
@@ -278,9 +304,11 @@ export class ReservaComponent implements OnInit {
         next:(res)=>{
           res
           console.log('Reserva hecha exitosamente');
+          this.messageExito()
           
         },
         error:()=>{
+          this.messageErrorReserva()
           console.log('Error al realizar reserva');
           
         }
@@ -289,5 +317,81 @@ export class ReservaComponent implements OnInit {
       window.alert('Formulario invalido')
     }
   }
+
+  //Message Exito
+  messageExito(){
+    const Toast = Swal.mixin({
+    toast: true,
+    position: 'bottom',
+    showConfirmButton: false,
+    timer: 2000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+    })
+    Toast.fire({
+    icon: 'success',
+    title: 'Reserva creada exitosamente'
+    })
+}
+//Message Exito Creación cliente
+messageExitoCliente(){
+  const Toast = Swal.mixin({
+  toast: true,
+  position: 'bottom',
+  showConfirmButton: false,
+  timer: 2000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+  })
+  Toast.fire({
+  icon: 'success',
+  title: 'Cliente añadido exitosamente'
+  })
+}
+
+//Message Error Reserva
+messageErrorReserva(){
+  const Toast = Swal.mixin({
+  toast: true,
+  position: 'bottom',
+  showConfirmButton: false,
+  timer: 2000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+  })
+  Toast.fire({
+  icon: 'error',
+  title: 'Algo falló al realizar reserva'
+  })
+}
+
+//Message Error Cliente
+messageErrorCliente(){
+  const Toast = Swal.mixin({
+  toast: true,
+  position: 'bottom',
+  showConfirmButton: false,
+  timer: 2000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+  })
+  Toast.fire({
+  icon: 'error',
+  title: 'Algo falló al añadir cliente'
+  })
+}
+
 
 }
