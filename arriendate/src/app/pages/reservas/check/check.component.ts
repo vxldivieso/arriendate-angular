@@ -38,6 +38,7 @@ export class CheckComponent implements OnInit {
       },
       error:(error)=>{
         this.messageError()
+        this.reserva = error['error']['text']
       }
     })
   }
@@ -70,6 +71,7 @@ export class CheckComponent implements OnInit {
             },
             error:(error)=>{
               this.messageErrorCheckin()
+              this.reserva = error['error']['text']
             }
           })
         }

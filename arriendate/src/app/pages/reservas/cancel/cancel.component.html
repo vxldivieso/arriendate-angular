@@ -8,7 +8,6 @@
 
 
 <h2 class="welcome text-center">Cancelar Reserva</h2>
-<p class="text-center"> Al realizar la cancelación exitosa, busque la reserva denuevo para validar resultados</p>
     <div class="container w-75">
         <form class="mb-3 mt-md-4" [formGroup]="searchReserveForm">
             <h5 class="mb-3 text-uppercase text-center" style="color:white">Ingrese el ID de la Reserva</h5>
@@ -67,8 +66,8 @@
                     </div>
                     <div class="col-md-4">
                       <mat-form-field appearance="fill" color="accent">
-                        <mat-label>Fecha Hasta</mat-label>
-                        <input matInput id="HASTA" name="HASTA" [(ngModel)]="reserva.HASTA" readonly>
+                        <mat-label>Mascotas</mat-label>
+                        <input matInput id="MASCOTAS" name="MASCOTAS" [(ngModel)]="reserva.MASCOTAS" readonly>
                       </mat-form-field>
                       </div>
                   </div>

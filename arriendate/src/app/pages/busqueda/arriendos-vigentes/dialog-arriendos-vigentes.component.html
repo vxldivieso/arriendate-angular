@@ -6,10 +6,10 @@
         <mat-label>Company (disabled)</mat-label>
         <input matInput disabled value="Google">
       </mat-form-field>
+      <div mat-dialog-actions fxLayoutAlign="end">
+        <button mat-raised-button color="warn" (click)="closeDialog()">Cerrar</button>
+      </div>
     </form>
-    <div mat-dialog-actions fxLayoutAlign="end">
-      <button mat-raised-button color="warn" (click)="closeDialog()">Cerrar</button>
-    </div>
   </mat-card>
 </div> 
 

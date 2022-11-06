@@ -12,6 +12,8 @@ import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material/dial
 
 export class ArriendosVigentesComponent implements OnInit {
  
+  p: number = 1;
+
   vigentes_arriendos : any;
 
 

@@ -34,9 +34,12 @@ export class CancelComponent implements OnInit {
     this.api.getReserveByID(this.searchReserveForm.controls['ID_RESERVA'].value).subscribe({
       next:(res:any)=>{
         this.reserva = res[0];
+        console.log(this.reserva);
+        
       },
       error:(error)=>{
         this.messageError()
+        this.reserva = error['error']['text']
       }
     })
   }
@@ -61,38 +64,18 @@ export class CancelComponent implements OnInit {
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        const estado = 'CANCELADO'
-        this.api.cancelReserve(this.reserva.ID_RESERVA, estado).subscribe({
+        this.api.cancelReserve(this.reserva.ID_RESERVA, JSON.stringify(this.today)).subscribe({
           next:(res:any)=>{
             console.log(res);
-            this.messageExito()
           },
           error:(error)=>{
             this.messageErrorCancelar()
+            this.reserva = error['error']['text']
           }
         })
       }
     })
   }
-
-   //Message Exito
-   messageExito(){
-    const Toast = Swal.mixin({
-    toast: true,
-    position: 'bottom',
-    showConfirmButton: false,
-    timer: 2000,
-    timerProgressBar: true,
-    didOpen: (toast) => {
-        toast.addEventListener('mouseenter', Swal.stopTimer)
-        toast.addEventListener('mouseleave', Swal.resumeTimer)
-    }
-    })
-    Toast.fire({
-    icon: 'success',
-    title: 'Reserva cancelada exitosamente'
-    })
-}
 
   //Message Error 
   messageErrorCancelar(){
