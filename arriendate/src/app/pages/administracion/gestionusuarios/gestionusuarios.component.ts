@@ -41,9 +41,11 @@ export class GestionusuariosComponent implements OnInit{
     this.location.back()
   }
 
-  eliminarUsuario(id: any){
-    console.log(id);
-    this.api.deleteEmp(id);
+  eliminarUsuario(element : any){
+    console.log(element);
+    this.api.deleteEmp(element.id).subscribe(res=>{
+      alert("Empleado eliminado con éxito")
+    });
     this.listarEmpleados();
   }
 
