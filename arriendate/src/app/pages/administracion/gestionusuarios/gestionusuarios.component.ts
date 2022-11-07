@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 
+
 @Component({
   selector: 'app-gestionusuarios',
   templateUrl: './gestionusuarios.component.html',
@@ -38,6 +39,12 @@ export class GestionusuariosComponent implements OnInit{
 
   goBack(){
     this.location.back()
+  }
+
+  eliminarUsuario(id: any){
+    console.log(id);
+    this.api.deleteEmp(id);
+    this.listarEmpleados();
   }
 
   listarEmpleados(){

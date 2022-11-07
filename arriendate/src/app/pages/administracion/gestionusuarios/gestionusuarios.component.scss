@@ -1,16 +1,22 @@
+table {
+    width: 100%;
+}
+
 .data_table {
     width: 80%;
     margin: 20px auto;
-}
-
-th{
-    width: 20%;
 }
 
 .pointer{
     cursor: pointer;
 }
 
-th.mat-header-cell{
-    text-align:center;
+th.mat-sort-header{
+    text-align: center;
 }
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+

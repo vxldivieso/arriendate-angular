@@ -36,6 +36,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule}  from '@angular/material/toolbar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -77,7 +78,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     MatCardModule,
     MatToolbarModule,
     MatDialogModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent],

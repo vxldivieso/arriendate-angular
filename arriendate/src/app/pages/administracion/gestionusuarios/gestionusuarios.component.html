@@ -11,73 +11,71 @@
     <br>
     <h2 class="welcome text-center">Listado de Usuarios</h2>
     <br>
+    <mat-card class="container">
+        <div class="container w-75 data_table">     
+            <!-- Filtro -->
+            <mat-form-field appearance="standard">
+                <mat-label>Filtrar</mat-label>
+                <input matInput (keyup)="applyFilter($event)" placeholder="Filtrar" #input>
+            </mat-form-field>
+    
+            <!-- DataGrid -->
+            <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+    
+                 <!-- Columns -->
+                <ng-container matColumnDef="ID_EMP">
+                    <th mat-header-cell *matHeaderCellDef> ID empleado </th>
+                    <td mat-cell *matCellDef="let row"> {{row.ID_EMP}} </td>
+                </ng-container>
+    
+                <ng-container matColumnDef="NOM_EMP">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+                    <td mat-cell *matCellDef="let row"> {{row.NOM_EMP}} {{row.APP_EMP}} </td>
+                </ng-container>
+    
+                <ng-container matColumnDef="RUT_EMP">
+                    <th mat-header-cell *matHeaderCellDef> Rut</th>
+                    <td mat-cell *matCellDef="let row"> {{row.RUT_EMP}} - {{row.RUT_DV_EMP}} </td>
+                </ng-container>
+    
+                <ng-container matColumnDef="ROL_EMP">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Rol</th>
+                    <td mat-cell *matCellDef="let row"> {{row.ROL_EMP}} </td>
+                </ng-container>
+    
+                <ng-container matColumnDef="SUC_ASIGNADA">
+                    <th mat-header-cell *matHeaderCellDef> Sucursal asignada</th>
+                    <td mat-cell *matCellDef="let row"> {{row.SUC_ASIGNADA}} </td>
+                </ng-container>
+    
+                <!-- Column/Acciones -->
+                <ng-container matColumnDef="acciones">
+                    <th mat-header-cell *matHeaderCellDef></th>
+                    <td mat-cell *matCellDef="let element; let i = index" style="text-align: right;">
+                        <a class="pointer" style="color:rgb(12, 204, 60)" matTooltip="Crear">
+                            <mat-icon>create_new_folder</mat-icon>
+                        </a> 
+                        <a class="pointer" style="color:rgb(0, 0, 255)" matTooltip="Modificar">
+                            <mat-icon>edit</mat-icon>
+                        </a>
+                        <a class="pointer" (click)="eliminarUsuario(i)" style="color:rgb(204, 12, 44)" matTooltip="Eliminar">
+                            <mat-icon>delete</mat-icon>
+                        </a>            
+                    </td>           
+                </ng-container>
+    
+                <!-- Show Table -->
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    
+            </table>
+            <mat-paginator [pageSizeOptions]="[10, 15, 20]"
+                     showFirstLastButtons 
+                     aria-label="Select page of periodic elements">
+            </mat-paginator>
+        </div>
+    </mat-card>
     <!-- Comienzo del div-->
-    <div class="container w-75 data_table">
-        
-        <!-- Filtro -->
-        <mat-form-field appearance="standard">
-            <mat-label>Filtrar</mat-label>
-            <input matInput (keyup)="applyFilter($event)" placeholder="Filtrar" #input>
-        </mat-form-field>
-        
-
-        <!-- DataGrid -->
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 text-center">
-
-             <!-- Columns -->
-            <ng-container matColumnDef="ID_EMP">
-                <th mat-header-cell *matHeaderCellDef> ID empleado </th>
-                <td mat-cell *matCellDef="let row"> {{row.ID_EMP}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="NOM_EMP">
-                <th mat-header-cell *matHeaderCellDef> Nombre </th>
-                <td mat-cell *matCellDef="let row"> {{row.NOM_EMP}} {{row.APP_EMP}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="RUT_EMP">
-                <th mat-header-cell *matHeaderCellDef> Rut</th>
-                <td mat-cell *matCellDef="let row"> {{row.RUT_EMP}} - {{row.RUT_DV_EMP}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="ROL_EMP">
-                <th mat-header-cell *matHeaderCellDef> Rol</th>
-                <td mat-cell *matCellDef="let row"> {{row.ROL_EMP}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="SUC_ASIGNADA">
-                <th mat-header-cell *matHeaderCellDef> Sucursal asignada</th>
-                <td mat-cell *matCellDef="let row"> {{row.SUC_ASIGNADA}} </td>
-            </ng-container>
-
-            <!-- Column/Acciones -->
-            <ng-container matColumnDef="acciones">
-                <th mat-header-cell *matHeaderCellDef> Acciones </th>
-                <td mat-cell *matCellDef="let row">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <a class="pointer" style="color:rgb(0, 0, 255)" matTooltip="Modificar">
-                                <mat-icon>edit</mat-icon>
-                            </a>
-                        </div>
-                        <div class="col-md-6">
-                            <a class="pointer" style="color:rgb(204, 12, 44)" matTooltip="Eliminar">
-                                <mat-icon>delete</mat-icon>
-                            </a>
-                        </div>
-                    </div>
-                    
-                    
-                </td>           
-            </ng-container>
-
-            <!-- Show Table -->
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
-        </table>
-        <mat-paginator [length]="21" [pageSizeOptions]="[7]" aria-label="Select page">
-        </mat-paginator>
-    </div>
+    
 </body>
   

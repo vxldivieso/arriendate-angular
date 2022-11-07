@@ -93,6 +93,14 @@ export class ApiService{
         )
     }
 
+    deleteEmp(id_emp: any){
+        return this.http.get(`${this.apiURL}/eliminarEmp/${id_emp}`).pipe(
+            catchError((error) =>{
+                return this.errorHandler(error)
+            })
+        )
+    }
+
     
 
     getClientId(rut_cli:any){
