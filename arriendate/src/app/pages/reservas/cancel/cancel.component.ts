@@ -64,22 +64,14 @@ export class CancelComponent implements OnInit {
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-<<<<<<< HEAD
         const estado = 'CANCELADO'
         this.api.cancelReserve(this.reserva.ID_RESERVA).subscribe({
-=======
-        this.api.cancelReserve(this.reserva.ID_RESERVA, JSON.stringify(this.today)).subscribe({
->>>>>>> 07211169ad7e3a7d49b709dfe2f9af33974313aa
           next:(res:any)=>{
             console.log(res);
           },
           error:(error)=>{
-<<<<<<< HEAD
-            this.messageExito()
-=======
             this.messageErrorCancelar()
             this.reserva = error['error']['text']
->>>>>>> 07211169ad7e3a7d49b709dfe2f9af33974313aa
           }
         })
       }
