@@ -1,21 +1,21 @@
 <body>
     <br>
   <div class="p-3">
-    <button mat-fab id="primary" aria-label="" >
+    <button mat-fab id="primary" aria-label="" (click)="goBack()"  >
       <mat-icon>keyboard_arrow_left</mat-icon>
     </button>
-    <label for="" style="color:white ;"> &nbsp; Atrás</label>
+    <label for="" style="color:white ;" > &nbsp; Atrás</label>
   </div>
 
   <div class="container w-75">
 
-    <section>
-        <h1>Resumen Reserva Generada</h1>
-        <h2>Today</h2>
+    <section *ngFor="let data of reserva_detail" >
+        <h1>Reserva Generada número {{data.ID_RESERVA}}</h1>
+        <h2>{{data.FEC_RESERVA | date: 'dd/MM/yyyy - hh:mm:ss aa'}}</h2>
         <details>
             <summary>
                 <div>
-                    <span style="background-color: #f2dcbb;">
+                    <span style="background-color: #7573FF;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" fill="currentColor" viewBox="0 0 256 256">
                             <rect width="256" height="256" fill="none"></rect>
                             <path d="M192,120h27.05573a8,8,0,0,0,7.15542-4.42229l18.40439-36.80878a8,8,0,0,0-3.18631-10.52366L192,40" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path>
@@ -24,35 +24,46 @@
                         </svg>
                     </span>
                     <h3>
-                        <strong>American Eagle</strong>
-                        <small>Clothes & Fashion</small>
+                        <strong>Datos Reserva</strong>
+                        <small>Resumen</small>
                     </h3>
-                    <span style="color:black">-39.99 USD</span>
+                    <span style="color:black">Total: {{data.TOTAL_ARRIENDO | currency}}</span>
                 </div>
             </summary>
             <div>
-                <dl>
+                <dl class="row row-cols-md-5">
                     <div>
-                        <dt>Time</dt>
-                        <dd>4.27pm</dd>
+                        <dt>Ubicación</dt>
+                        <dd>{{data.UBICACION}}</dd>
                     </div>
     
                     <div>
-                        <dt>Card used</dt>
-                        <dd>•••• 6890</dd>
+                        <dt>Desde</dt>
+                        <dd>{{data.DESDE | date: 'dd/MM/yyyy'}}</dd>
                     </div>
     
                     <div>
-                        <dt>Reference ID</dt>
-                        <dd>3125-568911</dd>
+                        <dt>Hasta</dt>
+                        <dd>{{data.HASTA | date: 'dd/MM/yyyy'}}</dd>
+                    </div>
+
+                    <div>
+                        <dt>Monto Abono</dt>
+                        <dd>{{data.MONTO_ABONADO | currency}}</dd>
+                    </div>
+
+                    <div>
+                        <dt>Monto Total</dt>
+                        <dd>{{data.TOTAL_ARRIENDO | currency}}</dd>
                     </div>
                 </dl>
             </div>
+            
         </details>
         <details>
             <summary>
                 <div>
-                    <span>
+                    <span style="background-color: #FFA134;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" fill="currentColor" viewBox="0 0 256 256">
                             <rect width="256" height="256" fill="none"></rect>
                             <rect x="32" y="80" width="192" height="48" rx="7.99999" stroke-width="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" fill="none"></rect>
@@ -63,10 +74,9 @@
                         </svg>
                     </span>
                     <h3>
-                        <strong>From Håvard Brynjulfsen</strong>
-                        <small>Gift</small>
-                    </h3>
-                    <span class="plus" >+50.00 USD</span>
+                        <strong>Datos Cliente</strong>
+                        <small>Datos personales </small>
+                    </h3>   
                 </div>
             </summary>
             <div>
@@ -86,7 +96,7 @@
         <details>
             <summary>
                 <div>
-                    <span style="background-color: #e0ece4;">
+                    <span style="background-color: #FF5474;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" fill="#000000" viewBox="0 0 256 256">
                             <rect width="256" height="256" fill="none"></rect>
                             <line x1="88" y1="24" x2="88" y2="56" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
@@ -98,8 +108,8 @@
                         </svg>
                     </span>
                     <h3>
-                        <strong>Starbucks</strong>
-                        <small>Food & Beverage</small>
+                        <strong>Detalle Departamento</strong>
+                        <small></small>
                     </h3>
                     <span style="color:black">-14.99 USD</span>
                 </div>
@@ -123,39 +133,19 @@
                 </dl>
             </div>
         </details>
-        <details>
-            <summary>
-                <div>
-                    <span>
-    <svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" fill="#000000" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><circle cx="128" cy="128" r="96" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></circle><g><path d="M179.1333,108.32931a112.19069,112.19069,0,0,0-102.3584.04859" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path><path d="M164.29541,136.71457a79.94058,79.94058,0,0,0-72.68359.04736" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path><path d="M149.47217,165.07248a47.97816,47.97816,0,0,0-43.03662.04736" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path></g></svg>
-                    </span>
-                    <h3>
-                        <strong>Spotify</strong>
-                        <small>Music & Entertainment</small>
-                    </h3>
-                    <span style="color:black">-9.99 USD</span>
-                </div>
-            </summary>
-            <div>
-                <dl>
-                    <div>
-                        <dt>Time</dt>
-                        <dd>1.00am</dd>
-                    </div>
-    
-                    <div>
-                        <dt>Card used</dt>
-                        <dd>•••• 6890</dd>
-                    </div>
-    
-                    <div>
-                        <dt>Reference ID</dt>
-                        <dd>3125-568915</dd>
-                    </div>
-                </dl>
-            </div>
-        </details>
     </section>
-
+  </div>
+  <div class="container w-75 p-3 text-center">
+    <div class="row">
+        <div class="col-md-6">
+            <button mat-raised-button color="primary" >Reenviar a email</button>
+        </div>
+        <div class="col-md-6">
+            
+            <button mat-raised-button color="primary" ><mat-icon>print</mat-icon> &nbsp; Imprimir</button>
+        </div>
+    </div>
+    
+    
   </div>
 </body>
