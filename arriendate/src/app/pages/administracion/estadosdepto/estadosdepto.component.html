@@ -1,1 +1,38 @@
-<p>estadosdepto works!</p>
+<br>
+<div class="p-3">
+  <button mat-fab id="accent" aria-label="" (click)="goBack()">
+    <mat-icon>keyboard_arrow_left</mat-icon>
+  </button>
+  <label for="" style="color:white ;"> &nbsp; Atrás</label>
+</div>
+<body>
+  <!-- Titulo con espacios -->
+  <br>
+  <h2 class="welcome text-center">Actualizar Estados Departamentos</h2>
+  <br>
+  <!-- Cards -->
+  <div class="container" >
+    <div class="row g-3">
+      <div class="col-4" *ngFor="let data of deptos_detalle">
+        <mat-card class="example-card" >
+          <mat-card-header>
+            <mat-card-title>Departamento {{data.ID_DEPTO}}, ({{data.TOTAL_PERSONAS}} personas)</mat-card-title>
+          </mat-card-header>
+          <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Depto foto">
+          <mat-card-content>
+            <p>
+              Ubicación: {{data.UBICACION}}
+            </p>
+            <p>{{data.DESCRIPCION}}</p>
+            <h5>Valor por día: ${{data.VALOR_DIA}}</h5>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button color="accent" cdkFocusInitial >Actualizar</button>
+            <button mat-button>Ver detalle</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</body>
+

@@ -1,22 +1,20 @@
 body{
-  background-color: #26252A;
-  .welcome{
-    color: white;
-    font-weight: bold;
-  }
+  background-color: #1C1D31;
   font-family: 'Roboto', sans-serif;
 
   .modules{
+    padding-top: 10%;
     .card{
-     height: 200px;
+     height: 330px;
+     border-radius: 50px;
      .card-body{
       display: grid;
       justify-content: center;
       align-items: center;
-      padding-top: 50px;
-      padding-bottom: 50px;
-      padding-left: 40px;
-      padding-right: 40px;
+      padding-top: 40px;
+      padding-bottom: 70px;
+      padding-left: 20px;
+      padding-right: 20px;
       .card-title{
         font-weight: bold;
       }

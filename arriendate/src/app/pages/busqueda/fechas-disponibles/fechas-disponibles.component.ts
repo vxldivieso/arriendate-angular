@@ -7,7 +7,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 @Component({
   selector: 'app-fechas-disponibles',
   templateUrl: './fechas-disponibles.component.html',
-  styleUrls: ['./fechas-disponibles.component.scss']
+  styleUrls: ['./fechas-disponibles.component.scss'],
+  
 })
 export class FechasDisponiblesComponent implements OnInit {
 

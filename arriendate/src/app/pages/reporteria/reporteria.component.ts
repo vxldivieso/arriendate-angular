@@ -6,6 +6,7 @@ import { Location } from '@angular/common';
   selector: 'app-reporteria',
   templateUrl: './reporteria.component.html',
   styleUrls: ['./reporteria.component.scss']
+  
 })
 export class ModuloReporteriaComponent implements OnInit {
 

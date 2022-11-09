@@ -15,7 +15,8 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  providers: [FormBuilder]
 })
 export class LoginComponent implements OnInit {
   hide = true;

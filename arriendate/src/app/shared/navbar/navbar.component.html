@@ -1,24 +1,24 @@
-<nav class="navbar navbar-dark bg-dark">
+<nav class="navbar navbar-dark " style="background-color: #1C1D31 ;">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Arriendate</a>
+      <a class="navbar-brand">ARRIENDATE</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
-        <span class="navbar-toggler-icon"></span>
+        <mat-icon>more_vert</mat-icon>
       </button>
-      <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+      <div class="offcanvas offcanvas-end " style="background-color: #1C1D31 ;" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
         <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Menú</h5>
+          <h5 class="offcanvas-title" style="color:white" id="offcanvasDarkNavbarLabel">Menú</h5>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
           <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+              <a class="nav-link active" aria-current="page" href="">Inicio</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Perfil</a>
+              <a class="nav-link mb-3" href="">Perfil</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="" (click)="logout()" >Cerrar Sesión</a>
+              <button mat-raised-button (click)="logout()" >Cerrar Sesión</button>
             </li>
             
           </ul>

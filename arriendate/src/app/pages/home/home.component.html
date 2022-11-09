@@ -1,44 +1,43 @@
 <app-navbar></app-navbar>
 <body>
-  <h1 class="welcome">Bienvenido/a</h1>
-
     <section class="modules">
-        <div class="container w-75">
-          <div class="row row-cols-1 row-cols-md-2 g-4">
+        <div class="container w-100">
+          <div class="row row-cols-1 row-cols-md-4 g-4">
             <div class="col">
-              <div class="card text-center" style="background-color: #69f0ae; color:black;" type="button" routerLink="/home/modulo_reserva" >
+              <div class="card text-center" id="primary" type="button" routerLink="/home/modulo_reserva" >
                 <div class="card-body" >
-                  <h5 class="card-title">Gestión de Reservas</h5>
-                  <p class="card-text">Check in, Check out, Realizar Reserva, Cancelar Reserva, Pago online</p>
+                  <h5 class="card-title text-uppercase">Gestión de Reservas</h5>
+                  <p class="card-text">Realizar Reserva, <br> Check in, Check out, Cancelar Reserva, Pago online</p>
                 </div>
               </div>
             </div>
             <div class="col">
-              <div class="card text-bg-primary text-center" type="button" routerLink="/home/busqueda" >
+              <div class="card text-center" id="secundary" type="button" routerLink="/home/busqueda" >
 
                 <div class="card-body"  >
-                  <h5 class="card-title">Búsqueda y Visualización</h5>
+                  <h5 class="card-title text-uppercase">Búsqueda y Visualización</h5>
                   <p class="card-text">Ver Reservas, Búsqueda de Departamentos, Ver fechas disponibles </p>
                 </div>
               </div>
             </div>
             <div class="col">
-              <div class="card text-bg-danger text-center" type="button" routerLink="/home/administracion">
+              <div class="card text-center" id="warning" routerLink="/home/modulo_reporteria">
                 
                 <div class="card-body" >
-                  <h5 class="card-title">Administración</h5>
-                  <p class="card-text">Gestión de inventario, Actualización de Estados Departamentos, Gestión de Usuarios</p>
+                  <h5 class="card-title text-uppercase">Reportería</h5>
+                  <p class="card-text">Reportería, Gestión de Transporte, Programación de Mantención Departamentos  </p>
                 </div>
               </div>
             </div>
             <div class="col">
-              <div class="card text-bg-warning text-center" type="button" routerLink="/home/modulo_reporteria">
+              <div class="card text-center" id="accent"  type="button" routerLink="/home/administracion">
                 
                 <div class="card-body" >
-                  <h5 class="card-title">Reportería</h5>
-                  <p class="card-text">Reportería, Gestión de Transporte, Programación de Mantención Departamentos  </p>
+                  <h5 class="card-title text-uppercase">Administración</h5>
+                  <p class="card-text">Gestión de inventario, Actualización de Estados Departamentos, Gestión de Usuarios</p>
                 </div>
               </div>
+              
             </div>
           </div>
 

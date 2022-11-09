@@ -21,7 +21,7 @@ import { CancelComponent } from './pages/reservas/cancel/cancel.component';
 import { PayComponent } from './pages/reservas/pay/pay.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { AdministracionComponent } from './pages/administracion/administracion.component';
-import { InventarioComponent } from './pages/administracion/inventario/inventario.component';
+import { AddDialogComponent, EditarDialogComponent, InventarioComponent } from './pages/administracion/inventario/inventario.component';
 import { EstadosdeptoComponent } from './pages/administracion/estadosdepto/estadosdepto.component';
 import { GestionusuariosComponent } from './pages/administracion/gestionusuarios/gestionusuarios.component';
 import { GestiontransporteComponent } from './pages/reporteria/gestiontransporte/gestiontransporte.component';
@@ -36,6 +36,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule}  from '@angular/material/toolbar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ReservaExternaComponent } from './pages/reservas/reserva-externa/reserva-externa.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,10 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MantenciondeptosComponent,
     ModuloReporteriaComponent,
     ReporteriaComponent,
-    DialogElementsExampleDialog 
+    DialogElementsExampleDialog,
+    EditarDialogComponent,
+    AddDialogComponent,
+    ReservaExternaComponent
   ],
   imports: [
     CommonModule,
@@ -77,7 +81,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatCardModule,
     MatToolbarModule,
     MatDialogModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+
   ],
   providers: [ ],
   bootstrap: [AppComponent],

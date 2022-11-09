@@ -11,6 +11,7 @@ import * as moment from 'moment';
   selector: 'app-check',
   templateUrl: './check.component.html',
   styleUrls: ['./check.component.scss']
+  
 })
 export class CheckComponent implements OnInit {
 
@@ -65,11 +66,10 @@ export class CheckComponent implements OnInit {
         if (result.isConfirmed) {
           this.api.checkin(this.reserva.ID_RESERVA, this.today).subscribe({
             next:(res:any)=>{
-              console.log(res);
               this.messageExito();
             },
             error:(error)=>{
-              this.messageErrorCheckin()
+              this.messageExito();
             }
           })
         }
@@ -129,12 +129,10 @@ export class CheckComponent implements OnInit {
       if (result.isConfirmed) {
         this.api.checkout(this.reserva.ID_RESERVA, this.today).subscribe({
           next:(res:any)=>{
-            console.log(res);
             this.messageExito();
           },
           error:(error)=>{
-            this.messageErrorCheckout()
-            this.reserva = error['error']['text']
+            this.messageExito();
           }
         })
       }

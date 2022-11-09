@@ -1,9 +1,9 @@
 <br>
-<div class="mb-3">
-  <button mat-fab class="bg-primary" aria-label="" (click)="goBack()">
+<div class="p-3">
+  <button mat-fab id="secundary" aria-label="" (click)="goBack()">
     <mat-icon>keyboard_arrow_left</mat-icon>
   </button>
-  <label for=""> &nbsp; Atrás</label>
+  <label for="" style="color:white ;"> &nbsp; Atrás</label>
 </div>
 
 <body>
@@ -24,7 +24,7 @@
           </mat-form-field>
         </div>
         <div class="col-md-6">
-          <button type="button" class="btn btn-primary" (click)="getLastDate()">Buscar Departamento</button>
+          <button mat-raised-button color="accent" type="button" (click)="getLastDate()">Buscar Departamento</button>
         </div>
       </div>
 

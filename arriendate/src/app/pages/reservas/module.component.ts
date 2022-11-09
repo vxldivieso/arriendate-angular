@@ -5,7 +5,7 @@ import { Location } from '@angular/common';
 @Component({
   selector: 'app-module',
   templateUrl: './module.component.html',
-  styleUrls: ['./module.component.scss']
+  styleUrls: ['./module.component.scss'],
 })
 export class ModuleComponent implements OnInit {
 

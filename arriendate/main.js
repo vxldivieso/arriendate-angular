@@ -4,14 +4,14 @@ let appWin;
 
 createWindow = () => {
     appWin = new BrowserWindow({
-        width: 1000,
-        height: 1000,
-        title: "Angular and Electron",
+        width: 1300,
+        height: 768,
+        title: "Arriendate.cl",
         resizable: true,
         webPreferences: {
             contextIsolation: false,
             nodeIntegration: true
-        }
+        },
     });
     
     appWin.loadURL(`file://${__dirname}/dist/index.html`);

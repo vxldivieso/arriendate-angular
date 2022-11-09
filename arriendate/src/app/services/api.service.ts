@@ -9,7 +9,7 @@ import Swal from 'sweetalert2'
 })
 export class ApiService{
     private apiURL='https://api-turismoreal.azurewebsites.net/bd'
-    private apiURL2 = 'http://localhost:8000'
+    private apiURL2 = 'http://localhost:8000/bd'
     ingreso :any;
 
     idClient:any;
@@ -62,6 +62,13 @@ export class ApiService{
             }))
     }
 
+    getReservebyRut(rut:any){
+        return this.http.get(`${this.apiURL2}/listarReservasCliente/${rut}`).pipe(
+            catchError((error) =>{
+                return this.errorHandler(error);
+            }))
+    }
+
     getEmployee(){
         return this.http.get(`${this.apiURL}/listarEmps`).pipe(
             catchError((error) =>{
@@ -72,6 +79,13 @@ export class ApiService{
 
     getDeptos(){
         return this.http.get(`${this.apiURL}/listarDepto/`).pipe(
+            catchError((error) =>{
+                return this.errorHandler(error);
+            }))
+    }
+
+    getInventario(id:any){
+        return this.http.get(`${this.apiURL}/infodepto/${id}`).pipe(
             catchError((error) =>{
                 return this.errorHandler(error);
             }))
@@ -105,11 +119,26 @@ export class ApiService{
         let header = new HttpHeaders()
         .set('Type-content','aplication/json')
 
-        return this.http.post<any>(`${this.apiURL2}/bd/agregarCli`,{RUT_CLI:RUT_CLI, FIRST_NAME:FIRST_NAME, LAST_NAME:LAST_NAME,
+        return this.http.post<any>(`${this.apiURL2}/agregarCli`,{RUT_CLI:RUT_CLI, FIRST_NAME:FIRST_NAME, LAST_NAME:LAST_NAME,
              BIRTHDAY:BIRTHDAY, TELEFONO:TELEFONO, EMAIL:EMAIL, PASSWORD:PASSWORD},{headers:header}).pipe(
             catchError((error) =>{
                 return this.errorHandler(error);
             }))
+    }
+
+    //Añadir departamento
+
+    addDepto(NOMBRE:any, DESCRIPCION:any,UBICACION:any,VALOR_DIA:any,TOTAL_PERSONAS:any,ESTACIONAMIENTO:any,MASCOTAS:any, INVENTARIO_ID:any, SUCURSAL_ID_SUC:any){
+        let header = new HttpHeaders()
+        .set('Type-content','aplication/json')
+
+        return this.http.post<any>(`${this.apiURL2}/crearDepto`,{NOMBRE:NOMBRE, DESCRIPCION:DESCRIPCION,
+        UBICACION:UBICACION,VALOR_DIA:VALOR_DIA,TOTAL_PERSONAS:TOTAL_PERSONAS, ESTACIONAMIENTO:ESTACIONAMIENTO,
+        MASCOTAS:MASCOTAS, INVENTARIO_ID:INVENTARIO_ID, SUCURSAL_ID_SUC:SUCURSAL_ID_SUC},{headers:header}).pipe(
+           catchError((error) =>{
+               return this.errorHandler(error);
+           }))
+
     }
 
     //Listar ultima reserva
@@ -127,18 +156,18 @@ export class ApiService{
         let header = new HttpHeaders()
         .set('Type-content','aplication/json')
 
-        return this.http.post<any>(`${this.apiURL2}/bd/doreserve`,{ ID_DEPTO:ID_DEPTO, ID_SUC:ID_SUC, ID_CLI:ID_CLI, MONTO_ABONADO:MONTO_ABONADO, MONTO_SERVICIOS:MONTO_SERVICIOS, DESDE:FEC_DESDE, HASTA:FEC_HASTA,  TOTAL_ARRIENDO:MONTO_TOTAL, MASCOTAS:MASCOTAS, ID_RESERVA:ID_RESERVA},{headers:header}).pipe(
+        return this.http.post<any>(`${this.apiURL2}/doreserve`,{ ID_DEPTO:ID_DEPTO, ID_SUC:ID_SUC, ID_CLI:ID_CLI, MONTO_ABONADO:MONTO_ABONADO, MONTO_SERVICIOS:MONTO_SERVICIOS, DESDE:FEC_DESDE, HASTA:FEC_HASTA,  TOTAL_ARRIENDO:MONTO_TOTAL, MASCOTAS:MASCOTAS, ID_RESERVA:ID_RESERVA},{headers:header}).pipe(
             catchError((error) =>{
                 return this.errorHandler(error);
             }))
     }
 
     //Cancelar Reserva
-    cancelReserve(id_reserva:any, estado:any){
+    cancelReserve(id_reserva:any){
         let header = new HttpHeaders()
         .set('Content-type','aplication/json')
 
-        return this.http.post<any>(`${this.apiURL2}/bd/${id_reserva}/cancel`,{ESTADO:estado},{headers:header}).pipe(
+        return this.http.post<any>(`${this.apiURL2}/${id_reserva}/cancel`,{headers:header}).pipe(
             catchError((error) =>{
                 return this.errorHandler(error)
             })
@@ -151,7 +180,7 @@ export class ApiService{
         let header = new HttpHeaders()
         .set('Type-content','aplication/json')
 
-        return this.http.post<any>(`${this.apiURL2}/bd/${id_reserva}/checkin`,{CHECK_IN:checkin},{headers:header}).pipe(
+        return this.http.post<any>(`${this.apiURL2}/${id_reserva}/checkin`,{CHECK_IN:checkin},{headers:header}).pipe(
             catchError((error) =>{
                 return this.errorHandler(error)
             })
@@ -164,7 +193,7 @@ export class ApiService{
         .set('Type-content','aplication/json')
 
 
-    return this.http.post<any>(`${this.apiURL2}/bd/${id_reserva}/checkout`,{CHECK_OUT:checkout},{headers:header}).pipe(
+    return this.http.post<any>(`${this.apiURL2}/${id_reserva}/checkout`,{CHECK_OUT:checkout},{headers:header}).pipe(
         catchError((error) =>{
             return this.errorHandler(error)
         })

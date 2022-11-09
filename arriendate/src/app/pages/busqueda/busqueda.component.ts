@@ -5,7 +5,8 @@ import { Location } from '@angular/common';
 @Component({
   selector: 'app-busqueda',
   templateUrl: './busqueda.component.html',
-  styleUrls: ['./busqueda.component.scss']
+  styleUrls: ['./busqueda.component.scss'],
+  
 })
 export class BusquedaComponent implements OnInit {
 

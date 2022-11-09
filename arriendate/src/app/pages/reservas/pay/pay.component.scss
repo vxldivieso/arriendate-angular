@@ -1,0 +1,54 @@
+mat-form-field{
+    width: 100%;
+    input {
+        color: white;
+    }
+}
+
+button{
+    mat-raised-button{
+        font-weight: bold;
+    }
+}
+
+.data_table {
+    width: 100%;
+}
+.acciones{
+    width: 100%;
+    margin: 20px auto;
+}
+
+th{
+    width: 20%;
+}
+
+.pointer{
+    cursor: pointer;
+}
+
+th.mat-header-cell{
+    text-align:center;
+}
+
+.mat-column-ID_RESERVA{
+    width: auto;
+}
+
+.mat-column-NOMBRE_DEPTO{
+    width: auto;
+}
+
+.mat-column-DESDE{
+    width: auto;
+}
+.mat-column-TOTAL_ARRIENDO{
+    width: auto;
+}
+.mat-column-MONTO_PENDIENTE{
+    width: auto;
+}
+
+
+
+

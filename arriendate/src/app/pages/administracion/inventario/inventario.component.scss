@@ -1,0 +1,48 @@
+.data_table {
+    width: 80%;
+    margin: 20px auto;
+}
+.acciones{
+    width: 80%;
+    margin: 20px auto;
+}
+
+th{
+    width: 20%;
+}
+
+.pointer{
+    cursor: pointer;
+}
+
+th.mat-header-cell{
+    text-align:center;
+}
+
+.mat-column-ID_DEPTO{
+    width: auto;
+}
+
+.mat-column-TOTAL_PERSONAS{
+    width: auto;
+}
+
+.mat-column-ESTACIONAMIENTO{
+    width: auto;
+}
+
+mat-form-field{
+    width: 100%;
+}
+
+.example-radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+    align-items: flex-start;
+  }
+  
+  .example-radio-button {
+    margin: 5px;
+    color: white;
+  }

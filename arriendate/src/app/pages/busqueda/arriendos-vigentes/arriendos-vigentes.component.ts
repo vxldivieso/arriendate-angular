@@ -1,22 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { ApiService } from 'src/app/services/api.service';
 import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material/dialog';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-arriendos-vigentes',
   templateUrl: './arriendos-vigentes.component.html',
-  styleUrls: ['./arriendos-vigentes.component.scss']
+  styleUrls: ['./arriendos-vigentes.component.scss'],
+  
 })
 
 export class ArriendosVigentesComponent implements OnInit {
  
   vigentes_arriendos : any;
+  
 
 
-
-  id_reserva:any;
   fec_reserva:any;
   id_depto:any;
   id_suc:any;
@@ -32,32 +35,51 @@ export class ArriendosVigentesComponent implements OnInit {
   total_arriendo:any;
   mascotas:any;
 
+  @Input() id_reserva:any;
+  
+  filterValues = {};
+  filterSelectObj = [];
 
+  displayedColumns: string[] = ['ID_RESERVA', 'FEC_RESERVA', 'ID_DEPTO','DESDE','HASTA','MONTO_TOTAL', 'acciones'];
+  dataSource!: MatTableDataSource<any>;
 
-  constructor(private dialog: MatDialog, private acroute: ActivatedRoute, private location : Location, private api : ApiService) { }
+  @ViewChild(MatPaginator) paginator!:MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
-  openDialog() {
+  constructor(private dialog: MatDialog, private acroute: ActivatedRoute, private location : Location, private api : ApiService) {
+    
+   }
+
+  openDialog(id_reserva:any) {
     this.dialog.open(DialogElementsExampleDialog);
+
+    this.id_reserva = id_reserva;
+    localStorage.setItem('detalle_reserva', this.id_reserva);
   }
 
 
   ngOnInit(): void {
     this.getArriendos()
+
+    
   }
 
   goBack(){
     this.location.back()
   }
+
+  filtrar(event: Event) {
+    const filtro = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filtro.trim().toLowerCase();
+  }  
   
   getArriendos(){
     this.api.getArriendos().subscribe({
       next:(res:any)=>{
         this.vigentes_arriendos = res;
-
-        Object.entries(res).forEach(([key, value]) => {
-          //Aquí recibimos cada variable del esquema de la base de datos, en el html se interpolan de manera directa ej: {{id_depto}}
-          
-        });
+        this.dataSource = new MatTableDataSource(this.vigentes_arriendos);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
       }
     })
   }
@@ -67,28 +89,31 @@ export class ArriendosVigentesComponent implements OnInit {
   selector: 'dialog-elements-example-dialog',
   templateUrl: 'dialog-arriendos-vigentes.component.html',
 })
-export class DialogElementsExampleDialog {
+export class DialogElementsExampleDialog implements OnInit{
 
   detalle_arriendos : any;
+  id_reserva:any;
   
   constructor (public dialog: MatDialog, private api : ApiService) {}
+
+  ngOnInit(): void {
+    this.id_reserva = localStorage.getItem('detalle_reserva');
+    this.getReservaDetalle()
+  }
   
   closeDialog(){
     this.dialog.closeAll();
   }
 
-  getArriendos(){
-    this.api.getArriendos().subscribe({
+  getReservaDetalle(){
+    this.api.getReserveByID(this.id_reserva).subscribe({
       next:(res:any)=>{
         this.detalle_arriendos = res;
-
-        Object.entries(res).forEach(([key, value]) => {
-          //Aquí recibimos cada variable del esquema de la base de datos, en el html se interpolan de manera directa ej: {{id_depto}}
-          
-        });
       }
     })
   }
+
+
 
 
 }

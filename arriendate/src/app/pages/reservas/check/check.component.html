@@ -1,9 +1,9 @@
 <br>
-<div class="mb-3">
-  <button mat-fab color="accent" aria-label="" (click)="goBack()">
+<div class="p-3">
+  <button mat-fab id="primary" aria-label="" (click)="goBack()">
     <mat-icon>keyboard_arrow_left</mat-icon>
   </button>
-  <label for=""> &nbsp; Atrás</label>
+  <label for="" style="color:white ;"> &nbsp; Atrás</label>
 </div>
 
 
@@ -13,13 +13,13 @@
             <h5 class="mb-3 text-uppercase text-center" style="color:white">Ingrese el ID de la Reserva</h5>
             <div class="row">
               <div class="col-md-6 text-center">
-                <mat-form-field appearance="fill" color="accent">
+                <mat-form-field appearance="fill" color="primary">
                   <mat-label>Número de Reserva</mat-label>
                   <input matInput formControlName="ID_RESERVA" id="ID_RESERVA" required>
                 </mat-form-field>
               </div>
               <div class="col-md-6">
-                <button mat-raised-button color="accent" [disabled]="!searchReserveForm.controls['ID_RESERVA'].value" (click)="searchReserve()" >Buscar Reserva</button>
+                <button mat-raised-button color="primary" [disabled]="!searchReserveForm.controls['ID_RESERVA'].value" (click)="searchReserve()" >Buscar Reserva</button>
                 
               </div>
             </div>
@@ -32,20 +32,20 @@
                 <form action="" *ngIf="reserva" >
                   <div class="row" > 
                     <div class="col-md-4">
-                      <mat-form-field appearance="fill" color="accent">
+                      <mat-form-field appearance="fill" color="primary">
                         <mat-label>Id Cliente</mat-label>
                         <input matInput id="ID_CLI" name="ID_CLI" [(ngModel)]="reserva.ID_CLI"  readonly>
                       </mat-form-field>
                     </div>
                     <div class="col-md-4">
-                      <mat-form-field appearance="fill" color="accent">
+                      <mat-form-field appearance="fill" color="primary">
                         <mat-label>Reserva Generada</mat-label>
                         <input matInput  id="FEC_RESERVA" name="FEC_RESERVA" [(ngModel)]="reserva.FEC_RESERVA"  readonly>
                       </mat-form-field>
                     </div>
                     
                     <div class="col-md-4">
-                      <mat-form-field appearance="fill" color="accent">
+                      <mat-form-field appearance="fill" color="primary">
                         <mat-label>Id Departamento</mat-label>
                         <input matInput  id="ID_DEPTO" name="ID_DEPTO" [(ngModel)]="reserva.ID_DEPTO" readonly>
                       </mat-form-field>
@@ -53,19 +53,19 @@
                   </div>
                   <div class="row">
                     <div class="col-md-4">
-                      <mat-form-field appearance="fill" color="accent">
+                      <mat-form-field appearance="fill" color="primary">
                         <mat-label>Id Ciudad</mat-label>
                         <input matInput id="ID_SUC" name="ID_SUC"  [(ngModel)]="reserva.ID_SUC" readonly>
                       </mat-form-field>
                     </div>
                     <div class="col-md-4">
-                      <mat-form-field appearance="fill" color="accent">
+                      <mat-form-field appearance="fill" color="primary">
                         <mat-label>Fecha Desde</mat-label>
                         <input matInput id="DESDE" name="DESDE" [(ngModel)]="reserva.DESDE" readonly>
                       </mat-form-field>
                     </div>
                     <div class="col-md-4">
-                      <mat-form-field appearance="fill" color="accent">
+                      <mat-form-field appearance="fill" color="primary">
                         <mat-label>Fecha Hasta</mat-label>
                         <input matInput id="HASTA" name="HASTA" [(ngModel)]="reserva.HASTA" readonly>
                       </mat-form-field>
@@ -73,19 +73,19 @@
                   </div>
                   <div class="row">
                     <div class="col-md-4">
-                      <mat-form-field appearance="fill" color="accent">
+                      <mat-form-field appearance="fill" color="primary">
                         <mat-label>Monto Abonado</mat-label>
                         <input matInput id="MONTO_ABONADO" name="MONTO_ABONADO"  [(ngModel)]="reserva.MONTO_ABONADO" readonly>
                       </mat-form-field>
                     </div>
                     <div class="col-md-4">
-                      <mat-form-field appearance="fill" color="accent">
+                      <mat-form-field appearance="fill" color="primary">
                         <mat-label>Monto Servicios</mat-label>
                         <input matInput id="MONTO_SERVICIOS" name="MONTO_SERVICIOS" [(ngModel)]="reserva.MONTO_SERVICIOS" readonly>
                       </mat-form-field>
                     </div>
                     <div class="col-md-4">
-                      <mat-form-field appearance="fill" color="accent">
+                      <mat-form-field appearance="fill" color="primary">
                         <mat-label>Total Arriendo</mat-label>
                         <input matInput id="TOTAL_ARRIENDO" name="TOTAL_ARRIENDO" [(ngModel)]="reserva.TOTAL_ARRIENDO" readonly>
                       </mat-form-field>
@@ -93,19 +93,19 @@
                   </div>
                   <div class="row">
                     <div class="col-md-4">
-                      <mat-form-field appearance="fill" color="accent">
+                      <mat-form-field appearance="fill" color="primary">
                         <mat-label>Estado Reserva</mat-label>
                         <input matInput id="ESTADO" name="ESTADO"  [(ngModel)]="reserva.ESTADO" readonly>
                       </mat-form-field>
                     </div>
                     <div class="col-md-4">
-                      <mat-form-field appearance="fill" color="accent">
+                      <mat-form-field appearance="fill" color="primary">
                         <mat-label>Check in</mat-label>
                         <input matInput id="CHECK_IN" name="CHECK_IN" [(ngModel)]="reserva.CHECK_IN" (change)="checkIn()" readonly>
                       </mat-form-field>
                     </div>
                     <div class="col-md-4">
-                      <mat-form-field appearance="fill" color="accent">
+                      <mat-form-field appearance="fill" color="primary">
                         <mat-label>Check out</mat-label>
                         <input matInput id="CHECK_OUT" name="CHECK_OUT" [(ngModel)]="reserva.CHECK_OUT" (change)="checkout()" readonly>
                       </mat-form-field>
@@ -114,11 +114,11 @@
 
                   <div class="row mb-3 text-center">
                     <div class="col-md-6">
-                        <button mat-raised-button color="accent" [disabled]="reserva.CHECK_IN != null || reserva.ESTADO == 'CANCELADO' " (click)="checkIn()" >Realizar Check in</button>
+                        <button mat-raised-button color="primary" [disabled]="reserva.CHECK_IN != null || reserva.ESTADO == 'CANCELADO' " (click)="checkIn()" >Realizar Check in</button>
 
                     </div>
                     <div class="col-md-6">
-                        <button mat-raised-button color="accent" [disabled]="reserva.CHECK_OUT != null || reserva.ESTADO == 'CANCELADO' " (click)="checkout()" >Realizar Check out</button>
+                        <button mat-raised-button color="primary" [disabled]="reserva.CHECK_OUT != null || reserva.ESTADO == 'CANCELADO' " (click)="checkout()" >Realizar Check out</button>
 
                     </div>
                   </div>

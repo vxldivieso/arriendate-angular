@@ -1,3 +1,26 @@
 .img {
     background-image: url(../arriendos-vigentes/img2/travel.jpg);
 }
+
+.data_table {
+    width: 80%;
+    margin: 20px auto;
+}
+th{
+    width: 20%;
+}
+
+th.mat-header-cell{
+    text-align:center;
+}   
+
+.mat-column-ID_RESERVA{
+    width: auto;
+}
+
+mat-form-field{
+    width: 100%;
+    input {
+        color: white;
+    }
+}

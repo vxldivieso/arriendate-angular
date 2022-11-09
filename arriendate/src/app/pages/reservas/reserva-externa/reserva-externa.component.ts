@@ -8,17 +8,13 @@ import { ListarDeptosComponent } from '../../busqueda/listar-deptos/listar-depto
 import Swal from 'sweetalert2'
 import * as moment from 'moment';
 
-
-
 @Component({
-  selector: 'app-reserva',
-  templateUrl: './reserva.component.html',
-  styleUrls: ['./reserva.component.scss']
+  selector: 'app-reserva-externa',
+  templateUrl: './reserva-externa.component.html',
+  styleUrls: ['./reserva-externa.component.scss']
 })
-export class ReservaComponent implements OnInit {
-
+export class ReservaExternaComponent implements OnInit {
   
-
   reserveForm !: FormGroup;
   createClientForm !:FormGroup;
   searchClientForm !: FormGroup;
@@ -56,15 +52,16 @@ export class ReservaComponent implements OnInit {
 
   id_ultima_reserva:any;
   id_reserva:any
-  
-  
-  
+  dato:any;
+
 
   constructor(private acroute: ActivatedRoute, private location : Location, private fb: FormBuilder, private api:ApiService,
     @Inject(DOCUMENT) document: Document) { }
 
-  ngOnInit(): void {
 
+  
+  ngOnInit(): void {
+    this.dato = localStorage.getItem('depto_seleccionado');
     
 
     this.serviceForm = this.fb.group({
@@ -103,7 +100,7 @@ export class ReservaComponent implements OnInit {
     this.getLastReservas()
   }
 
-
+  
   goBack(){
     this.location.back()
   }
@@ -155,8 +152,6 @@ export class ReservaComponent implements OnInit {
       next:(res)=>{
         this.id_ultima_reserva = res;
         this.id_reserva = this.id_ultima_reserva[0].ID_RESERVA
-        console.log(this.id_reserva);
-        
       }
     })
   }
@@ -301,12 +296,10 @@ export class ReservaComponent implements OnInit {
         next:(res)=>{
           res;
           this.messageExito()
-          this.getLastReservas()
           
         },
         error:()=>{
           this.messageExito()
-          this.getLastReservas()
           
         }
       })

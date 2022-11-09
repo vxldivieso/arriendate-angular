@@ -1,36 +1,35 @@
 
 <br>
-<div class="mb-3">
-  <button mat-fab class="bg-primary" aria-label="" (click)="goBack()">
+<div class="p-3">
+  <button mat-fab id="secundary" aria-label="" (click)="goBack()">
     <mat-icon>keyboard_arrow_left</mat-icon>
   </button>
-  <label for=""> &nbsp; Atrás</label>
+  <label for="" style="color:white ;"> &nbsp; Atrás</label>
 </div>
 
 
-<h1 class="welcome">Seleccione un módulo</h1>
+<h4 class="welcome">Seleccione un módulo</h4>
 
 
     <section class="functions">
-        <div class="container w-75">
-          <div class="row row-cols-1 row-cols-md-2 g-4">
+        <div class="container w-100">
+          <div class="row row-cols-1 row-cols-md-3 g-4">
             <div class="col">
-              <div class="card text-bg-primary text-center" type="button" routerLink="/home/arriendos_vigentes">
+              <div class="card text-center" id="secundary" type="button" routerLink="/home/arriendos_vigentes">
                 <div class="card-body" >
                   <h5 class="card-title">Ver Reservas</h5>
                 </div>
               </div>
             </div>
             <div class="col">
-                <div class="card text-bg-primary text-center" type="button" routerLink="/home/listar_deptos" >
+                <div class="card text-center" id="secundary" type="button" routerLink="/home/listar_deptos" >
                 <div class="card-body"  >
                   <h5 class="card-title">Búsqueda de Departamentos</h5>
                 </div>
               </div>
             </div>
             <div class="col">
-              <!-- <div class="card text-center" style="background-color: #69f0ae; color:black;" type="button" routerLink="/home/fechas_disponibles"> -->
-                <div class="card text-bg-primary text-center" type="button" routerLink="/home/fechas_disponibles">
+                <div class="card text-center" id="secundary" type="button" routerLink="/home/fechas_disponibles">
                 <div class="card-body" >
                   <h5 class="card-title">Fechas disponibles</h5>
                 </div>

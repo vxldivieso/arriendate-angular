@@ -1,11 +1,11 @@
 <body>
   <br>
-  <div class="p-3">
-    <button mat-fab id="primary" aria-label="" (click)="goBack()">
-      <mat-icon>keyboard_arrow_left</mat-icon>
-    </button>
-    <label for="" style="color:white ;"> &nbsp; Atrás</label>
-  </div>
+<div class="mb-3">
+  <button mat-fab color="accent" aria-label="" (click)="goBack()">
+    <mat-icon>keyboard_arrow_left</mat-icon>
+  </button>
+  <label for=""> &nbsp; Atrás</label>
+</div>
 
 
 <h2 class="welcome text-center">Realizar Reserva</h2>
@@ -14,13 +14,13 @@
             <h5 class="mb-3 text-uppercase text-center">Ingrese los siguientes datos</h5>
             <div class="row">
               <div class="col-md-6 text-center">
-                <mat-form-field appearance="fill" color="primary" >
+                <mat-form-field appearance="fill" color="accent" >
                   <mat-label>Rut Títular</mat-label>
                   <input matInput placeholder="XX.XXX.XXX-X" formControlName="ID_CLI" required>
                 </mat-form-field>
               </div>
               <div class="col-md-6">
-                <button mat-raised-button color="primary" [disabled]="!reserveForm.controls['ID_CLI'].value" (click)="searchClient()"  >Buscar Cliente</button>
+                <button mat-raised-button color="accent" [disabled]="!reserveForm.controls['ID_CLI'].value" (click)="searchClient()"  >Buscar Cliente</button>
                 
               </div>
             </div>
@@ -34,25 +34,25 @@
               <form action="" [formGroup]="createClientForm">
                 <div class="row">
                   <div class="col-md-3">
-                    <mat-form-field appearance="fill" color="primary" >
+                    <mat-form-field appearance="fill" color="accent" >
                       <mat-label>Rut Cliente</mat-label>
                       <input matInput placeholder="XX.XXX.XXX-X" formControlName="RUT_CLI" id="rut_cli" required>
                     </mat-form-field>
                   </div>
                   <div class="col-md-3">
-                    <mat-form-field appearance="fill" color="primary" >
+                    <mat-form-field appearance="fill" color="accent" >
                       <mat-label>Nombre</mat-label>
                       <input matInput placeholder="John" formControlName="FIRST_NAME" id="first_name" required>
                     </mat-form-field>
                   </div>
                   <div class="col-md-3">
-                    <mat-form-field appearance="fill" color="primary" >
+                    <mat-form-field appearance="fill" color="accent" >
                       <mat-label>Apellido</mat-label>
                       <input matInput placeholder="Doe" formControlName="LAST_NAME" id="last_name" required>
                     </mat-form-field>
                   </div>
                   <div class="col-md-3">
-                    <mat-form-field appearance="fill" color="primary" >
+                    <mat-form-field appearance="fill" color="accent" >
                       <mat-label>Celular</mat-label>
                       <input matInput formControlName="TELEFONO" id="telefono"  required>
                     </mat-form-field>
@@ -60,7 +60,7 @@
                 </div>
                 <div class="row mb-3">
                   <div class="col-md-4">
-                    <mat-form-field appearance="fill" color="primary">
+                    <mat-form-field appearance="fill" color="accent">
                       <mat-label>Fecha de Nacimiento</mat-label>
                       <input formControlName="BIRTHDAY" matInput [matDatepicker]="picker">
                       <mat-hint>MM/DD/YYYY</mat-hint>
@@ -69,13 +69,13 @@
                     </mat-form-field>
                   </div>
                   <div class="col-md-4">
-                    <mat-form-field appearance="fill" color="primary" >
+                    <mat-form-field appearance="fill" color="accent" >
                       <mat-label>Email</mat-label>
                       <input matInput formControlName="EMAIL" id="email"  required>
                     </mat-form-field>
                   </div>
                   <div class="col-md-4">
-                    <mat-form-field appearance="fill" color="primary" >
+                    <mat-form-field appearance="fill" color="accent" >
                       <mat-label>Password</mat-label>
                       <input type="password" matInput formControlName="PASSWORD" id="password"  required>
                     </mat-form-field>
@@ -84,7 +84,7 @@
 
                 <div class="row mb-3">
                   <div class="col-md-12">
-                    <button mat-raised-button color="primary" (click)="addClient()" [disabled]="!createClientForm.valid" >Agregar Cliente</button>
+                    <button mat-raised-button color="accent" (click)="addClient()" [disabled]="!createClientForm.valid" >Agregar Cliente</button>
                   </div>
                   
                 </div>
@@ -97,13 +97,13 @@
                 <form action="" *ngIf="resultadoBusqueda" >
                   <div class="row" > 
                     <div class="col-md-6">
-                      <mat-form-field appearance="fill" color="primary" >
+                      <mat-form-field appearance="fill" color="accent" >
                         <mat-label>Nombre</mat-label>
                         <input matInput id="FIRST_NAME" name="FIRST_NAME" [(ngModel)]="resultadoBusqueda.FIRST_NAME"  readonly>
                       </mat-form-field>
                     </div>
                     <div class="col-md-6">
-                      <mat-form-field appearance="fill" color="primary" >
+                      <mat-form-field appearance="fill" color="accent" >
                         <mat-label>Apellido</mat-label>
                         <input matInput id="LAST_NAME" name="LAST_NAME" [(ngModel)]="resultadoBusqueda.LAST_NAME"  readonly>
                       </mat-form-field>
@@ -111,13 +111,13 @@
                   </div>
                   <div class="row">
                     <div class="col-md-6">
-                      <mat-form-field appearance="fill" color="primary" >
+                      <mat-form-field appearance="fill" color="accent" >
                         <mat-label>Celular</mat-label>
                         <input matInput id="TELEFONO" name="TELEFONO"  [(ngModel)]="resultadoBusqueda.TELEFONO"  readonly>
                       </mat-form-field>
                     </div>
                     <div class="col-md-6">
-                      <mat-form-field appearance="fill" color="primary" >
+                      <mat-form-field appearance="fill" color="accent" >
                         <mat-label>Email</mat-label>
                         <input matInput id="EMAIL" name="EMAIL" [(ngModel)]="resultadoBusqueda.EMAIL" readonly>
                       </mat-form-field>
@@ -133,7 +133,7 @@
             <div *ngIf="deptos_detalle">
               <div class="row mb-3" >
                 <div class="col-md-6" >
-                  <mat-form-field appearance="fill" color="primary" >
+                  <mat-form-field appearance="fill" color="accent" >
                     <mat-label>Seleccione la fecha de inicio y término de su estadía</mat-label>
                     <mat-date-range-input [rangePicker]="picker" >
                       <input matStartDate formControlName="FEC_DESDE" (change)="deptoSeleccionado()" [min]="ultima_reserva" placeholder="Desde">
@@ -148,7 +148,7 @@
                   
                 </div>
                 <div class="col-md-6" >
-                  <mat-form-field appearance="fill" color="primary">
+                  <mat-form-field appearance="fill" color="accent">
                     <mat-label>Seleccione Ciudad</mat-label>
                     <mat-select [(ngModel)]="sucursales.ID_SUC" id="id_sucursal" formControlName="ID_SUC" name="ID_SUC">
                       <mat-option  *ngFor="let item of sucursales" [value]="item.ID_SUC" >{{item.CIUDAD}}</mat-option>
@@ -158,7 +158,7 @@
               </div>
               <div class="row mb-3">
                 <div class="col-md-6">
-                  <mat-form-field appearance="fill" color="primary">
+                  <mat-form-field appearance="fill" color="accent">
                     <mat-label>Seleccione Departamento</mat-label>
                     <mat-select [(ngModel)]="deptos_detalle.SUCURSAL_ID_SUC"  formControlName="ID_DEPTO" name="ID_DEPTO">
                       <mat-option  *ngFor="let item of deptos_detalle" [hidden]='!(sucursales.ID_SUC == item.SUCURSAL_ID_SUC)' [value]="item.ID_DEPTO" (click)="deptoSeleccionado()" >{{item.NOMBRE}}</mat-option>
@@ -166,7 +166,7 @@
                   </mat-form-field>
                 </div>
                 <div class="col-md-6">
-                  <mat-form-field appearance="fill" color="primary" >
+                  <mat-form-field appearance="fill" color="accent" >
                     <mat-label>Cantidad máxima de personas</mat-label>
                     <input matInput [(ngModel)]="total_personas" name="TOTAL_PERSONAS" [ngModelOptions]="{standalone: true}" readonly="">
                   </mat-form-field>
@@ -185,17 +185,17 @@
                   
                 </div>
                 <div class="col-md-6 mb-3">
-                  <mat-form-field appearance="fill" color="primary" floatLabel="always">
+                  <mat-form-field appearance="fill" color="accent" floatLabel="always">
                     <mat-label>Total</mat-label>
                     <input matInput type="number" [(ngModel)]="total" (change)="deptoSeleccionado()" formControlName="TOTAL_RESERVA" class="example-right-align" placeholder="0">
                     <span matPrefix>$&nbsp;</span>
                   </mat-form-field>
-                  <mat-form-field appearance="fill" color="primary" floatLabel="always">
+                  <mat-form-field appearance="fill" color="accent" floatLabel="always">
                     <mat-label>Monto Abono</mat-label>
                     <input matInput type="number" [(ngModel)]="monto_abono" formControlName="MONTO_ABONADO" class="example-right-align" placeholder="0">
                     <span matPrefix>$&nbsp;</span>
                   </mat-form-field>
-                  <mat-form-field appearance="fill" color="primary" floatLabel="always">
+                  <mat-form-field appearance="fill" color="accent" floatLabel="always">
                     <mat-label>Monto Servicios</mat-label>
                     <input matInput type="number" [(ngModel)]="monto_servicios" formControlName="MONTO_SERVICIOS" class="example-right-align" placeholder="0" value="0">
                     <span matPrefix>$&nbsp;</span>
@@ -207,7 +207,7 @@
             </div>
             
             <div class="text-center p-3">
-            <button mat-raised-button color="primary" (click)="onSubmit()" >Generar Reserva</button>
+            <button mat-raised-button color="accent" (click)="onSubmit()" >Generar Reserva</button>
             </div>
         </form>
 

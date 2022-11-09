@@ -12,7 +12,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
-import { MatSort } from "@angular/material/sort";
+import { MatSort, MatSortModule } from "@angular/material/sort";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { CdkTableModule } from "@angular/cdk/table";
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -43,7 +43,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
         MatExpansionModule,
         MatTooltipModule,
         FlexLayoutModule,
-        MatButtonModule
+        MatButtonModule,
+        MatSortModule
     ]
 })
 
