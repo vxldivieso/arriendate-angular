@@ -123,17 +123,12 @@ export class ApiService{
     }
 
     //Agregar Cliente
-<<<<<<< HEAD
     newClient(RUT_CLI:any, FIRST_NAME:any, LAST_NAME:any, BIRTHDAY:any, TELEFONO:any, EMAIL:any, PASSWORD:any){
         let header = new HttpHeaders()
         .set('Type-content','aplication/json')
 
         return this.http.post<any>(`${this.apiURL2}/agregarCli`,{RUT_CLI:RUT_CLI, FIRST_NAME:FIRST_NAME, LAST_NAME:LAST_NAME,
              BIRTHDAY:BIRTHDAY, TELEFONO:TELEFONO, EMAIL:EMAIL, PASSWORD:PASSWORD},{headers:header}).pipe(
-=======
-    newClient(data:any){
-        return this.http.post<any>(`${this.apiURL}/agregarCli`,{data:data}).pipe(
->>>>>>> 07211169ad7e3a7d49b709dfe2f9af33974313aa
             catchError((error) =>{
                 return this.errorHandler(error);
             }))
@@ -165,17 +160,11 @@ export class ApiService{
 
     //Modulo Reservas
     //Realizar Reserva
-<<<<<<< HEAD
     doReserve(ID_DEPTO:any,ID_SUC:any, ID_CLI:any, MONTO_ABONADO:any, MONTO_SERVICIOS:any,FEC_DESDE:any, FEC_HASTA:any,  MONTO_TOTAL:any, MASCOTAS:any, ID_RESERVA:any){
         let header = new HttpHeaders()
         .set('Type-content','aplication/json')
 
         return this.http.post<any>(`${this.apiURL2}/doreserve`,{ ID_DEPTO:ID_DEPTO, ID_SUC:ID_SUC, ID_CLI:ID_CLI, MONTO_ABONADO:MONTO_ABONADO, MONTO_SERVICIOS:MONTO_SERVICIOS, DESDE:FEC_DESDE, HASTA:FEC_HASTA,  TOTAL_ARRIENDO:MONTO_TOTAL, MASCOTAS:MASCOTAS, ID_RESERVA:ID_RESERVA},{headers:header}).pipe(
-=======
-    doReserve(ID_DEPTO:any,ID_CLI:any,  ID_SUC:any, MONTO_ABONADO:any, MONTO_SERVICIOS:any,FEC_DESDE:any, FEC_HASTA:any,  MONTO_TOTAL:any, MASCOTAS:any, ID_RESERVA:any){
-        
-        return this.http.post<any>(`${this.apiURL2}/bd/doreserve`,{ ID_DEPTO:ID_DEPTO, ID_SUC:ID_SUC, ID_CLI:ID_CLI, MONTO_ABONADO:MONTO_ABONADO, MONTO_SERVICIOS:MONTO_SERVICIOS, DESDE:FEC_DESDE, HASTA:FEC_HASTA,  TOTAL_ARRIENDO:MONTO_TOTAL, MASCOTAS:MASCOTAS, ID_RESERVA:ID_RESERVA}).pipe(
->>>>>>> 07211169ad7e3a7d49b709dfe2f9af33974313aa
             catchError((error) =>{
                 return this.errorHandler(error);
             }))
@@ -184,14 +173,9 @@ export class ApiService{
     //Cancelar Reserva
     cancelReserve(id_reserva:any){
         let header = new HttpHeaders()
-<<<<<<< HEAD
         .set('Content-type','aplication/json')
 
         return this.http.post<any>(`${this.apiURL2}/${id_reserva}/cancel`,{headers:header}).pipe(
-=======
-        .set('Content-Type','aplication/json')
-        return this.http.post<any>(`${this.apiURL2}/bd/${id_reserva}/cancel`,{estado:estado},{headers:header}).pipe(
->>>>>>> 07211169ad7e3a7d49b709dfe2f9af33974313aa
             catchError((error) =>{
                 return this.errorHandler(error)
             })
@@ -201,12 +185,11 @@ export class ApiService{
 
     //Realizar Check in
     checkin(id_reserva:any,checkin:any){
+        let header = new HttpHeaders()
+        .set('Type-content','aplication/json')
 
-<<<<<<< HEAD
+
         return this.http.post<any>(`${this.apiURL2}/${id_reserva}/checkin`,{CHECK_IN:checkin},{headers:header}).pipe(
-=======
-        return this.http.post<any>(`${this.apiURL2}/bd/${id_reserva}/checkin`,{CHECK_IN:checkin}).pipe(
->>>>>>> 07211169ad7e3a7d49b709dfe2f9af33974313aa
             catchError((error) =>{
                 return this.errorHandler(error)
             })
@@ -216,15 +199,10 @@ export class ApiService{
     //Realizar Check out
     checkout(id_reserva:any,checkout:any){
         let header = new HttpHeaders()
-<<<<<<< HEAD
         .set('Type-content','aplication/json')
 
 
     return this.http.post<any>(`${this.apiURL2}/${id_reserva}/checkout`,{CHECK_OUT:checkout},{headers:header}).pipe(
-=======
-        .set('Content-Type','aplication/json')
-    return this.http.post<any>(`${this.apiURL2}/bd/${id_reserva}/checkout`,{CHECK_OUT:checkout},{headers:header}).pipe(
->>>>>>> 07211169ad7e3a7d49b709dfe2f9af33974313aa
         catchError((error) =>{
             return this.errorHandler(error)
         })

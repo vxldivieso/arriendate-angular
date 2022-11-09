@@ -35,13 +35,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule}  from '@angular/material/toolbar';
 import { MatDialogModule } from '@angular/material/dialog';
-<<<<<<< HEAD
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ReservaExternaComponent } from './pages/reservas/reserva-externa/reserva-externa.component';
-=======
-import { NgxPaginationModule } from 'ngx-pagination';
 import { MatSortModule } from '@angular/material/sort';
->>>>>>> 07211169ad7e3a7d49b709dfe2f9af33974313aa
+import { SummaryComponent } from './pages/reservas/summary/summary.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +63,8 @@ import { MatSortModule } from '@angular/material/sort';
     DialogElementsExampleDialog,
     EditarDialogComponent,
     AddDialogComponent,
-    ReservaExternaComponent
+    ReservaExternaComponent,
+    SummaryComponent
   ],
   imports: [
     CommonModule,
@@ -86,13 +84,7 @@ import { MatSortModule } from '@angular/material/sort';
     MatCardModule,
     MatToolbarModule,
     MatDialogModule,
-<<<<<<< HEAD
-    MatProgressSpinnerModule,
-
-=======
-    NgxPaginationModule,
     MatSortModule
->>>>>>> 07211169ad7e3a7d49b709dfe2f9af33974313aa
   ],
   providers: [],
   bootstrap: [AppComponent],

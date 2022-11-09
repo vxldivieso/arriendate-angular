@@ -11,27 +11,11 @@
     <h2 class="welcome text-center">Listado de Usuarios</h2>
     <br>
     <div class="container w-75 data_table">
-<<<<<<< HEAD
 
         <button mat-button class="bg-success" style="color:white" aria-label="" matTooltip="Añadir Usuario">
             <mat-icon>add</mat-icon> Añadir
         </button>
         <hr>
-=======
-        <!-- Filtro/Boton agregar usuario -->
-        <div class="example-button-container" align="end">
-            <mat-form-field appearance="standard">
-                <mat-label>Filtrar</mat-label>
-                <input matInput (keyup)="applyFilter($event)" placeholder="Filtrar" #input>
-            </mat-form-field>
-            <button mat-fab style="color:rgb(12, 204, 60)" matTooltip="Crear Usuario" >
-                <mat-icon style="color: rgb(255, 255, 255)">create_new_folder</mat-icon>
-            </button>
-        </div> 
-
-       
-        
->>>>>>> 07211169ad7e3a7d49b709dfe2f9af33974313aa
         
         <!-- DataGrid -->
         <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
@@ -82,7 +66,6 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
         </table>
-<<<<<<< HEAD
     </div>
 
     <div class="container w-75 data_table">
@@ -148,11 +131,6 @@
 
         </table>
         <mat-paginator [pageSizeOptions]="[5]" aria-label="Select page">
-=======
-        <mat-paginator [pageSizeOptions]="[10, 15, 20]"
-                 showFirstLastButtons 
-                 aria-label="Select page of periodic elements">
->>>>>>> 07211169ad7e3a7d49b709dfe2f9af33974313aa
         </mat-paginator>
     </div>
          

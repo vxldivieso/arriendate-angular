@@ -1,5 +1,5 @@
-import { AfterViewInit, Component, Inject, OnInit, ViewChildren } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { AfterViewInit, Component, Inject,Input, OnInit, ViewChildren } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DOCUMENT, Location } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import {MatDatepickerModule} from '@angular/material/datepicker';
@@ -48,6 +48,7 @@ export class ReservaComponent implements OnInit {
 
   today = new Date();
 
+  
   id_cli : any;
   id_depto:any;
   detalle:any;
@@ -56,12 +57,12 @@ export class ReservaComponent implements OnInit {
 
   id_ultima_reserva:any;
   id_reserva:any
-  
-  
+
+  @Input() id_reserva1:any;
   
 
   constructor(private acroute: ActivatedRoute, private location : Location, private fb: FormBuilder, private api:ApiService,
-    @Inject(DOCUMENT) document: Document) { }
+    @Inject(DOCUMENT) document: Document, private route:Router) { }
 
   ngOnInit(): void {
 
@@ -155,7 +156,6 @@ export class ReservaComponent implements OnInit {
       next:(res)=>{
         this.id_ultima_reserva = res;
         this.id_reserva = this.id_ultima_reserva[0].ID_RESERVA
-        console.log(this.id_reserva);
         
       }
     })
@@ -293,20 +293,26 @@ export class ReservaComponent implements OnInit {
     const MONTO_SERVICIOS = this.reserveForm.controls['MONTO_SERVICIOS'].value
     const MONTO_TOTAL = this.reserveForm.controls['TOTAL_RESERVA'].value
     const MASCOTAS = 0;
-    const ID_RESERVA = this.id_reserva + 1
+    this.id_reserva1 = this.id_reserva + 1
+    this.datosReserva = this.id_reserva1
+    
 
     //Petición a api
     if (this.reserveForm.valid){
-      this.api.doReserve(ID_DEPTO, ID_SUC, ID_CLI,MONTO_ABONADO, MONTO_SERVICIOS, FEC_DESDE, FEC_HASTA,  MONTO_TOTAL, MASCOTAS, ID_RESERVA).subscribe({
+      this.api.doReserve(ID_DEPTO, ID_SUC, ID_CLI,MONTO_ABONADO, MONTO_SERVICIOS, FEC_DESDE, FEC_HASTA,  MONTO_TOTAL, MASCOTAS, this.id_reserva1).subscribe({
         next:(res)=>{
           res;
           this.messageExito()
+          this.route.navigate(['summary']);
           this.getLastReservas()
+          localStorage.setItem('datos_reserva', this.datosReserva);
           
         },
         error:()=>{
           this.messageExito()
+          this.route.navigate(['home/summary']);
           this.getLastReservas()
+          localStorage.setItem('datos_reserva', this.datosReserva);
           
         }
       })

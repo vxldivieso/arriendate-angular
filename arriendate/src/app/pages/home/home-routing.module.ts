@@ -18,6 +18,7 @@ import { ModuleComponent } from '../reservas/module.component';
 import { PayComponent } from '../reservas/pay/pay.component';
 import { ReservaExternaComponent } from '../reservas/reserva-externa/reserva-externa.component';
 import { ReservaComponent } from '../reservas/reserva/reserva.component';
+import { SummaryComponent } from '../reservas/summary/summary.component';
 import { HomeComponent } from './home.component';
 
 
@@ -40,7 +41,8 @@ const routes: Routes = [
     {path: 'gestion_transporte', component: GestiontransporteComponent},
     {path: 'mantencion', component: MantenciondeptosComponent},
     {path: 'reporteria', component: ReporteriaComponent},
-    {path: 'reserva_externa', component: ReservaExternaComponent}
+    {path: 'reserva_externa', component: ReservaExternaComponent},
+    {path: 'summary', component: SummaryComponent}
 ];
 
 @NgModule({
