@@ -16,6 +16,8 @@ import { MatSort } from '@angular/material/sort';
 
 export class ArriendosVigentesComponent implements OnInit {
  
+  p: number = 1;
+
   vigentes_arriendos : any;
   
 

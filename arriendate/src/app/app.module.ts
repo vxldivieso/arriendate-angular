@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { HomeRoutingModule } from './pages/home/home-routing.module';
 import { CommonModule } from '@angular/common';
 import { ListarDeptosComponent } from './pages/busqueda/listar-deptos/listar-deptos.component';
@@ -35,8 +35,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule}  from '@angular/material/toolbar';
 import { MatDialogModule } from '@angular/material/dialog';
+<<<<<<< HEAD
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ReservaExternaComponent } from './pages/reservas/reserva-externa/reserva-externa.component';
+=======
+import { NgxPaginationModule } from 'ngx-pagination';
+import { MatSortModule } from '@angular/material/sort';
+>>>>>>> 07211169ad7e3a7d49b709dfe2f9af33974313aa
 
 @NgModule({
   declarations: [
@@ -81,10 +86,15 @@ import { ReservaExternaComponent } from './pages/reservas/reserva-externa/reserv
     MatCardModule,
     MatToolbarModule,
     MatDialogModule,
+<<<<<<< HEAD
     MatProgressSpinnerModule,
 
+=======
+    NgxPaginationModule,
+    MatSortModule
+>>>>>>> 07211169ad7e3a7d49b709dfe2f9af33974313aa
   ],
-  providers: [ ],
+  providers: [],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

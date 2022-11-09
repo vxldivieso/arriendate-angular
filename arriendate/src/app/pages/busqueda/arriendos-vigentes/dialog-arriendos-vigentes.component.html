@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <h1 mat-dialog-title style="font-weight:bold" *ngFor="let data of detalle_arriendos">Reserva {{data.ID_RESERVA}}</h1>
 <div mat-dialog-content class="mat-typography"  *ngFor="let data of detalle_arriendos" >
     <div>
@@ -78,4 +79,23 @@
 <div mat-dialog-actions [align]="'end'">
     <button mat-button  mat-dialog-close>Cerrar</button>
 </div>
+=======
+<div>
+  <mat-card>
+    <form>
+      <h2>Más Información</h2>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Company (disabled)</mat-label>
+        <input matInput disabled value="Google">
+      </mat-form-field>
+      <div mat-dialog-actions fxLayoutAlign="end">
+        <button mat-raised-button color="warn" (click)="closeDialog()">Cerrar</button>
+      </div>
+    </form>
+  </mat-card>
+</div> 
+
+    
+  
+>>>>>>> 07211169ad7e3a7d49b709dfe2f9af33974313aa
   
