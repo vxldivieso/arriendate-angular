@@ -171,6 +171,9 @@ export class ReservaComponent implements OnInit {
           this.id_cli = this.resultadoBusqueda.ID_CLI;
         },
         error:(error)=>{
+          this.resultadoBusqueda = error.error.text
+          console.log(this.resultadoBusqueda);
+          
         }
       })
     }
@@ -188,7 +191,6 @@ export class ReservaComponent implements OnInit {
     const EMAIL = this.createClientForm.controls['EMAIL'].value
     const PASSWORD = this.createClientForm.controls['PASSWORD'].value
 
-    console.log(RUT_CLI, FIRST_NAME, LAST_NAME, BIRTHDAY, TELEFONO, EMAIL, PASSWORD);
     
     if(this.createClientForm.valid){
       this.api.newClient(RUT_CLI, FIRST_NAME, LAST_NAME, BIRTHDAY, TELEFONO, EMAIL, PASSWORD).subscribe({
@@ -198,10 +200,8 @@ export class ReservaComponent implements OnInit {
           this.searchClient()
           
         },
-        error:()=>{
-          console.log('Error al crear Cliente');
-          this.searchClient()
-          this.messageExitoCliente()
+        error:(error)=>{
+          console.log(error);
         }
       })
     }
@@ -301,18 +301,16 @@ export class ReservaComponent implements OnInit {
     if (this.reserveForm.valid){
       this.api.doReserve(ID_DEPTO, ID_SUC, ID_CLI,MONTO_ABONADO, MONTO_SERVICIOS, FEC_DESDE, FEC_HASTA,  MONTO_TOTAL, MASCOTAS, this.id_reserva1).subscribe({
         next:(res)=>{
-          res;
-          this.messageExito()
-          this.route.navigate(['summary']);
-          this.getLastReservas()
-          localStorage.setItem('datos_reserva', this.datosReserva);
-          
-        },
-        error:()=>{
+          console.log(res);
           this.messageExito()
           this.route.navigate(['home/summary']);
           this.getLastReservas()
           localStorage.setItem('datos_reserva', this.datosReserva);
+          
+        },
+        error:(error)=>{
+          console.log(error);
+          this.messageErrorReserva()
           
         }
       })

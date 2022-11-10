@@ -133,6 +133,9 @@ export class ApiService{
             }))
     }
 
+
+
+
     //Añadir departamento
 
     addDepto(NOMBRE:any, DESCRIPCION:any,UBICACION:any,VALOR_DIA:any,TOTAL_PERSONAS:any,ESTACIONAMIENTO:any,MASCOTAS:any, INVENTARIO_ID:any, SUCURSAL_ID_SUC:any){
@@ -163,7 +166,7 @@ export class ApiService{
         let header = new HttpHeaders()
         .set('Type-content','aplication/json')
 
-        return this.http.post<any>(`${this.apiURL}/doreserve2`,{ ID_DEPTO:ID_DEPTO, ID_SUC:ID_SUC, ID_CLI:ID_CLI, MONTO_ABONADO:MONTO_ABONADO, MONTO_SERVICIOS:MONTO_SERVICIOS, DESDE:FEC_DESDE, HASTA:FEC_HASTA,  TOTAL_ARRIENDO:MONTO_TOTAL, MASCOTAS:MASCOTAS, ID_RESERVA:ID_RESERVA},{headers:header}).pipe(
+        return this.http.post<any>(`${this.apiURL}/doreserve`,{ ID_DEPTO:ID_DEPTO, ID_SUC:ID_SUC, ID_CLI:ID_CLI, MONTO_ABONADO:MONTO_ABONADO, MONTO_SERVICIOS:MONTO_SERVICIOS, DESDE:FEC_DESDE, HASTA:FEC_HASTA,  TOTAL_ARRIENDO:MONTO_TOTAL, MASCOTAS:MASCOTAS, ID_RESERVA:ID_RESERVA},{headers:header}).pipe(
             catchError((error) =>{
                 return this.errorHandler(error);
             }))

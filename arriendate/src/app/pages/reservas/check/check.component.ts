@@ -70,7 +70,8 @@ export class CheckComponent implements OnInit {
               this.messageExito();
             },
             error:(error)=>{
-              this.messageExito();
+              console.log(error);
+              this.messageErrorCheckin()
             }
           })
         }
@@ -133,7 +134,8 @@ export class CheckComponent implements OnInit {
             this.messageExito();
           },
           error:(error)=>{
-            this.messageExito();
+            console.log(error);
+              this.messageErrorCheckout()
           }
         })
       }

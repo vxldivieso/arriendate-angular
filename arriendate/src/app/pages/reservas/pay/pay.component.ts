@@ -41,6 +41,8 @@ export class PayComponent implements OnInit {
     if(this.searchReserveForm.valid){
       this.api.getReservebyRut(this.searchReserveForm.controls['RUT_CLI'].value).subscribe({
         next:(res:any)=>{
+          console.log(res);
+          
           this.reserva = res;
           this.dataSource = new MatTableDataSource(this.reserva);
           this.dataSource.paginator = this.paginator;
@@ -48,6 +50,8 @@ export class PayComponent implements OnInit {
           
         },
         error:(error)=>{
+          console.log(error);
+          
           this.messageError()
         }
       })

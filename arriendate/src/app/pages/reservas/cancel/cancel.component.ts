@@ -70,8 +70,8 @@ export class CancelComponent implements OnInit {
             console.log(res);
           },
           error:(error)=>{
+            console.log(error);
             this.messageErrorCancelar()
-            this.reserva = error['error']['text']
           }
         })
       }
@@ -113,6 +113,25 @@ messageError(){
   Toast.fire({
   icon: 'error',
   title: 'Numero de Reserva Erronea'
+  })
+}
+
+//Message Error
+messageExito(){
+  const Toast = Swal.mixin({
+  toast: true,
+  position: 'bottom',
+  showConfirmButton: false,
+  timer: 2000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+  })
+  Toast.fire({
+  icon: 'success',
+  title: 'Operación exitosa'
   })
 }
 
