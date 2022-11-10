@@ -38,7 +38,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ReservaExternaComponent } from './pages/reservas/reserva-externa/reserva-externa.component';
 import { MatSortModule } from '@angular/material/sort';
-import { SummaryComponent } from './pages/reservas/summary/summary.component';
+import { SummaryComponent } from './reservas/summary/summary.component';
 
 @NgModule({
   declarations: [

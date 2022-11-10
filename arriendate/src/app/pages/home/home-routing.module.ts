@@ -18,7 +18,7 @@ import { ModuleComponent } from '../reservas/module.component';
 import { PayComponent } from '../reservas/pay/pay.component';
 import { ReservaExternaComponent } from '../reservas/reserva-externa/reserva-externa.component';
 import { ReservaComponent } from '../reservas/reserva/reserva.component';
-import { SummaryComponent } from '../reservas/summary/summary.component';
+import { SummaryComponent } from '../../reservas/summary/summary.component';
 import { HomeComponent } from './home.component';
 
 

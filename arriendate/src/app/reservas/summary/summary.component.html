@@ -1,0 +1,168 @@
+<body>
+    <br>
+  <div class="p-3" id="btnBack" >
+    <button mat-fab id="primary" aria-label="" (click)="goBack()"  >
+      <mat-icon>keyboard_arrow_left</mat-icon>
+    </button>
+    <label for="" style="color:white ;" > &nbsp; Atrás</label>
+  </div>
+
+  <div class="container w-75">
+
+    <section *ngFor="let data of reserva_detail" class="print-section" >
+        <h1>Reserva Generada número {{data.ID_RESERVA}}</h1>
+        <h2>{{data.FEC_RESERVA | date: 'dd/MM/yyyy - hh:mm:ss aa'}}</h2>
+        <details open>
+            <summary>
+                <div>
+                    <span style="background-color: #7573FF;">
+                        <mat-icon>store</mat-icon>
+                    </span>
+                    <h5>
+                        <strong>Datos Reserva</strong>
+                        <small>Resumen</small>
+                    </h5>
+                    <span style="color:black">Total: {{data.TOTAL_ARRIENDO | currency}}</span>
+                </div>
+            </summary>
+            <div>
+                <dl >
+                    <div>
+                        <dt>Ubicación</dt>
+                        <dd>{{data.UBICACION}}</dd>
+                    </div>
+    
+                    <div>
+                        <dt>Desde</dt>
+                        <dd>{{data.DESDE | date: 'dd/MM/yyyy'}}</dd>
+                    </div>
+    
+                    <div>
+                        <dt>Hasta</dt>
+                        <dd>{{data.HASTA | date: 'dd/MM/yyyy'}}</dd>
+                    </div>
+
+                    <div>
+                        <dt>Monto Abono</dt>
+                        <dd>{{data.MONTO_ABONADO | currency}}</dd>
+                    </div>
+
+                    <div>
+                        <dt>Monto Total</dt>
+                        <dd>{{data.TOTAL_ARRIENDO | currency}}</dd>
+                    </div>
+                </dl>
+            </div>
+            
+        </details>
+        <details open>
+            <summary>
+                <div>
+                    <span style="background-color: #FFA134;">
+                        <mat-icon>perm_identity</mat-icon>
+                    </span>
+                    <h5>
+                        <strong>Datos Cliente</strong>
+                        <small>Datos personales </small>
+                    </h5>   
+                </div>
+            </summary>
+            <div>
+                <dl>
+                    <div>
+                        <dt>Cliente</dt>
+                        <dd>{{data.FIRST_NAME}} {{data.LAST_NAME}}</dd>
+                    </div>
+    
+                    <div>
+                        <dt>Rut</dt>
+                        <dd>{{data.RUT_CLI}}</dd>
+                    </div>
+
+                    <div>
+                        <dt>Email</dt>
+                        <dd>{{data.EMAIL}}</dd>
+                    </div>
+
+                    <div>
+                        <dt>Telefono</dt>
+                        <dd>{{data.TELEFONO}}</dd>
+                    </div>
+                </dl>
+            </div>
+        </details>
+        <details open>
+            <summary>
+                <div>
+                    <span style="background-color: #FF5474;">
+                        <mat-icon> business</mat-icon>
+                    </span>
+                    <h5>
+                        <strong>Detalle Departamento</strong>
+                        <small>Depto ID {{data.ID_DEPTO}}</small>
+                    </h5>
+                    <span style="color:black">{{data.VALOR_DIA | currency}} día</span>
+                </div>
+            </summary>
+            <div>
+                <dl>
+                    <div>
+                        <dt>Depto </dt>
+                        <dd>{{data.NOMBRE}}</dd>
+                    </div>
+    
+                    <div>
+                        <dt>Capacidad</dt>
+                        <dd>{{data.TOTAL_PERSONAS}} personas</dd>
+                    </div>
+    
+                    <div>
+                        <dt>Estacionamiento</dt>
+                        <dd>{{data.ESTACIONAMIENTO}}</dd>
+                    </div>
+                    <div>
+                        <dt>Mascotas</dt>
+                        <dd>{{data.MASCOTAS}}</dd>
+                    </div>
+                    <div>
+                        <dt>Ubicacion</dt>
+                        <dd>{{data.UBICACION}}</dd>
+                    </div>
+                </dl>
+            </div>
+        </details>
+    </section>
+  </div>
+  <div class="container w-75 p-3 text-center" id="btnActions">
+    <div class="row">
+        <div class="col-md-6">
+            <button mat-raised-button color="primary" >Reenviar a email</button>
+        </div>
+        <div class="col-md-6">
+            
+            <button mat-raised-button color="primary" onclick="print()" ><mat-icon>print</mat-icon> &nbsp; Imprimir</button>
+        </div>
+    </div>
+    
+    
+  </div>
+
+    <script>
+            
+        function print(){
+        var data = document.getElementById('print-section').innerHTML;
+        document.open();
+        document.write();
+        if (window.matchMedia('(min-width: 400px)').matches) {
+            window.print();
+            window.close();
+            document.close();
+        } else {
+            window.print();
+            document.close();
+        }
+        }
+        
+
+    </script>
+</body>
