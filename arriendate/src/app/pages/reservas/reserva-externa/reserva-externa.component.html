@@ -134,10 +134,25 @@
               <div class="row mb-3" >
                 <div class="col-md-6" >
                   <mat-form-field appearance="fill" color="accent" >
+                    <mat-label>Ubicacion</mat-label>
+                    <input matInput [value]="id_sucursal" formControlName="ID_SUC" name="ID_SUC" readonly>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6" >
+                  <mat-form-field appearance="fill" color="accent" >
+                    <mat-label>Nombre Depto</mat-label>
+                    <input matInput [value]="id_departamento" formControlName="ID_DEPTO" name="ID_DEPTO" readonly>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-md-6">
+                  
+                  <mat-form-field appearance="fill" color="accent"  >
                     <mat-label>Seleccione la fecha de inicio y término de su estadía</mat-label>
                     <mat-date-range-input [rangePicker]="picker" >
-                      <input matStartDate formControlName="FEC_DESDE" (change)="deptoSeleccionado()" [min]="ultima_reserva" placeholder="Desde">
-                      <input matEndDate formControlName="FEC_HASTA" placeholder="Hasta">
+                      <input matStartDate formControlName="FEC_DESDE" [min]="ultima_reserva" placeholder="Desde">
+                      <input matEndDate formControlName="FEC_HASTA"  placeholder="Hasta">
                     </mat-date-range-input>
                     <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -145,30 +160,11 @@
                   
                   </mat-form-field>
                   
-                  
-                </div>
-                <div class="col-md-6" >
-                  <mat-form-field appearance="fill" color="accent">
-                    <mat-label>Seleccione Ciudad</mat-label>
-                    <mat-select [(ngModel)]="sucursales.ID_SUC" id="id_sucursal" formControlName="ID_SUC" name="ID_SUC">
-                      <mat-option  *ngFor="let item of sucursales" [value]="item.ID_SUC" >{{item.CIUDAD}}</mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>
-              </div>
-              <div class="row mb-3">
-                <div class="col-md-6">
-                  <mat-form-field appearance="fill" color="accent">
-                    <mat-label>Seleccione Departamento</mat-label>
-                    <mat-select [(ngModel)]="deptos_detalle.SUCURSAL_ID_SUC"  formControlName="ID_DEPTO" name="ID_DEPTO">
-                      <mat-option  *ngFor="let item of deptos_detalle" [hidden]='!(sucursales.ID_SUC == item.SUCURSAL_ID_SUC)' [value]="item.ID_DEPTO" (click)="deptoSeleccionado()" >{{item.NOMBRE}}</mat-option>
-                    </mat-select>
-                  </mat-form-field>
                 </div>
                 <div class="col-md-6">
                   <mat-form-field appearance="fill" color="accent" >
                     <mat-label>Cantidad máxima de personas</mat-label>
-                    <input matInput [(ngModel)]="total_personas" name="TOTAL_PERSONAS" [ngModelOptions]="{standalone: true}" readonly="">
+                    <input matInput [(ngModel)]="total_personas"  name="TOTAL_PERSONAS" [ngModelOptions]="{standalone: true}" readonly="">
                   </mat-form-field>
                 </div>
                 
@@ -185,19 +181,24 @@
                   
                 </div>
                 <div class="col-md-6 mb-3">
+                  <div class="mb-3">
+                    <button mat-raised-button color="accent" (click)="totalReserva()">
+                      <mat-icon>autorenew</mat-icon> Refrescar totales </button>
+
+                  </div>
                   <mat-form-field appearance="fill" color="accent" floatLabel="always">
                     <mat-label>Total</mat-label>
-                    <input matInput type="number" [(ngModel)]="total" (change)="deptoSeleccionado()" formControlName="TOTAL_RESERVA" class="example-right-align" placeholder="0">
+                    <input matInput type="text" [(ngModel)]="total" formControlName="TOTAL_RESERVA" class="example-right-align" placeholder="0">
                     <span matPrefix>$&nbsp;</span>
                   </mat-form-field>
                   <mat-form-field appearance="fill" color="accent" floatLabel="always">
                     <mat-label>Monto Abono</mat-label>
-                    <input matInput type="number" [(ngModel)]="monto_abono" formControlName="MONTO_ABONADO" class="example-right-align" placeholder="0">
+                    <input matInput type="text" [(ngModel)]="monto_abono" formControlName="MONTO_ABONADO" class="example-right-align" placeholder="0">
                     <span matPrefix>$&nbsp;</span>
                   </mat-form-field>
                   <mat-form-field appearance="fill" color="accent" floatLabel="always">
                     <mat-label>Monto Servicios</mat-label>
-                    <input matInput type="number" [(ngModel)]="monto_servicios" formControlName="MONTO_SERVICIOS" class="example-right-align" placeholder="0" value="0">
+                    <input matInput type="text" [(ngModel)]="monto_servicios" formControlName="MONTO_SERVICIOS" class="example-right-align" placeholder="0" value="0">
                     <span matPrefix>$&nbsp;</span>
                   </mat-form-field>
                 

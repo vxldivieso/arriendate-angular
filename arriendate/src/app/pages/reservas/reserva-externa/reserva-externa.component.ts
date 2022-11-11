@@ -52,7 +52,12 @@ export class ReservaExternaComponent implements OnInit {
 
   id_ultima_reserva:any;
   id_reserva:any
+
   dato:any;
+  //variables para mostrar en html
+  id_departamento:any
+  id_sucursal:any
+
 
 
   constructor(private acroute: ActivatedRoute, private location : Location, private fb: FormBuilder, private api:ApiService,
@@ -62,8 +67,8 @@ export class ReservaExternaComponent implements OnInit {
   
   ngOnInit(): void {
     this.dato = localStorage.getItem('depto_seleccionado');
+    console.log(this.dato);
     
-
     this.serviceForm = this.fb.group({
       transporte : false,
       bufet : false,
@@ -73,8 +78,8 @@ export class ReservaExternaComponent implements OnInit {
 
     this.reserveForm = this.fb.group({
       ID_CLI : new FormControl('', [Validators.minLength(8), Validators.maxLength(10)] ),
-      ID_SUC : new FormControl('', Validators.required),
-      ID_DEPTO : new FormControl('', Validators.required),
+      ID_SUC : new FormControl(''),
+      ID_DEPTO : new FormControl(''),
       FEC_DESDE: new FormControl<Date | null>(null),
       FEC_HASTA: new FormControl<Date | null>(null),
       MASCOTAS : new FormControl(''),
@@ -97,7 +102,7 @@ export class ReservaExternaComponent implements OnInit {
     this.getSucursal()
     this.getServices()
     this.getClient()
-    this.getLastReservas()
+    this.deptoSeleccionado()
   }
 
   
@@ -217,24 +222,15 @@ export class ReservaExternaComponent implements OnInit {
 
 
   deptoSeleccionado(){
-    this.api.getDeptoById(this.deptos_detalle.SUCURSAL_ID_SUC).subscribe({
+    this.api.getDeptoById(this.dato).subscribe({
       next:(res)=>{
         
         this.deptoSelected = res;
-        this.id_depto = this.deptoSelected[0].ID_DEPTO;
+        this.id_departamento = this.deptoSelected[0].NOMBRE;
+        this.id_sucursal = this.deptoSelected[0].UBICACION;
         this.valor_dia = this.deptoSelected[0].VALOR_DIA ;
         this.total_personas = this.deptoSelected[0].TOTAL_PERSONAS;
         
-
-        //buscar fecha minima de reserva
-        if(this.id_depto != null){
-          this.getLastReserve()
-          this.totalReserva()
-        }else{
-          return
-        }
-
-
       },
       error:()=>{
         console.log('Error al buscar depto');
@@ -262,12 +258,13 @@ export class ReservaExternaComponent implements OnInit {
   }
 
   totalReserva(){
-    if(this.reserveForm.controls['FEC_DESDE'].valid && this.reserveForm.controls['FEC_HASTA'].valid){
+    if(this.reserveForm.controls['FEC_DESDE'].value && this.reserveForm.controls['FEC_HASTA'].value){
       const desde = moment(new Date(this.reserveForm.controls['FEC_DESDE'].value))
       const hasta = moment(new Date(this.reserveForm.controls['FEC_HASTA'].value))
       const resta = hasta.diff(desde, 'days')
       this.total= this.valor_dia * resta
       this.monto_abono = (this.total / 2)
+      
     }else{
       this.total = this.valor_dia
       this.monto_abono = (this.total / 2)
