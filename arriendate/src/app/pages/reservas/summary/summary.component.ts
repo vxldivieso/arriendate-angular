@@ -12,21 +12,28 @@ export class SummaryComponent implements OnInit {
 
   id_reserva:any;
   reserva_detail:any;
+  services:any
 
   constructor(private api:ApiService, private acroute: ActivatedRoute, private location : Location, private router:Router) { }
 
   ngOnInit(): void {
     this.id_reserva = localStorage.getItem('datos_reserva');
-    console.log(this.id_reserva);
     this.getReserveById()
+    this.getServicesByID()
   }
 
   getReserveById(){
     this.api.getReserveByID(this.id_reserva).subscribe({
       next:(res)=>{
         this.reserva_detail = res
-        console.log(this.reserva_detail[0]);
-        
+      }
+    })
+  }
+
+  getServicesByID(){
+    this.api.getServicesById(this.id_reserva).subscribe({
+      next:(res)=>{
+        this.services = res
       }
     })
   }

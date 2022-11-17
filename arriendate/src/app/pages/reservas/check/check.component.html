@@ -107,7 +107,7 @@
                     <div class="col-md-4">
                       <mat-form-field appearance="fill" color="primary">
                         <mat-label>Check out</mat-label>
-                        <input matInput id="CHECK_OUT" name="CHECK_OUT" [(ngModel)]="reserva.CHECK_OUT" (change)="checkout()" readonly>
+                        <input matInput id="CHECK_OUT" name="CHECK_OUT" [(ngModel)]="reserva.CHECK_OUT" readonly>
                       </mat-form-field>
                       </div>
                   </div>
@@ -118,7 +118,7 @@
 
                     </div>
                     <div class="col-md-6">
-                        <button mat-raised-button color="primary" [disabled]="reserva.CHECK_OUT != null || reserva.ESTADO == 'CANCELADO' " (click)="checkout()" >Realizar Check out</button>
+                        <button mat-raised-button color="primary" [disabled]="reserva.CHECK_OUT != null || reserva.ESTADO == 'CANCELADO' " (click)="openDialog(reserva.ID_RESERVA)" >Realizar Check out</button>
 
                     </div>
                   </div>

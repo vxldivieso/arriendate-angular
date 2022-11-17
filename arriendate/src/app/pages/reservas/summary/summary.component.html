@@ -41,6 +41,10 @@
                         <dt>Hasta</dt>
                         <dd>{{data.HASTA | date: 'dd/MM/yyyy'}}</dd>
                     </div>
+                    <div>
+                        <dt>Monto Servicios</dt>
+                        <dd>{{data.MONTO_SERVICIOS  | currency}}</dd>
+                    </div>
 
                     <div>
                         <dt>Monto Abono</dt>
@@ -51,6 +55,11 @@
                         <dt>Monto Total</dt>
                         <dd>{{data.TOTAL_ARRIENDO | currency}}</dd>
                     </div>
+
+                    <div> 
+                        <dt>Servicios Extras</dt>
+                        <dd *ngFor="let item of services">- {{item.NOM_SERV}} {{item.VALOR_SERVICIO | currency}}</dd>
+                    </div>  
                 </dl>
             </div>
             
@@ -125,7 +134,7 @@
                         <dd>{{data.MASCOTAS}}</dd>
                     </div>
                     <div>
-                        <dt>Ubicacion</dt>
+                        <dt>Ubicación</dt>
                         <dd>{{data.UBICACION}}</dd>
                     </div>
                 </dl>

@@ -1,0 +1,55 @@
+<h1 mat-dialog-title style="font-weight:bold" >Actualización Estado Departamento </h1>
+<p>Por favor, ingrese los siguientes datos obligatorios para completar el check out</p>
+<div mat-dialog-content class="mat-typography"   >
+    <div class="container">
+        <form action="" [formGroup]="checkoutForm">
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field appearance="fill" color="primary" >
+                        <mat-label>ID Depto</mat-label>
+                        <input matInput [(ngModel)]="id_depto" [ngModelOptions]="{standalone: true}" readonly>
+                      </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field appearance="fill" color="primary" >
+                        <mat-label>ID Reserva</mat-label>
+                        <input matInput [(ngModel)]="id_reserva" [ngModelOptions]="{standalone: true}" readonly>
+                      </mat-form-field>
+                </div>
+            </div>
+            <mat-form-field class="example-full-width" appearance="fill" color="primary">
+                <mat-label>Comentarios</mat-label>
+                <textarea matInput formControlName="COMENTARIOS"></textarea>
+            </mat-form-field>
+
+            <label for="img"> &nbsp;Adjunte foto 1</label>
+            <input class="form-control" [src]="img" accept="image/png,image/jpeg" type="file" id="img"
+            name="img" (change)="onFileSelected($any($event.target).files)" 
+            data-validation-error-msg="Elija una imagen con formato JPG." data-validation-max-size="1M" data-validation="required"/> 
+            
+
+            <label for="img"> &nbsp;Adjunte foto 2</label>
+            <input class="form-control" [src]="img" accept="image/png,image/jpeg" type="file" id="img"
+            name="img" (change)="onFileSelected($any($event.target).files)" 
+            data-validation-error-msg="Elija una imagen con formato JPG." data-validation-max-size="1M" data-validation="required"/> 
+            
+
+            <label for="img"> &nbsp;Adjunte foto 3</label>
+            <input class="form-control" [src]="img" accept="image/png,image/jpeg" type="file" id="img"
+            name="img" (change)="onFileSelected($any($event.target).files)" 
+            data-validation-error-msg="Elija una imagen con formato JPG." data-validation-max-size="1M" data-validation="required"/> 
+            
+
+            <label for="img"> &nbsp;Adjunte foto 4</label>
+            <input class="form-control" [src]="img" accept="image/png,image/jpeg" type="file" id="img"
+            name="img" (change)="onFileSelected($any($event.target).files)" 
+            data-validation-error-msg="Elija una imagen con formato JPG." data-validation-max-size="1M" data-validation="required"/> 
+            <small style="font-size:0.8em">Tamaño máximo permitido 1MB </small>
+        </form>
+    </div>
+</div>
+<div mat-dialog-actions [align]="'end'">
+    <button color="primary" mat-raised-button (click)="checkout()">Confirmar Check Out</button>
+    <button color="primary" mat-button  mat-dialog-close>Cerrar</button>
+</div>
+  

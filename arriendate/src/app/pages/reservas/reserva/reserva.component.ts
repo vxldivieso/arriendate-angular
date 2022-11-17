@@ -57,6 +57,10 @@ export class ReservaComponent implements OnInit {
 
   id_ultima_reserva:any;
   id_reserva:any
+  value_transporte :any
+  value_bufet:any
+  value_tour:any
+  value_desayuno:any
 
   @Input() id_reserva1:any;
   
@@ -126,10 +130,8 @@ export class ReservaComponent implements OnInit {
   getServices(){
     this.api.getServices().subscribe({
       next:(res)=>{
-        /*
-        this.servicios = res;
-        console.log(this.servicios);*/
         
+        this.servicios = res;
         
       }
     })
@@ -164,8 +166,6 @@ export class ReservaComponent implements OnInit {
         },
         error:(error)=>{
           this.resultadoBusqueda = error.error.text
-          console.log(this.resultadoBusqueda);
-          
         }
       })
     }
@@ -225,7 +225,7 @@ export class ReservaComponent implements OnInit {
         if(this.id_depto != null){
           this.getLastReserve()
           this.totalReserva()
-          this.sendService()
+          this.checkService()
         }else{
           return
         }
@@ -294,15 +294,13 @@ export class ReservaComponent implements OnInit {
     if (this.reserveForm.valid){
       this.api.doReserve(ID_DEPTO, ID_SUC, ID_CLI,MONTO_ABONADO, MONTO_SERVICIOS, FEC_DESDE, FEC_HASTA,  MONTO_TOTAL, MASCOTAS, this.id_reserva1).subscribe({
         next:(res)=>{
-          console.log(res);
           this.messageExito()
           this.route.navigate(['home/summary']);
           this.getLastReservas()
           localStorage.setItem('datos_reserva', this.datosReserva);
-          
+          this.saveService()
         },
         error:(error)=>{
-          console.log(error);
           this.messageErrorReserva()
           
         }
@@ -311,29 +309,63 @@ export class ReservaComponent implements OnInit {
       window.alert('Formulario invalido')
     }
   }
-
-  sendService(){
+  //Condicionar servicios chequeados
+  checkService(){
    this.monto_servicios = 0
+   this.value_transporte = 0
+   this.value_bufet = 0
+   this.value_tour = 0
+   this.value_desayuno = 0
    if(this.serviceForm.controls['transporte'].value == true){
     this.monto_servicios +=  10000
-    
+    this.value_transporte = 1
    }
    if(this.serviceForm.controls['bufet'].value == true){
     this.monto_servicios += 10000
-    
+    this.value_bufet = 2
    }
    if(this.serviceForm.controls['tour'].value == true){
     this.monto_servicios += 20000
-    
+    this.value_tour = 3
    }
    if(this.serviceForm.controls['desayuno'].value == true){
     this.monto_servicios += 5000
-    
+    this.value_desayuno = 4
    }
    this.total += this.monto_servicios
-   console.log(this.serviceForm.value);
-   
-   
+
+  }
+  //Guardar servicios asociados a la reserva
+  saveService(){
+    if(this.value_transporte !=0){
+      this.api.sendService(this.id_reserva1, this.value_transporte).subscribe({
+        next:(res)=>{
+          res
+        }
+      })
+    }
+    if(this.value_bufet !=0){
+      this.api.sendService(this.id_reserva1, this.value_bufet).subscribe({
+        next:(res)=>{
+          res
+        }
+      })
+    }
+    if(this.value_tour !=0){
+      this.api.sendService(this.id_reserva1, this.value_tour).subscribe({
+        next:(res)=>{
+          res
+        }
+      })
+    }
+    if(this.value_desayuno !=0){
+      this.api.sendService(this.id_reserva1, this.value_desayuno).subscribe({
+        next:(res)=>{
+          res
+        }
+      })
+    }
+    
   }
 
 

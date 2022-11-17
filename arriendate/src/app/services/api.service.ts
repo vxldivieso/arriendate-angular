@@ -163,6 +163,19 @@ export class ApiService{
             }))
     }
 
+    //Enviar Servicios a la base de datos
+    sendService(ID_RESERVA:any, ID_SERVICIO:any){
+        let header = new HttpHeaders()
+        .set('Type-content','aplication/json')
+
+        return this.http.post<any>(`${this.apiURL}/saveServices`,{ ID_RESERVA:ID_RESERVA, ID_SERVICIO:ID_SERVICIO},{headers:header}).pipe(
+            catchError((error) =>{
+                return this.errorHandler(error);
+            }))
+    }
+
+    //buscar Servicios asociados a una reserva
+
     //Cancelar Reserva
     cancelReserve(id_reserva:any){
         let header = new HttpHeaders()
@@ -228,6 +241,15 @@ export class ApiService{
                 return this.errorHandler(error)
             }))
     }
+
+    //obtener services por id
+    getServicesById(id:any){
+        return this.http.get(`${this.apiURL}/getServices/${id}`).pipe(
+            catchError((error) =>{
+                return this.errorHandler(error)
+            }))
+    }
+
 
     
 

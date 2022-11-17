@@ -16,7 +16,7 @@ import { ArriendosVigentesComponent, DialogElementsExampleDialog } from './pages
 import { BusquedaComponent } from './pages/busqueda/busqueda.component';
 import { FechasDisponiblesComponent } from './pages/busqueda/fechas-disponibles/fechas-disponibles.component';
 import { ReservaComponent } from './pages/reservas/reserva/reserva.component';
-import { CheckComponent } from './pages/reservas/check/check.component';
+import { CheckComponent, CheckoutDialogComponent } from './pages/reservas/check/check.component';
 import { CancelComponent } from './pages/reservas/cancel/cancel.component';
 import { PayComponent } from './pages/reservas/pay/pay.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -60,7 +60,8 @@ import { SummaryComponent } from './pages/reservas/summary/summary.component';
     AddDialogComponent,
     ModifyDialogComponent,
     ReservaExternaComponent,
-    SummaryComponent
+    SummaryComponent,
+    CheckoutDialogComponent
   ],
   imports: [
     CommonModule,
