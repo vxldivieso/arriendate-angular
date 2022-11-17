@@ -69,24 +69,17 @@
                 <th mat-header-cell *matHeaderCellDef> Acciones </th>
                 <td mat-cell *matCellDef="let row">
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <a class="pointer" type="button" (click)="openDialog(row.ID_DEPTO)" style="color:#2ECC71" matTooltip="Ver Detalle">
                                 <mat-icon>visibility</mat-icon>
                             </a>
                         </div>
-                        <div class="col-md-4">
-                            <a class="pointer" type="button" style="color:#67A4FF" matTooltip="Modificar">
+                        <div class="col-md-6">
+                            <a class="pointer" type="button" (click)="openDialogModify(row.ID_DEPTO)" style="color:#67A4FF" matTooltip="Modificar">
                                 <mat-icon>edit</mat-icon>
                               </a>
                         </div>
-                        <div class="col-md-4">
-                            <a class="pointer" type="button" style="color:#FF5474" matTooltip="Eliminar">
-                                <mat-icon>delete</mat-icon>
-                              </a>
-                        </div>
-                    </div>
-                    
-                    
+                    </div>         
                 </td>           
             </ng-container>
 

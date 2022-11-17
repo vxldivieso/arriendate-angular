@@ -51,59 +51,42 @@
 
         <ng-container matColumnDef="MONTO_TOTAL">
             <th mat-header-cell *matHeaderCellDef>  Total Reserva</th>
-            <td mat-cell *matCellDef="let row"> ${{row.TOTAL_ARRIENDO}} </td>
+            <td mat-cell *matCellDef="let row"> {{row.TOTAL_ARRIENDO | currency:'CLP':'$':'4.0'}} </td>
         </ng-container>
 
-        <!-- Column/Acciones -->
+        <!-- Columns/Acciones -->
         <ng-container matColumnDef="acciones">
             <th mat-header-cell *matHeaderCellDef> Acciones </th>
             <td mat-cell *matCellDef="let row">
                 <div class="row">
                     <div class="col-md-4">
-                        <a class="pointer" type="button" (click)="openDialog(row.ID_RESERVA)" style="color:#2ECC71" matTooltip="Ver Detalle">
+                        <a class="pointer" type="button" (click)="openDialog(row.ID_RESERVA)" style="color:#7573FF" matTooltip="Ver Detalle">
                             <mat-icon>visibility</mat-icon>
                         </a>
                     </div>
+                    <!-- 
                     <div class="col-md-4">
                         <a class="pointer" type="button" style="color:#67A4FF" matTooltip="Modificar">
                             <mat-icon>edit</mat-icon>
                           </a>
                     </div>
+                    
                     <div class="col-md-4">
                         <a class="pointer" type="button" style="color:#FF5474" matTooltip="Eliminar">
                             <mat-icon>delete</mat-icon>
                           </a>
                     </div>
-                </div>
-                
-                
+                    -->
+                </div>        
             </td>           
         </ng-container>
 
         <!-- Show Table -->
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
     </table>
     <mat-paginator [length]="21" [pageSizeOptions]="[7]" aria-label="Select page">
     </mat-paginator>
 </div>
-  
-  <!-- Cards 
-    <div class="container" >
-      <div class="row g-3">
-        <div class="col-4" *ngFor="let data2 of vigentes_arriendos" >
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title"><b class="fw-bold">ID Reserva:</b> {{data2.ID_RESERVA}}</h5>
-              <h5 class="card-title"><b class="fw-bold">Fecha Reserva:</b> {{data2.FEC_RESERVA | date: 'dd/MM/yyyy'}}</h5>
-              <h5 class="card-title"><b class="fw-bold">Status:</b> {{data2.ESTADO}}</h5>
-             <p class="card-text">Total arriendo: {{data2.TOTAL_ARRIENDO}}</p> 
-              <button class="bg-primary" mat-raised-button (click)="openDialog(data2.ID_RESERVA)">Más detalles</button>
-            </div>    
-          </div>
-        </div>
-      </div>
-    </div> -->
 </body>
 

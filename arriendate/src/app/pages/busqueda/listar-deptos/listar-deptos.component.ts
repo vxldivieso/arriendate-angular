@@ -2,7 +2,10 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { ApiService } from 'src/app/services/api.service';
+import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-listar-deptos',
@@ -34,7 +37,14 @@ export class ListarDeptosComponent implements OnInit {
   dataSource!: MatTableDataSource<any>;
   
 
-  constructor(private acroute: ActivatedRoute, private location : Location, private api : ApiService, private route : Router) { }
+  constructor(private dialog: MatDialog, private acroute: ActivatedRoute, private location : Location, private api : ApiService, private route : Router) { }
+
+  openDialog(id_depto:any) {
+    this.dialog.open(DialogElementsExampleDialog2);
+
+    this.id_depto = id_depto;
+    localStorage.setItem('deptos_detalle', this.id_depto);
+  }
 
   ngOnInit(): void {
     this.getDeptos()
@@ -66,4 +76,39 @@ export class ListarDeptosComponent implements OnInit {
     localStorage.setItem('depto_seleccionado', this.id_depto);
     this.route.navigate(['home/reserva_externa']);
   }
+}
+
+//DIALOG LISTAR DEPTOS
+@Component({
+  selector: 'dialog-listar-depto-dialog',
+  templateUrl: 'dialog-listar-deptos.component.html',
+})
+export class DialogElementsExampleDialog2 implements OnInit{
+
+  detalle_depto : any;
+  id_depto:any;
+  
+  constructor (public dialog: MatDialog, private api : ApiService) {}
+
+  ngOnInit(): void {
+    this.id_depto = localStorage.getItem('deptos_detalle');
+    this.getDeptoDetalle()
+  }
+  
+  closeDialog(){
+    this.dialog.closeAll();
+  }
+
+
+  getDeptoDetalle(){
+    this.api.getDeptoById(this.id_depto).subscribe({
+      next:(res:any)=>{
+        this.detalle_depto = res;
+      }
+    })
+  }
+
+
+
+
 }

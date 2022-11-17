@@ -11,14 +11,13 @@
     <h2 class="welcome text-center">Listado de Usuarios</h2>
     <br>
     <div class="container w-75 data_table">
-
-        <button mat-button class="bg-success" style="color:white" aria-label="" matTooltip="Añadir Usuario">
-            <mat-icon>add</mat-icon> Añadir
-        </button>
-        <hr>
-        
+        <!-- Segundo titulo con espacios  -->
+        <br>
+        <br>
+        <h4 class="welcome">Listado de Empleados</h4>
+        <br>
         <!-- DataGrid -->
-        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 text-center">
 
              <!-- Columns -->
             <ng-container matColumnDef="ID_EMP">
@@ -27,12 +26,12 @@
             </ng-container>
 
             <ng-container matColumnDef="NOM_EMP">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+                <th mat-header-cell *matHeaderCellDef> Nombre </th>
                 <td mat-cell *matCellDef="let row"> {{row.NOM_EMP}} {{row.APP_EMP}} </td>
             </ng-container>
 
             <ng-container matColumnDef="RUT_EMP">
-                <th mat-header-cell *matHeaderCellDef> Rut</th>
+                <th mat-header-cell *matHeaderCellDef> Rut </th>
                 <td mat-cell *matCellDef="let row"> {{row.RUT_EMP}} - {{row.RUT_DV_EMP}} </td>
             </ng-container>
 
@@ -42,22 +41,22 @@
             </ng-container>
 
             <ng-container matColumnDef="ROL_EMP">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Rol</th>
+                <th mat-header-cell *matHeaderCellDef> Rol</th>
                 <td mat-cell *matCellDef="let row"> {{row.ROL_EMP}} </td>
             </ng-container>
 
-            
-
             <!-- Column/Acciones -->
             <ng-container matColumnDef="acciones">
-                <th mat-header-cell *matHeaderCellDef></th>
-                <td mat-cell *matCellDef="let element"style="text-align: right;">
-                    <a class="pointer" style="color:rgb(0, 0, 255)" matTooltip="Modificar">
-                        <mat-icon>edit</mat-icon>
-                    </a>
-                    <a class="pointer" (click)="eliminarUsuario(element)" style="color:rgb(204, 12, 44)" matTooltip="Eliminar">
-                        <mat-icon>delete</mat-icon>
-                    </a>            
+                <th mat-header-cell *matHeaderCellDef> Acciones </th>
+                <td mat-cell *matCellDef="let row">
+                    <div class="row">
+                        <div class="" >
+                            <a class="pointer" type="button" style="color:#67A4FF" matTooltip="Modificar">
+                                <mat-icon>edit</mat-icon>
+                            </a>
+                        </div> 
+                    </div>
+                        
                 </td>           
             </ng-container>
 
@@ -66,14 +65,21 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
         </table>
+        <mat-paginator [pageSizeOptions]="[5]" aria-label="Select page">
+        </mat-paginator>
+        <br>
+        <button mat-button class="bg-success" style="color:white" aria-label="" matTooltip="Añadir Usuario">
+            <mat-icon>add</mat-icon> Añadir
+        </button>
     </div>
 
     <div class="container w-75 data_table">
-        <button mat-button class="bg-success" style="color:white" aria-label="" matTooltip="Añadir Cliente">
-            <mat-icon>add</mat-icon> Añadir
-        </button>
-        <hr>
-        
+        <br>
+        <!-- Segundo titulo con espacios  -->
+        <br>
+        <br>
+        <h4 class="welcome">Listado de Clientes</h4>
+        <br>
         <!-- DataGrid -->
         <table mat-table [dataSource]="dataSourceClient" class="mat-elevation-z8 text-center">
 
@@ -93,7 +99,6 @@
                 <td mat-cell *matCellDef="let row"> {{row.FIRST_NAME}} {{row.LAST_NAME}} </td>
             </ng-container>
 
-
             <ng-container matColumnDef="EMAIL">
                 <th mat-header-cell *matHeaderCellDef> Email</th>
                 <td mat-cell *matCellDef="let row"> {{row.EMAIL}} </td>
@@ -109,19 +114,17 @@
                 <th mat-header-cell *matHeaderCellDef> Acciones </th>
                 <td mat-cell *matCellDef="let row">
                     <div class="row">
-                        <div class="col-md-6">
-                            <a class="pointer" style="color:rgb(0, 0, 255)" matTooltip="Modificar">
+                        <div class="col-md-4">
+                            <a class="pointer" type="button" style="color:#67A4FF" matTooltip="Modificar">
                                 <mat-icon>edit</mat-icon>
                             </a>
                         </div>
-                        <div class="col-md-6">
-                            <a class="pointer" style="color:rgb(204, 12, 44)" matTooltip="Eliminar">
+                        <div class="col-md-4">
+                            <a class="pointer" type="button" style="color:#FF5474" matTooltip="Eliminar">
                                 <mat-icon>delete</mat-icon>
                             </a>
                         </div>
-                    </div>
-                    
-                    
+                    </div> 
                 </td>           
             </ng-container>
 
@@ -132,6 +135,10 @@
         </table>
         <mat-paginator [pageSizeOptions]="[5]" aria-label="Select page">
         </mat-paginator>
+        <br>
+        <button mat-button class="bg-success" style="color:white" aria-label="" matTooltip="Añadir Cliente">
+            <mat-icon>add</mat-icon> Añadir
+        </button>
     </div>
          
         

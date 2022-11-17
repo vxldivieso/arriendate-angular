@@ -53,7 +53,13 @@ export class InventarioComponent implements OnInit {
   }
 
   openDialog(id_depto:any) {
-    this.dialog.open(EditarDialogComponent);
+    this.dialog.open(DetalleDialogComponent);
+    this.id_depto = id_depto;
+    localStorage.setItem('depto_seleccionado', this.id_depto);
+  } 
+
+  openDialogModify(id_depto:any) {
+    this.dialog.open(ModifyDialogComponent);
     this.id_depto = id_depto;
     localStorage.setItem('depto_seleccionado', this.id_depto);
   } 
@@ -66,15 +72,19 @@ export class InventarioComponent implements OnInit {
     this.dialog.closeAll();
   }
 
+  //Eliminar depto por ID
+  eliminarDepto(){
+
+  }
 
 }
 
 
 @Component({
-  selector: 'edit-dialog',
-  templateUrl: './modify.component.html',
+  selector: 'detalle-dialog',
+  templateUrl: './detalle.component.html',
 })
-export class EditarDialogComponent implements OnInit{
+export class DetalleDialogComponent implements OnInit{
   id_depto:any;
 
   detalle:any;
@@ -85,7 +95,40 @@ export class EditarDialogComponent implements OnInit{
   }
 
   getInventario(){
-    this.api.getInventario(this.id_depto).subscribe({
+    this.api.getDeptoById(this.id_depto).subscribe({
+      next:(res:any)=>{
+        this.detalle = res
+        console.log(this.detalle);
+        
+      }
+    })
+  }
+
+  //Modificar depto
+  modificarDepto(){
+
+  }
+  
+}
+
+@Component({
+  selector: 'modify-dialog',
+  templateUrl: './modify.component.html',
+})
+export class ModifyDialogComponent implements OnInit{
+
+  id_depto:any;
+  detalle:any;
+
+  constructor(private dialog: MatDialog,  private api : ApiService){}
+
+  ngOnInit(): void {
+    this.id_depto = localStorage.getItem('depto_seleccionado');
+    this.getInventario()
+  }
+
+  getInventario(){
+    this.api.getDeptoById(this.id_depto).subscribe({
       next:(res:any)=>{
         this.detalle = res
         console.log(this.detalle);
@@ -112,6 +155,7 @@ export class AddDialogComponent implements OnInit{
   img?:string | void;
   base64Output !: string;
   fileSelected!: Blob
+  sucursales : any;
 
   
 
@@ -127,15 +171,26 @@ export class AddDialogComponent implements OnInit{
       TOTAL_PERSONAS : new FormControl('',Validators.required),
       ESTACIONAMIENTO: new FormControl('',Validators.required),
       MASCOTAS : new FormControl('',Validators.required),
+      ESTADO_DEPTO : new FormControl('', Validators.required),
       SUCURSAL_ID_SUC:new FormControl('',Validators.required)
     })
     this.listarDeptos()
+    this.listarSucursales()
   }
 
   listarDeptos(){
     this.api.getDeptos().subscribe({
       next:(res:any)=>{
         this.deptos = res[0].ID_DEPTO;
+      }
+    })
+  }
+
+  listarSucursales(){
+    this.api.getSucursal().subscribe({
+      next:(res:any)=>{
+        this.sucursales = res
+        console.log(this.sucursales)
       }
     })
   }

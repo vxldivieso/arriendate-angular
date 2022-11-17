@@ -47,12 +47,7 @@ export class ApiService{
             }))
     }
 
-    getReserveByID(id:any){
-        return this.http.get(`${this.apiURL}/listarReservas/${id}`).pipe(
-            catchError((error) =>{
-                return this.errorHandler(error);
-            }))
-    }
+    
 
     getArriendos(){
         return this.http.get(`${this.apiURL}/listarReservas`).pipe(
@@ -209,6 +204,14 @@ export class ApiService{
             return this.errorHandler(error)
         })
     )
+    }
+    
+    //Buscar reserva por id
+    getReserveByID(id:any){
+        return this.http.get(`${this.apiURL}/listarReservas/${id}`).pipe(
+            catchError((error) =>{
+                return this.errorHandler(error);
+            }))
     }
 
     //Buscar depto por id

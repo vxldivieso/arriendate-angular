@@ -11,7 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeRoutingModule } from './pages/home/home-routing.module';
 import { CommonModule } from '@angular/common';
-import { ListarDeptosComponent } from './pages/busqueda/listar-deptos/listar-deptos.component';
+import { ListarDeptosComponent, DialogElementsExampleDialog2 } from './pages/busqueda/listar-deptos/listar-deptos.component';
 import { ArriendosVigentesComponent, DialogElementsExampleDialog } from './pages/busqueda/arriendos-vigentes/arriendos-vigentes.component';
 import { BusquedaComponent } from './pages/busqueda/busqueda.component';
 import { FechasDisponiblesComponent } from './pages/busqueda/fechas-disponibles/fechas-disponibles.component';
@@ -21,8 +21,8 @@ import { CancelComponent } from './pages/reservas/cancel/cancel.component';
 import { PayComponent } from './pages/reservas/pay/pay.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { AdministracionComponent } from './pages/administracion/administracion.component';
-import { AddDialogComponent, EditarDialogComponent, InventarioComponent } from './pages/administracion/inventario/inventario.component';
-import { EstadosdeptoComponent } from './pages/administracion/estadosdepto/estadosdepto.component';
+import { AddDialogComponent, DetalleDialogComponent, ModifyDialogComponent, InventarioComponent } from './pages/administracion/inventario/inventario.component';
+import { EstadosdeptoComponent, DialogElementsExampleDialog3 } from './pages/administracion/estadosdepto/estadosdepto.component';
 import { GestionusuariosComponent } from './pages/administracion/gestionusuarios/gestionusuarios.component';
 import { GestiontransporteComponent } from './pages/reporteria/gestiontransporte/gestiontransporte.component';
 import { MantenciondeptosComponent } from './pages/reporteria/mantenciondeptos/mantenciondeptos.component';
@@ -61,8 +61,11 @@ import { SummaryComponent } from './reservas/summary/summary.component';
     ModuloReporteriaComponent,
     ReporteriaComponent,
     DialogElementsExampleDialog,
-    EditarDialogComponent,
+    DialogElementsExampleDialog2,
+    DialogElementsExampleDialog3,
+    DetalleDialogComponent,
     AddDialogComponent,
+    ModifyDialogComponent,
     ReservaExternaComponent,
     SummaryComponent
   ],

@@ -28,7 +28,7 @@
           </mat-card-content>
           <mat-card-actions>
             <button mat-raised-button color="accent" cdkFocusInitial >Actualizar</button>
-            <button mat-button>Ver detalle</button>
+            <button mat-button (click)="openDialog(data.ID_DEPTO)">Ver detalle</button>
           </mat-card-actions>
         </mat-card>
       </div>

@@ -28,17 +28,20 @@
           <mat-card-header>
             <mat-card-title>Departamento {{data.ID_DEPTO}}, ({{data.TOTAL_PERSONAS}} personas)</mat-card-title>
           </mat-card-header>
-          <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Depto foto">
+          <img mat-card-image src="travel.jpg" alt="Depto foto">
           <mat-card-content>
             <p>
               Ubicación: {{data.UBICACION}}
             </p>
             <p>{{data.DESCRIPCION}}</p>
-            <h5>Valor por día: ${{data.VALOR_DIA}}</h5>
+            <h5>Valor por día: {{data.VALOR_DIA | currency:'CLP':'$':'4.0'}}</h5>
           </mat-card-content>
           <mat-card-actions>
-            <button mat-raised-button color="accent" (click)="reservarDepto(data.ID_DEPTO)" cdkFocusInitial >Reservar</button>
-            <button mat-button>Ver detalle</button>
+            <button mat-raised-button id="secundary" (click)="reservarDepto(data.ID_DEPTO)" cdkFocusInitial >Reservar</button>
+
+
+
+            <button mat-button (click)="openDialog(data.ID_DEPTO)">Ver detalle</button>
           </mat-card-actions>
         </mat-card>
       </div>
