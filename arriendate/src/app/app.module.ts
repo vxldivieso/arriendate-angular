@@ -24,12 +24,8 @@ import { AdministracionComponent } from './pages/administracion/administracion.c
 import { AddDialogComponent, DetalleDialogComponent, ModifyDialogComponent, InventarioComponent } from './pages/administracion/inventario/inventario.component';
 import { EstadosdeptoComponent, DialogElementsExampleDialog3 } from './pages/administracion/estadosdepto/estadosdepto.component';
 import { GestionusuariosComponent } from './pages/administracion/gestionusuarios/gestionusuarios.component';
-import { GestiontransporteComponent } from './pages/reporteria/gestiontransporte/gestiontransporte.component';
-import { MantenciondeptosComponent } from './pages/reporteria/mantenciondeptos/mantenciondeptos.component';
 import { ModuloReporteriaComponent } from './pages/reporteria/reporteria.component';
-import { ReporteriaComponent } from './pages/reporteria/reporteria/reporteria.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -38,7 +34,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ReservaExternaComponent } from './pages/reservas/reserva-externa/reserva-externa.component';
 import { MatSortModule } from '@angular/material/sort';
-import { SummaryComponent } from './reservas/summary/summary.component';
+import { SummaryComponent } from './pages/reservas/summary/summary.component';
 
 @NgModule({
   declarations: [
@@ -56,10 +52,7 @@ import { SummaryComponent } from './reservas/summary/summary.component';
     InventarioComponent, 
     EstadosdeptoComponent, 
     GestionusuariosComponent, 
-    GestiontransporteComponent, 
-    MantenciondeptosComponent,
     ModuloReporteriaComponent,
-    ReporteriaComponent,
     DialogElementsExampleDialog,
     DialogElementsExampleDialog2,
     DialogElementsExampleDialog3,
@@ -76,18 +69,9 @@ import { SummaryComponent } from './reservas/summary/summary.component';
     HomeRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    MatDatepickerModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
-    FlexLayoutModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatCardModule,
-    MatToolbarModule,
-    MatDialogModule,
-    MatSortModule
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],

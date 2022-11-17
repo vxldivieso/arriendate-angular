@@ -5,6 +5,8 @@ import { ApiService } from 'src/app/services/api.service';
 import { MatTableDataSource, MatTableDataSourcePaginator } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import * as XLSX from 'xlsx';
+import { ApiReportService } from 'src/app/services/report.service';
 
 
 @Component({
@@ -34,6 +36,7 @@ export class GestionusuariosComponent implements OnInit{
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  name = 'ExcelSheet.xlsx';
   empleado:any;
   clientes:any;
 
@@ -47,6 +50,16 @@ export class GestionusuariosComponent implements OnInit{
 
   goBack(){
     this.location.back()
+  }
+
+  exportToExcel(): void {
+    let element = document.getElementById('season-tble');
+    const worksheet: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
+
+    const book: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(book, worksheet, 'Sheet1');
+
+    XLSX.writeFile(book, this.name);
   }
 
   eliminarUsuario(element : any){

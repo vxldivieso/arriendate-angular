@@ -44,7 +44,7 @@ export class ReservaComponent implements OnInit {
   fecha_desde:any;
   fecha_hasta:any;
   
-  serviceChecked = false;
+  serviceValue :any;
 
   today = new Date();
 
@@ -65,9 +65,6 @@ export class ReservaComponent implements OnInit {
     @Inject(DOCUMENT) document: Document, private route:Router) { }
 
   ngOnInit(): void {
-
-    
-
     this.serviceForm = this.fb.group({
       transporte : false,
       bufet : false,
@@ -113,9 +110,7 @@ export class ReservaComponent implements OnInit {
     this.api.getDeptos().subscribe({
       next:(res)=>{
         this.deptos_detalle = res;
-        Object.entries(res).forEach(([key, value]) => {
-          
-        });
+        
       }
     })
   }
@@ -134,10 +129,7 @@ export class ReservaComponent implements OnInit {
         /*
         this.servicios = res;
         console.log(this.servicios);*/
-        Object.entries(res).forEach(([key, value]) => {
-          this.servicios = value
-        });
-
+        
         
       }
     })
@@ -229,12 +221,11 @@ export class ReservaComponent implements OnInit {
         this.id_depto = this.deptoSelected[0].ID_DEPTO;
         this.valor_dia = this.deptoSelected[0].VALOR_DIA ;
         this.total_personas = this.deptoSelected[0].TOTAL_PERSONAS;
-        
-
         //buscar fecha minima de reserva
         if(this.id_depto != null){
           this.getLastReserve()
           this.totalReserva()
+          this.sendService()
         }else{
           return
         }
@@ -271,12 +262,14 @@ export class ReservaComponent implements OnInit {
       const desde = moment(new Date(this.reserveForm.controls['FEC_DESDE'].value))
       const hasta = moment(new Date(this.reserveForm.controls['FEC_HASTA'].value))
       const resta = hasta.diff(desde, 'days')
-      this.total= this.valor_dia * resta
+      this.total= (this.valor_dia * resta ) 
       this.monto_abono = (this.total / 2)
+      
     }else{
-      this.total = this.valor_dia
+      this.total = this.valor_dia 
       this.monto_abono = (this.total / 2)
     }
+    
   }
 
   onSubmit(){
@@ -318,6 +311,32 @@ export class ReservaComponent implements OnInit {
       window.alert('Formulario invalido')
     }
   }
+
+  sendService(){
+   this.monto_servicios = 0
+   if(this.serviceForm.controls['transporte'].value == true){
+    this.monto_servicios +=  10000
+    
+   }
+   if(this.serviceForm.controls['bufet'].value == true){
+    this.monto_servicios += 10000
+    
+   }
+   if(this.serviceForm.controls['tour'].value == true){
+    this.monto_servicios += 20000
+    
+   }
+   if(this.serviceForm.controls['desayuno'].value == true){
+    this.monto_servicios += 5000
+    
+   }
+   this.total += this.monto_servicios
+   console.log(this.serviceForm.value);
+   
+   
+  }
+
+
 
   //Message Exito
   messageExito(){

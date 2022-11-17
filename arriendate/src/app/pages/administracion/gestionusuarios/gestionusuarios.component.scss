@@ -15,7 +15,10 @@ th{
     margin: 20px auto;
 }
 
-th.mat-header-cell{
-    text-align:center;
-}
 
+.mat-cell, .mat-header-cell {
+    text-align: center;
+}
+ mat-paginator{
+    background-color:transparent!important; 
+ }

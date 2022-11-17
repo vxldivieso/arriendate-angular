@@ -32,11 +32,11 @@
     <div class="container-fluid w-100 data_table">
         <hr>
         <!-- DataGrid -->
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 text-center">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 text-center" matSort>
 
              <!-- Columns -->
             <ng-container matColumnDef="ID_RESERVA" >
-                <th mat-header-cell *matHeaderCellDef > ID Reserva </th>
+                <th mat-header-cell *matHeaderCellDef  mat-sort-header> ID Reserva </th>
                 <td mat-cell *matCellDef="let row" > <a mat-button color="primary" matTooltip="Ver Detalle">{{row.ID_RESERVA}}</a>  </td>
             </ng-container>
 

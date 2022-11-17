@@ -68,6 +68,8 @@ export class LoginComponent implements OnInit {
           this.messageError()
         }
       })
+    }else{
+      this.messageError()
     }
   }
   //Message Error

@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 <!-- FORM NUEVO LOGIN -->
-=======
-<!-- FORM LOGIN ANTERIOR
->>>>>>> 07211169ad7e3a7d49b709dfe2f9af33974313aa
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,19 +14,19 @@
 
 <body class="mat-typography">
   <div class="vh-100 d-flex justify-content-center align-items-center">
-    <div class="container">
-      <div class="row d-flex justify-content-center">
+    <div class="container" >
+      <div class="row d-flex justify-content-center" > 
         <div class="col-12 col-md-8 col-lg-6">
-<<<<<<< HEAD
-          <mat-card>
+          <mat-card >
+            <br>
             <h1 class="text-center">Iniciar Sesión</h1>
-            <form fxLayoutAlign="stretch" fxLayout="column" [formGroup]="loginForm" class="login-form">
+            <form  [formGroup]="loginForm" class="login-form" >
               <p class="mb-3" fxLayoutAlign="center center">Por favor introduce tu usuario y contraseña</p>
-              <mat-form-field appearance="fill" color="accent">
+              <mat-form-field appearance="fill" color="primary">
                 <mat-label>Ingresa tu RUT sin DV</mat-label>
                 <input type="number" id="rut" formControlName="rut" matInput placeholder="11111111" required>
               </mat-form-field>
-              <mat-form-field appearance="fill" color="accent">
+              <mat-form-field appearance="fill" color="primary">
                 <mat-label>Ingresa tu contraseña</mat-label>
                 <input matInput id="password" formControlName="password" [type]="hide ? 'password' : 'text'" required>
                 <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
@@ -41,105 +37,15 @@
                 <p class="small"><a style="color:white;" href="">¿Olvidaste tu contraseña?</a></p>
               </div>
               <div class="mb-3">
-                <button mat-raised-button color="accent" type="submit" id="login" (click)="onSubmit()">Ingresar</button>
+                <button mat-raised-button color="primary" type="submit" id="login" (click)="onSubmit()">Ingresar</button>
 
-=======
-          <div class="card bg-white shadow-lg">
-            <div class="card-body p-5">
-              <form class="mb-3 mt-md-4" [formGroup]="loginForm">
-                <h2 class="fw-bold mb-2 text-uppercase ">Iniciar Sesión</h2>
-                <p class=" mb-5">Por favor introduce tu usuario y contraseña</p>
-                <mat-form-field appearance="fill">
-                  <mat-label>Ingresa tu RUN (sin DV)</mat-label>
-                  <input id="rut" matInput placeholder="11111111" [formControl]="rut" required>
-                  <mat-error *ngIf="rut.invalid">{{getErrorMessage()}}</mat-error>
-                </mat-form-field>
-                <mat-form-field appearance="fill">
-                  <mat-label>Ingresa tu Clave</mat-label>
-                  <input id="password"  matInput [type]="hide ? 'password' : 'text'" required>
-                  <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                  </button>
-                </mat-form-field>
-                <div class="form-floating mb-3">
-                  <input type="number" class="form-control" id="rut" formControlName="rut" placeholder="11111111" required>
-                  <label for="floatingInput">Ingresa tu RUN (sin DV)</label>
-                </div>
-                <div class="form-floating">
-                  <input type="password" class="form-control" id="password"  formControlName="password" placeholder="Password" required>
-                  <label for="floatingPassword">Ingresa tu Clave</label>
-                </div>     
-                <hr>
-                <div class="text-center">
-                  <p class="small"><a class="text-primary fw-bold" href="">¿Olvidaste tu contraseña?</a></p>
-                </div>
-                <div class="d-grid">
-                  <button class="btn btn-outline-dark" type="submit" id="login" (click)="onSubmit()">Iniciar Sesión</button> 
-                </div>
-              </form>
-              <div>
-                <p class="mb-0  text-center">¿Aún no tienes cuenta? Contactate con area de Soporte</p>
->>>>>>> 07211169ad7e3a7d49b709dfe2f9af33974313aa
               </div>
-              <div>
-                <p class="mb-0 text-center">¿Aún no tienes cuenta? Contactate con area de Soporte</p>
-              </div>
-            </form>
-          </mat-card>
-          <div>
-            <label id="error-message"></label>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-<<<<<<< HEAD
-</body>
-=======
-</body>
-</html>
--->
-
-<!-- FORM NUEVO LOGIN -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <base href="./">
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Inicio de Sesión - Arriendate</title>  
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-</head>
-
-<body class="mat-typography">
-  <div class="vh-100 d-flex justify-content-center align-items-center">
-    <div class="container">
-      <div class="row d-flex justify-content-center">
-        <div class="col-12 col-md-8 col-lg-6">
-          <mat-card>
-            <mat-toolbar color="primary" fxLayoutAlign="center center">Iniciar Sesión</mat-toolbar>
-            <form fxLayoutAlign="stretch" fxLayout="column" [formGroup]="loginForm" class="login-form">
-              <p class="mb-5" fxLayoutAlign="center center">Por favor introduce tu usuario y contraseña</p>
-              <mat-form-field appearance="fill">
-                <mat-label>Ingresa tu RUT sin DV</mat-label>
-                <input type="number" id="rut" formControlName="rut" matInput placeholder="11111111" required>
-              </mat-form-field>
-              <mat-form-field appearance="fill">
-                <mat-label>Ingresa tu contraseña</mat-label>
-                <input matInput id="password" formControlName="password" [type]="hide ? 'password' : 'text'" required>
-                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                </button>
-              </mat-form-field>
-              <div class="text-center">
-                <p class="small"><a class="text-primary" href="">¿Olvidaste tu contraseña?</a></p>
-              </div>
+<<<<<<< Updated upstream
               <mat-card-actions fxLayoutAlign="center center">
                 <button mat-raised-button color="primary" type="submit" id="login" (click)="onSubmit()">Ingresar</button>
               </mat-card-actions>
+=======
+>>>>>>> Stashed changes
               <div>
                 <p class="mb-0 text-center">¿Aún no tienes cuenta? Contactate con area de Soporte</p>
               </div>
@@ -153,5 +59,3 @@
     </div>
   </div>
 </body>
-<!-- FIN FORM NUEVO LOGIN -->
->>>>>>> 07211169ad7e3a7d49b709dfe2f9af33974313aa

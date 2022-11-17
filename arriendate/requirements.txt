@@ -1,5 +1,8 @@
-npm install moment --save
-npm i
+npm i -D electron@latest
 npm install @angular/cli
 ng add @angular/material
-npm install sweetalert 
+npm install sweetalert 2
+npm install moment --save
+npm i bootstrap
+npm i jquery
+npm install hammerjs --save

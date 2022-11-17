@@ -114,9 +114,6 @@ export class ReservaExternaComponent implements OnInit {
     this.api.getDeptos().subscribe({
       next:(res)=>{
         this.deptos_detalle = res;
-        Object.entries(res).forEach(([key, value]) => {
-          
-        });
       }
     })
   }
@@ -132,12 +129,9 @@ export class ReservaExternaComponent implements OnInit {
   getServices(){
     this.api.getServices().subscribe({
       next:(res)=>{
-        /*
+        
         this.servicios = res;
-        console.log(this.servicios);*/
-        Object.entries(res).forEach(([key, value]) => {
-          this.servicios = value
-        });
+        console.log(this.servicios);
 
         
       }

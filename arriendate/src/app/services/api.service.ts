@@ -1,6 +1,7 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Injectable, isDevMode, OnInit } from "@angular/core";
-import { catchError, map, Observable, throwError} from "rxjs";
+import {  Observable, throwError} from "rxjs";
+import { map, catchError } from 'rxjs/operators';
 import { RouterModule, Routes, Router, ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2'
 
@@ -15,11 +16,6 @@ export class ApiService{
 
     constructor(private http: HttpClient, private router: Router){
         
-    }
-
-
-    obtener_localstorage(){
-
     }
 
     login(rut:any, password:any){
@@ -199,11 +195,11 @@ export class ApiService{
         .set('Type-content','aplication/json')
 
 
-    return this.http.post<any>(`${this.apiURL}/${id_reserva}/checkout`,{CHECK_OUT:checkout},{headers:header}).pipe(
-        catchError((error) =>{
-            return this.errorHandler(error)
-        })
-    )
+        return this.http.post<any>(`${this.apiURL}/${id_reserva}/checkout`,{CHECK_OUT:checkout},{headers:header}).pipe(
+            catchError((error) =>{
+                return this.errorHandler(error)
+            })
+        )
     }
     
     //Buscar reserva por id
@@ -213,6 +209,7 @@ export class ApiService{
                 return this.errorHandler(error);
             }))
     }
+
 
     //Buscar depto por id
 
@@ -231,6 +228,8 @@ export class ApiService{
                 return this.errorHandler(error)
             }))
     }
+
+    
 
     errorHandler(error:HttpErrorResponse){
         if(error instanceof HttpErrorResponse){

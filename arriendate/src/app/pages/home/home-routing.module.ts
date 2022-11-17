@@ -8,17 +8,14 @@ import { ArriendosVigentesComponent } from '../busqueda/arriendos-vigentes/arrie
 import { BusquedaComponent } from '../busqueda/busqueda.component';
 import { FechasDisponiblesComponent } from '../busqueda/fechas-disponibles/fechas-disponibles.component';
 import { ListarDeptosComponent } from '../busqueda/listar-deptos/listar-deptos.component';
-import { GestiontransporteComponent } from '../reporteria/gestiontransporte/gestiontransporte.component';
-import { MantenciondeptosComponent } from '../reporteria/mantenciondeptos/mantenciondeptos.component';
 import { ModuloReporteriaComponent} from '../reporteria/reporteria.component';
-import { ReporteriaComponent } from '../reporteria/reporteria/reporteria.component';
 import { CancelComponent } from '../reservas/cancel/cancel.component';
 import { CheckComponent } from '../reservas/check/check.component';
 import { ModuleComponent } from '../reservas/module.component';
 import { PayComponent } from '../reservas/pay/pay.component';
 import { ReservaExternaComponent } from '../reservas/reserva-externa/reserva-externa.component';
 import { ReservaComponent } from '../reservas/reserva/reserva.component';
-import { SummaryComponent } from '../../reservas/summary/summary.component';
+import { SummaryComponent } from '../reservas/summary/summary.component';
 import { HomeComponent } from './home.component';
 
 
@@ -38,9 +35,6 @@ const routes: Routes = [
     {path: 'gestion_usuarios', component: GestionusuariosComponent},
     {path: 'inventario', component: InventarioComponent},
     {path: 'modulo_reporteria', component: ModuloReporteriaComponent},
-    {path: 'gestion_transporte', component: GestiontransporteComponent},
-    {path: 'mantencion', component: MantenciondeptosComponent},
-    {path: 'reporteria', component: ReporteriaComponent},
     {path: 'reserva_externa', component: ReservaExternaComponent},
     {path: 'summary', component: SummaryComponent}
 ];

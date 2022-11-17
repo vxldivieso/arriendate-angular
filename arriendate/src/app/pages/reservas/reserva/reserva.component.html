@@ -16,7 +16,7 @@
               <div class="col-md-6 text-center">
                 <mat-form-field appearance="fill" color="primary" >
                   <mat-label>Rut Títular</mat-label>
-                  <input matInput placeholder="XX.XXX.XXX-X" formControlName="ID_CLI" required>
+                  <input type="text" matInput placeholder="XX.XXX.XXX-X" formControlName="ID_CLI" required>
                 </mat-form-field>
               </div>
               <div class="col-md-6">
@@ -175,29 +175,31 @@
               </div>
               <div class="row mb-3">
                 <div class="col-md-6 mb-3">
-                  <section class="example-section" [formGroup]="serviceForm">
+                  <section class="example-section" [formGroup]="serviceForm" >
                     <label class="mb-3" for="" id="label-float">Servicios Extras</label>
-                    <p><mat-checkbox style="color:white" formControlName="transporte">Transporte $10.000</mat-checkbox></p>
-                    <p><mat-checkbox style="color:white" formControlName="bufet">Bufet  $10.000</mat-checkbox></p>
-                    <p><mat-checkbox style="color:white" formControlName="tour">Tour  $20.000</mat-checkbox></p>
-                    <p><mat-checkbox style="color:white" formControlName="desayuno">Desayuno  $5.000</mat-checkbox></p>
+                    <p><mat-checkbox style="color:white" (change)="deptoSeleccionado()" formControlName="transporte">Transporte $10.000</mat-checkbox></p>
+                    <p><mat-checkbox style="color:white" (change)="deptoSeleccionado()" formControlName="bufet">Bufet  $10.000</mat-checkbox></p>
+                    <p><mat-checkbox style="color:white" (change)="deptoSeleccionado()" formControlName="tour">Tour  $20.000</mat-checkbox></p>
+                    <p><mat-checkbox style="color:white" (change)="deptoSeleccionado()" formControlName="desayuno">Desayuno  $5.000</mat-checkbox></p>
                   </section>
-                  
                 </div>
                 <div class="col-md-6 mb-3">
+                  
+                  <mat-form-field appearance="fill" color="primary" floatLabel="always">
+                    <mat-label>Monto Servicios</mat-label>
+                    <input matInput type="number" [(ngModel)]="monto_servicios" formControlName="MONTO_SERVICIOS" class="example-right-align" placeholder="0" value="0">
+                    <span matPrefix>$&nbsp;</span>
+                  </mat-form-field>
                   <mat-form-field appearance="fill" color="primary" floatLabel="always">
                     <mat-label>Total</mat-label>
                     <input matInput type="number" [(ngModel)]="total" (change)="deptoSeleccionado()" formControlName="TOTAL_RESERVA" class="example-right-align" placeholder="0">
                     <span matPrefix>$&nbsp;</span>
+                   
                   </mat-form-field>
+                  <p style="color:gray; font-size:smaller;">Este valor corresponde al total por la cantidad de días de reserva y los servicios extras</p>
                   <mat-form-field appearance="fill" color="primary" floatLabel="always">
                     <mat-label>Monto Abono</mat-label>
                     <input matInput type="number" [(ngModel)]="monto_abono" formControlName="MONTO_ABONADO" class="example-right-align" placeholder="0">
-                    <span matPrefix>$&nbsp;</span>
-                  </mat-form-field>
-                  <mat-form-field appearance="fill" color="primary" floatLabel="always">
-                    <mat-label>Monto Servicios</mat-label>
-                    <input matInput type="number" [(ngModel)]="monto_servicios" formControlName="MONTO_SERVICIOS" class="example-right-align" placeholder="0" value="0">
                     <span matPrefix>$&nbsp;</span>
                   </mat-form-field>
                 
