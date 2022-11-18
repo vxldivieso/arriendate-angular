@@ -1,53 +1,57 @@
-<br>
-<div class="p-3">
-  <button mat-fab id="primary" aria-label="" (click)="goBack()">
-    <mat-icon>keyboard_arrow_left</mat-icon>
-  </button>
-  <label for="" style="color:white ;"> &nbsp; Atrás</label>
-</div>
-
-
-<h2 class="welcome text-center">Check in - Check out</h2>
-    <div class="container w-75">
-        <form class="mb-3 mt-md-4" [formGroup]="searchReserveForm">
-            <h5 class="mb-3 text-uppercase text-center" style="color:white">Ingrese el ID de la Reserva</h5>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-2">
+      <div class="p-3">
+        <button mat-button style="color:white" aria-label="" (click)="goBack()">
+          <mat-icon>keyboard_arrow_left</mat-icon>Atrás
+        </button>
+      </div>
+    </div>
+    <div class="col-10">
+      <div class="container">
+        <form class="mb-3 mt-md-4 w-75" [formGroup]="searchReserveForm">
+          <div class="container mb-3 welcome">
+            <h4>Check in - Check out</h4>
+            <p>Ingrese el número de reserva</p>
+          </div>
             <div class="row">
               <div class="col-md-6 text-center">
                 <mat-form-field appearance="fill" color="primary">
                   <mat-label>Número de Reserva</mat-label>
-                  <input matInput formControlName="ID_RESERVA" id="ID_RESERVA" required>
+                  <input type="number" matInput formControlName="ID_RESERVA" id="ID_RESERVA" required>
                 </mat-form-field>
               </div>
               <div class="col-md-6">
-                <button mat-raised-button color="primary" [disabled]="!searchReserveForm.controls['ID_RESERVA'].value" (click)="searchReserve()" >Buscar Reserva</button>
+                <button mat-raised-button color="primary" [disabled]="!searchReserveForm.controls['ID_RESERVA'].value" (click)="searchReserve()" >
+                  <mat-icon>search</mat-icon> Buscar</button>
                 
               </div>
             </div>
         </form>
-
+  
         <ng-container *ngIf="reserva !=null then reserveForm"></ng-container>
-
+  
         <ng-template #reserveForm>
             <div class="mb-3">
-                <form action="" *ngIf="reserva" >
+                <form class="w-75" action="" *ngIf="reserva" >
                   <div class="row" > 
                     <div class="col-md-4">
                       <mat-form-field appearance="fill" color="primary">
                         <mat-label>Id Cliente</mat-label>
-                        <input matInput id="ID_CLI" name="ID_CLI" [(ngModel)]="reserva.ID_CLI"  readonly>
+                        <input matInput id="ID_CLI" name="ID_CLI" value="{{reserva.ID_CLI}}"  readonly>
                       </mat-form-field>
                     </div>
                     <div class="col-md-4">
                       <mat-form-field appearance="fill" color="primary">
                         <mat-label>Reserva Generada</mat-label>
-                        <input matInput  id="FEC_RESERVA" name="FEC_RESERVA" [(ngModel)]="reserva.FEC_RESERVA"  readonly>
+                        <input matInput  id="FEC_RESERVA" name="FEC_RESERVA" value="{{reserva.FEC_RESERVA | date: 'dd/MM/yyyy - hh:mm:ss aa'}}"  readonly>
                       </mat-form-field>
                     </div>
                     
                     <div class="col-md-4">
                       <mat-form-field appearance="fill" color="primary">
                         <mat-label>Id Departamento</mat-label>
-                        <input matInput  id="ID_DEPTO" name="ID_DEPTO" [(ngModel)]="reserva.ID_DEPTO" readonly>
+                        <input matInput  id="ID_DEPTO" name="ID_DEPTO" value="{{reserva.ID_DEPTO}}" readonly>
                       </mat-form-field>
                       </div>
                   </div>
@@ -55,19 +59,19 @@
                     <div class="col-md-4">
                       <mat-form-field appearance="fill" color="primary">
                         <mat-label>Id Ciudad</mat-label>
-                        <input matInput id="ID_SUC" name="ID_SUC"  [(ngModel)]="reserva.ID_SUC" readonly>
+                        <input matInput id="ID_SUC" name="ID_SUC"  value="{{reserva.ID_SUC}}" readonly>
                       </mat-form-field>
                     </div>
                     <div class="col-md-4">
                       <mat-form-field appearance="fill" color="primary">
                         <mat-label>Fecha Desde</mat-label>
-                        <input matInput id="DESDE" name="DESDE" [(ngModel)]="reserva.DESDE" readonly>
+                        <input matInput id="DESDE" name="DESDE" value="{{reserva.DESDE | date: 'dd/MM/yyyy' }}" readonly>
                       </mat-form-field>
                     </div>
                     <div class="col-md-4">
                       <mat-form-field appearance="fill" color="primary">
                         <mat-label>Fecha Hasta</mat-label>
-                        <input matInput id="HASTA" name="HASTA" [(ngModel)]="reserva.HASTA" readonly>
+                        <input matInput id="HASTA" name="HASTA" value="{{reserva.HASTA | date: 'dd/MM/yyyy'}}" readonly>
                       </mat-form-field>
                       </div>
                   </div>
@@ -75,19 +79,19 @@
                     <div class="col-md-4">
                       <mat-form-field appearance="fill" color="primary">
                         <mat-label>Monto Abonado</mat-label>
-                        <input matInput id="MONTO_ABONADO" name="MONTO_ABONADO"  [(ngModel)]="reserva.MONTO_ABONADO" readonly>
+                        <input matInput id="MONTO_ABONADO" name="MONTO_ABONADO"  value="{{reserva.MONTO_ABONADO | currency:'CLP':'$':'4.0'}}" readonly>
                       </mat-form-field>
                     </div>
                     <div class="col-md-4">
                       <mat-form-field appearance="fill" color="primary">
                         <mat-label>Monto Servicios</mat-label>
-                        <input matInput id="MONTO_SERVICIOS" name="MONTO_SERVICIOS" [(ngModel)]="reserva.MONTO_SERVICIOS" readonly>
+                        <input matInput id="MONTO_SERVICIOS" name="MONTO_SERVICIOS" value="{{reserva.MONTO_SERVICIOS | currency:'CLP':'$':'4.0'}}" readonly>
                       </mat-form-field>
                     </div>
                     <div class="col-md-4">
                       <mat-form-field appearance="fill" color="primary">
                         <mat-label>Total Arriendo</mat-label>
-                        <input matInput id="TOTAL_ARRIENDO" name="TOTAL_ARRIENDO" [(ngModel)]="reserva.TOTAL_ARRIENDO" readonly>
+                        <input matInput id="TOTAL_ARRIENDO" name="TOTAL_ARRIENDO" value="{{reserva.TOTAL_ARRIENDO | currency:'CLP':'$':'4.0'}}" readonly>
                       </mat-form-field>
                       </div>
                   </div>
@@ -95,37 +99,42 @@
                     <div class="col-md-4">
                       <mat-form-field appearance="fill" color="primary">
                         <mat-label>Estado Reserva</mat-label>
-                        <input matInput id="ESTADO" name="ESTADO"  [(ngModel)]="reserva.ESTADO" readonly>
+                        <input matInput id="ESTADO" name="ESTADO"  value="{{reserva.ESTADO}}" readonly>
                       </mat-form-field>
                     </div>
                     <div class="col-md-4">
                       <mat-form-field appearance="fill" color="primary">
                         <mat-label>Check in</mat-label>
-                        <input matInput id="CHECK_IN" name="CHECK_IN" [(ngModel)]="reserva.CHECK_IN" (change)="checkIn()" readonly>
+                        <input matInput id="CHECK_IN" name="CHECK_IN" value="{{reserva.CHECK_IN | date: 'dd/MM/yyyy - hh:mm:ss aa'}}" (change)="checkIn()" readonly>
                       </mat-form-field>
                     </div>
                     <div class="col-md-4">
                       <mat-form-field appearance="fill" color="primary">
                         <mat-label>Check out</mat-label>
-                        <input matInput id="CHECK_OUT" name="CHECK_OUT" [(ngModel)]="reserva.CHECK_OUT" readonly>
+                        <input matInput id="CHECK_OUT" name="CHECK_OUT" value="{{reserva.CHECK_OUT | date: 'dd/MM/yyyy - hh:mm:ss aa'}}" readonly>
                       </mat-form-field>
                       </div>
                   </div>
-
+  
                   <div class="row mb-3 text-center">
                     <div class="col-md-6">
                         <button mat-raised-button color="primary" [disabled]="reserva.CHECK_IN != null || reserva.ESTADO == 'CANCELADO' " (click)="checkIn()" >Realizar Check in</button>
-
+  
                     </div>
                     <div class="col-md-6">
                         <button mat-raised-button color="primary" [disabled]="reserva.CHECK_OUT != null || reserva.ESTADO == 'CANCELADO' " (click)="openDialog(reserva.ID_RESERVA)" >Realizar Check out</button>
-
+  
                     </div>
                   </div>
   
                 </form>
               </div>
         </ng-template>
-
+  
         
     </div>
+    </div>
+  </div>
+  
+     
+</div>

@@ -1,54 +1,58 @@
-<br>
-<div class="p-3">
-  <button mat-fab id="secundary" aria-label="" (click)="goBack()">
-    <mat-icon>keyboard_arrow_left</mat-icon>
-  </button>
-  <label for="" style="color:white ;"> &nbsp; Atrás</label>
-</div>
-
-<body>
-  <!-- Titulo con espacios -->
-  <br>
-  <h2 class="welcome text-center">Ver Departamentos Disponibles</h2>
-  <br>
-
-  <!--Filtros-->
-  <div class="container w-75">
-    <mat-form-field color="accent">
-      <mat-label>Buscar</mat-label>
-      <input matInput (keyup)="filtrar($event)">
-    </mat-form-field>
-  </div>
-  
-
-  <div class="container" >
-    <div class="row g-3">
-      <div class="col-4" *ngFor="let data of deptos_detalle">
-        <mat-card class="example-card" >
-          <mat-card-header>
-            <mat-card-title>Departamento {{data.ID_DEPTO}}, ({{data.TOTAL_PERSONAS}} personas)</mat-card-title>
-          </mat-card-header>
-          <img mat-card-image src="travel.jpg" alt="Depto foto">
-          <mat-card-content>
-            <p>
-              Ubicación: {{data.UBICACION}}
-            </p>
-            <p>{{data.DESCRIPCION}}</p>
-            <h5>Valor por día: {{data.VALOR_DIA | currency:'CLP':'$':'4.0'}}</h5>
-          </mat-card-content>
-          <mat-card-actions>
-            <button mat-raised-button id="secundary" (click)="reservarDepto(data.ID_DEPTO)" cdkFocusInitial >Reservar</button>
-
-
-
-            <button mat-button (click)="openDialog(data.ID_DEPTO)">Ver detalle</button>
-          </mat-card-actions>
-        </mat-card>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-1">
+      <div class="p-3">
+        <button mat-button style="color:white" aria-label="" (click)="goBack()">
+          <mat-icon>keyboard_arrow_left</mat-icon> Atrás
+        </button>
+    </div>
+    </div>
+    <div class="col-11">
+      <div class="container mt-md-4">
+        <div class="container mb-3 welcome">
+          <h4>Ver Departamentos</h4>
+          <p>Visualización de departamentos disponibles</p>
+        </div>
+        <!--Filtros-->
+        <div class="container">
+          <mat-form-field color="accent">
+            <mat-label>Buscar</mat-label>
+            <input matInput (keyup)="filtrar($event)">
+          </mat-form-field>
+        </div>
+        
+      
+        <div class="container" >
+      
+          <div class="row g-3">
+            <div class="col-4" *ngFor="let data of deptos_detalle">
+              <mat-card class="example-card" >
+                <mat-card-header>
+                  <mat-card-title>Departamento {{data.ID_DEPTO}} ({{data.TOTAL_PERSONAS}} personas)</mat-card-title>
+                </mat-card-header>
+                <img mat-card-image src="{{data.FOTO1}}" alt="Depto foto">
+                <mat-card-content>
+                  <p>
+                    Ubicación: {{data.UBICACION}}
+                  </p>
+                  <p>{{data.DESCRIPCION}}</p>
+                  <h5>Valor día: {{data.VALOR_DIA | currency:'CLP':'$':'4.0'}}</h5>
+                </mat-card-content>
+                <mat-card-actions>
+                  <button mat-raised-button id="secundary" (click)="reservarDepto(data.ID_DEPTO)" cdkFocusInitial >Reservar</button>
+      
+      
+      
+                  <button mat-button (click)="openDialog(data.ID_DEPTO)">Ver detalle</button>
+                </mat-card-actions>
+              </mat-card>
+            </div>
+          </div>
+        </div>
       </div>
+      
+    
     </div>
   </div>
-
-  
-
-</body>
+</div>
 

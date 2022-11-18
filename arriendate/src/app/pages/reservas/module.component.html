@@ -1,51 +1,53 @@
-
-<br>
-<div class="p-3">
-  <button mat-fab id="primary" aria-label="" (click)="goBack()">
-    <mat-icon>keyboard_arrow_left</mat-icon>
-  </button>
-  <label for="" style="color:white ;"> &nbsp; Atrás</label>
-</div>
-
-
-<h4 class="welcome">Seleccione un módulo</h4>
-
-
-    <section class="functions">
-        <div class="container w-100">
-          <div class="row row-cols-1 row-cols-md-4 g-4">
-            <div class="col">
-              <div class="card text-center" id="primary" type="button" routerLink="/home/realizar_reserva" >
-                <div class="card-body"  >
-                  <h5 class="card-title">Realizar Reserva</h5>
+<div class="container-fluid">
+  <div class="p-3">
+    <button mat-button style="color:white" aria-label="" (click)="goBack()">
+      <mat-icon>keyboard_arrow_left</mat-icon> Atrás
+    </button>
+  </div>
+  
+  
+  <div class="container p-3 welcome">
+    <h4>Seleccione un módulo</h4>
+    <p>En esta sección se encuentran los módulos correspondientes a la gestión de reservas</p>
+  </div>
+  
+  
+      <section class="functions">
+          <div class="container w-100">
+            <div class="row row-cols-1 row-cols-md-4 g-4">
+              <div class="col">
+                <div class="card text-center" id="primary" type="button" routerLink="/home/realizar_reserva" >
+                  <div class="card-body"  >
+                    <h5 class="card-title">Realizar Reserva</h5>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card text-center" id="primary" type="button" routerLink="/home/check">
+                  <div class="card-body" >
+                    <h5 class="card-title">Check in - Check out</h5>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col">
+                <div class="card text-center" id="primary" type="button" routerLink="/home/cancel">
+                  
+                  <div class="card-body" >
+                    <h5 class="card-title">Cancelar Reserva</h5>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card text-center" id="primary" type="button" routerLink="/home/pay">
+                  
+                  <div class="card-body" >
+                    <h5 class="card-title">Pago Online</h5>
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="col">
-              <div class="card text-center" id="primary" type="button" routerLink="/home/check">
-                <div class="card-body" >
-                  <h5 class="card-title">Check in - Check out</h5>
-                </div>
-              </div>
-            </div>
-            
-            <div class="col">
-              <div class="card text-center" id="primary" type="button" routerLink="/home/cancel">
-                
-                <div class="card-body" >
-                  <h5 class="card-title">Cancelar Reserva</h5>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card text-center" id="primary" type="button" routerLink="/home/pay">
-                
-                <div class="card-body" >
-                  <h5 class="card-title">Pago Online</h5>
-                </div>
-              </div>
-            </div>
+  
           </div>
-
-        </div>
-    </section>
+      </section>
+</div>

@@ -2,6 +2,7 @@
   height: 200px;
   border-radius: 50px;
   .card-body{
+    letter-spacing: 1px;
    display: grid;
    justify-content: center;
    align-items: center;
@@ -15,11 +16,27 @@
   }
   
  }
-h4 {
-    text-align: center;
+
+.welcome{
+  h4 {
+    text-align: left;
+    font-weight: lighter;
     padding-top: 20px;
-    padding-bottom: 50px;
+    letter-spacing: 1px;
   }
+  .atras{
+    text-align: left;
+      font-weight: lighter;
+      letter-spacing: 1px;
+      color: white;
+  }
+  p{
+    color: white;
+    font-weight: lighter;
+  }
+
+}
+
   
   .card-title{
     text-align: center;

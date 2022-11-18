@@ -114,11 +114,18 @@ export class DetalleDialogComponent implements OnInit{
 @Component({
   selector: 'modify-dialog',
   templateUrl: './modify.component.html',
+  styleUrls: ['./inventario.component.scss']
 })
 export class ModifyDialogComponent implements OnInit{
 
   id_depto:any;
   detalle:any;
+
+  estacionamiento: string[] = ['SI', 'NO'];
+  mascotas: string[] = ['SI', 'NO'];
+
+  estac:any
+  masc:any
 
   constructor(private dialog: MatDialog,  private api : ApiService){}
 
@@ -132,7 +139,16 @@ export class ModifyDialogComponent implements OnInit{
       next:(res:any)=>{
         this.detalle = res
         console.log(this.detalle);
-        
+        if(this.detalle[0].ESTACIONAMIENTO == 'SI'){
+          this.estac == true
+        }else{
+          this.estac == false
+        }
+        if(this.detalle[0].MASCOTAS == 1){
+          this.masc == true
+        }else{
+          this.masc == false
+        }
       }
     })
   }

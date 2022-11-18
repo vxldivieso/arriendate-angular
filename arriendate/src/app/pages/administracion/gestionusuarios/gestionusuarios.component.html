@@ -15,7 +15,10 @@
         <br>
         <br>
         <h4 class="welcome">Listado de Empleados</h4>
-        <br>
+        <button mat-button class="bg-success" style="color:white" aria-label="" matTooltip="Añadir Usuario">
+            <mat-icon>add</mat-icon> Añadir
+        </button>
+        <hr>
         <!-- DataGrid -->
         <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 text-center">
 
@@ -63,12 +66,6 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
         </table>
-        <mat-paginator [pageSizeOptions]="[5]" aria-label="Select page">
-        </mat-paginator>
-        <br>
-        <button mat-button class="bg-success" style="color:white" aria-label="" matTooltip="Añadir Usuario">
-            <mat-icon>add</mat-icon> Añadir
-        </button>
     </div>
 
     <div class="container w-75 data_table">
@@ -77,7 +74,10 @@
         <br>
         <br>
         <h4 class="welcome">Listado de Clientes</h4>
-        <br>
+        <button mat-button class="bg-success" style="color:white" aria-label="" matTooltip="Añadir Cliente">
+            <mat-icon>add</mat-icon> Añadir
+        </button>
+        <hr>
         <!-- DataGrid -->
         <table mat-table [dataSource]="dataSourceClient" class="mat-elevation-z8 text-center" id="season-tble">
 
@@ -130,10 +130,7 @@
         <br>
         <mat-paginator [pageSizeOptions]="[5]" aria-label="Select page">
         </mat-paginator>
-        <br>
-        <button mat-button class="bg-success" style="color:white" aria-label="" matTooltip="Añadir Cliente">
-            <mat-icon>add</mat-icon> Añadir
-        </button>
+        
     </div>
          
         

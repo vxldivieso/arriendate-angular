@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, Inject, OnInit, ViewChildren } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DOCUMENT, Location } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import {MatDatepickerModule} from '@angular/material/datepicker';
@@ -58,10 +58,18 @@ export class ReservaExternaComponent implements OnInit {
   id_departamento:any
   id_sucursal:any
 
+  value_transporte :any
+  value_bufet:any
+  value_tour:any
+  value_desayuno:any
+
+  id_reserva1:any
+
+
 
 
   constructor(private acroute: ActivatedRoute, private location : Location, private fb: FormBuilder, private api:ApiService,
-    @Inject(DOCUMENT) document: Document) { }
+    @Inject(DOCUMENT) document: Document, private route: Router) { }
 
 
   
@@ -131,9 +139,6 @@ export class ReservaExternaComponent implements OnInit {
       next:(res)=>{
         
         this.servicios = res;
-        console.log(this.servicios);
-
-        
       }
     })
   }
@@ -224,7 +229,11 @@ export class ReservaExternaComponent implements OnInit {
         this.id_sucursal = this.deptoSelected[0].UBICACION;
         this.valor_dia = this.deptoSelected[0].VALOR_DIA ;
         this.total_personas = this.deptoSelected[0].TOTAL_PERSONAS;
-        
+        //buscar fecha minima de reserva
+        this.totalReserva()
+        this.checkService()
+
+
       },
       error:()=>{
         console.log('Error al buscar depto');
@@ -264,40 +273,102 @@ export class ReservaExternaComponent implements OnInit {
       this.monto_abono = (this.total / 2)
     }
   }
+    //Condicionar servicios chequeados
+    checkService(){
+      this.monto_servicios = 0
+      this.value_transporte = 0
+      this.value_bufet = 0
+      this.value_tour = 0
+      this.value_desayuno = 0
+      if(this.serviceForm.controls['transporte'].value == true){
+       this.monto_servicios +=  10000
+       this.value_transporte = 1
+      }
+      if(this.serviceForm.controls['bufet'].value == true){
+       this.monto_servicios += 10000
+       this.value_bufet = 2
+      }
+      if(this.serviceForm.controls['tour'].value == true){
+       this.monto_servicios += 20000
+       this.value_tour = 3
+      }
+      if(this.serviceForm.controls['desayuno'].value == true){
+       this.monto_servicios += 5000
+       this.value_desayuno = 4
+      }
+      this.total += this.monto_servicios
+   
+     }
+     //Guardar servicios asociados a la reserva
+     saveService(){
+       if(this.value_transporte !=0){
+         this.api.sendService(this.id_reserva1, this.value_transporte).subscribe({
+           next:(res)=>{
+             res
+           }
+         })
+       }
+       if(this.value_bufet !=0){
+         this.api.sendService(this.id_reserva1, this.value_bufet).subscribe({
+           next:(res)=>{
+             res
+           }
+         })
+       }
+       if(this.value_tour !=0){
+         this.api.sendService(this.id_reserva1, this.value_tour).subscribe({
+           next:(res)=>{
+             res
+           }
+         })
+       }
+       if(this.value_desayuno !=0){
+         this.api.sendService(this.id_reserva1, this.value_desayuno).subscribe({
+           next:(res)=>{
+             res
+           }
+         })
+       }
+       
+     }
 
-  onSubmit(){
-    const format = 'YYYY-MM-DD'
-    const desde = moment(this.reserveForm.controls['FEC_DESDE'].value).format(format)
-    const hasta = moment(this.reserveForm.controls['FEC_HASTA'].value).format(format)
-
-    const ID_CLI = this.id_cli
-    const ID_DEPTO = this.reserveForm.controls['ID_DEPTO'].value
-    const ID_SUC = this.reserveForm.controls['ID_SUC'].value
-    const FEC_DESDE = desde
-    const FEC_HASTA = hasta
-    const MONTO_ABONADO = this.reserveForm.controls['MONTO_ABONADO'].value
-    const MONTO_SERVICIOS = this.reserveForm.controls['MONTO_SERVICIOS'].value
-    const MONTO_TOTAL = this.reserveForm.controls['TOTAL_RESERVA'].value
-    const MASCOTAS = 0;
-    const ID_RESERVA = this.id_reserva + 1
-
-    //Petición a api
-    if (this.reserveForm.valid){
-      this.api.doReserve(ID_DEPTO, ID_SUC, ID_CLI,MONTO_ABONADO, MONTO_SERVICIOS, FEC_DESDE, FEC_HASTA,  MONTO_TOTAL, MASCOTAS, ID_RESERVA).subscribe({
-        next:(res)=>{
-          res;
-          this.messageExito()
-          
-        },
-        error:()=>{
-          this.messageExito()
-          
-        }
-      })
-    }else{
-      window.alert('Formulario invalido')
+     onSubmit(){
+      const format = 'YYYY-MM-DD'
+      const desde = moment(this.reserveForm.controls['FEC_DESDE'].value).format(format)
+      const hasta = moment(this.reserveForm.controls['FEC_HASTA'].value).format(format)
+  
+      const ID_CLI = this.id_cli
+      const ID_DEPTO = this.reserveForm.controls['ID_DEPTO'].value
+      const ID_SUC = this.reserveForm.controls['ID_SUC'].value
+      const FEC_DESDE = desde
+      const FEC_HASTA = hasta
+      const MONTO_ABONADO = this.reserveForm.controls['MONTO_ABONADO'].value
+      const MONTO_SERVICIOS = this.reserveForm.controls['MONTO_SERVICIOS'].value
+      const MONTO_TOTAL = this.reserveForm.controls['TOTAL_RESERVA'].value
+      const MASCOTAS = 0;
+      this.id_reserva1 = this.id_reserva + 1
+      this.datosReserva = this.id_reserva1
+      
+  
+      //Petición a api
+      if (this.reserveForm.valid){
+        this.api.doReserve(ID_DEPTO, ID_SUC, ID_CLI,MONTO_ABONADO, MONTO_SERVICIOS, FEC_DESDE, FEC_HASTA,  MONTO_TOTAL, MASCOTAS, this.id_reserva1).subscribe({
+          next:(res)=>{
+            this.messageExito()
+            this.route.navigate(['home/summary']);
+            this.getLastReservas()
+            localStorage.setItem('datos_reserva', this.datosReserva);
+            this.saveService()
+          },
+          error:(error)=>{
+            this.messageErrorReserva()
+            
+          }
+        })
+      }else{
+        window.alert('Formulario invalido')
+      }
     }
-  }
 
   //Message Exito
   messageExito(){

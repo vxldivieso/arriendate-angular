@@ -22,7 +22,7 @@
                         <strong>Datos Reserva</strong>
                         <small>Resumen</small>
                     </h5>
-                    <span style="color:black">Total: {{data.TOTAL_ARRIENDO | currency}}</span>
+                    <span style="color:black">Total: {{data.TOTAL_ARRIENDO | currency:'CLP':'$':'4.0'}}</span>
                 </div>
             </summary>
             <div>
@@ -43,22 +43,22 @@
                     </div>
                     <div>
                         <dt>Monto Servicios</dt>
-                        <dd>{{data.MONTO_SERVICIOS  | currency}}</dd>
+                        <dd>{{data.MONTO_SERVICIOS  | currency:'CLP':'$':'4.0'}}</dd>
                     </div>
 
                     <div>
                         <dt>Monto Abono</dt>
-                        <dd>{{data.MONTO_ABONADO | currency}}</dd>
+                        <dd>{{data.MONTO_ABONADO | currency:'CLP':'$':'4.0'}}</dd>
                     </div>
 
                     <div>
                         <dt>Monto Total</dt>
-                        <dd>{{data.TOTAL_ARRIENDO | currency}}</dd>
+                        <dd>{{data.TOTAL_ARRIENDO | currency:'CLP':'$':'4.0'}}</dd>
                     </div>
 
                     <div> 
                         <dt>Servicios Extras</dt>
-                        <dd *ngFor="let item of services">- {{item.NOM_SERV}} {{item.VALOR_SERVICIO | currency}}</dd>
+                        <dd *ngFor="let item of services">- {{item.NOM_SERV}} {{item.VALOR_SERVICIO | currency:'CLP':'$':'4.0'}}</dd>
                     </div>  
                 </dl>
             </div>
@@ -110,7 +110,7 @@
                         <strong>Detalle Departamento</strong>
                         <small>Depto ID {{data.ID_DEPTO}}</small>
                     </h5>
-                    <span style="color:black">{{data.VALOR_DIA | currency}} día</span>
+                    <span style="color:black">{{data.VALOR_DIA | currency:'CLP':'$':'4.0'}} día</span>
                 </div>
             </summary>
             <div>

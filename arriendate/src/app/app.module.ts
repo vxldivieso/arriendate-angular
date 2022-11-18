@@ -40,6 +40,7 @@ import { SummaryComponent } from './pages/reservas/summary/summary.component';
   declarations: [
     AppComponent,
     LoginComponent,
+    NavbarComponent,
     ListarDeptosComponent,
     ArriendosVigentesComponent,
     BusquedaComponent,

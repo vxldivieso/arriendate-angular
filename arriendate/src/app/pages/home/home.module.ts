@@ -19,7 +19,7 @@ import { PayComponent } from '../reservas/pay/pay.component';
 
 
 @NgModule({
-  declarations: [HomeComponent, ModuleComponent, NavbarComponent],
+  declarations: [HomeComponent, ModuleComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,

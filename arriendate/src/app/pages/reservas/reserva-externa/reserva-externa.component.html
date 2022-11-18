@@ -1,17 +1,21 @@
 <body>
-  <br>
-<div class="mb-3">
-  <button mat-fab color="accent" aria-label="" (click)="goBack()">
-    <mat-icon>keyboard_arrow_left</mat-icon>
-  </button>
-  <label for=""> &nbsp; Atrás</label>
-</div>
 
-
-<h2 class="welcome text-center">Realizar Reserva</h2>
-    <div class="container w-75">
-        <form class="mb-3 mt-md-4" [formGroup]="reserveForm"  *ngIf="sucursales" >
-            <h5 class="mb-3 text-uppercase text-center">Ingrese los siguientes datos</h5>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-2">
+      <div class="container p-3">
+        <button mat-button style="color:white" aria-label="" (click)="goBack()">
+          <mat-icon>keyboard_arrow_left</mat-icon> Atrás
+        </button>
+      </div>
+    </div>
+    <div class="col-10">
+      <div class="container">
+        <form class="mb-3 mt-md-4 w-75" [formGroup]="reserveForm"  *ngIf="sucursales" >
+          <div class="container mb-3 welcome">
+            <h4>Realizar Reserva</h4>
+            <p>Ingrese los siguientes datos</p>
+          </div>
             <div class="row">
               <div class="col-md-6 text-center">
                 <mat-form-field appearance="fill" color="accent" >
@@ -130,18 +134,18 @@
 
             
             <!--Detalles de la Reserva-->
-            <div *ngIf="deptos_detalle">
+            <div  >
               <div class="row mb-3" >
                 <div class="col-md-6" >
                   <mat-form-field appearance="fill" color="accent" >
                     <mat-label>Ubicacion</mat-label>
-                    <input matInput [value]="id_sucursal" formControlName="ID_SUC" name="ID_SUC" readonly>
+                    <input matInput  value="{{id_sucursal}}" name="ID_SUC" readonly>
                   </mat-form-field>
                 </div>
                 <div class="col-md-6" >
                   <mat-form-field appearance="fill" color="accent" >
                     <mat-label>Nombre Depto</mat-label>
-                    <input matInput [value]="id_departamento" formControlName="ID_DEPTO" name="ID_DEPTO" readonly>
+                    <input matInput value="{{id_departamento}}" name="ID_DEPTO" readonly>
                   </mat-form-field>
                 </div>
               </div>
@@ -171,12 +175,12 @@
               </div>
               <div class="row mb-3">
                 <div class="col-md-6 mb-3">
-                  <section class="example-section" [formGroup]="serviceForm">
+                  <section class="example-section" [formGroup]="serviceForm" >
                     <label class="mb-3" for="" id="label-float">Servicios Extras</label>
-                    <p><mat-checkbox style="color:white" formControlName="transporte">Transporte $10.000</mat-checkbox></p>
-                    <p><mat-checkbox style="color:white" formControlName="bufet">Bufet  $10.000</mat-checkbox></p>
-                    <p><mat-checkbox style="color:white" formControlName="tour">Tour  $20.000</mat-checkbox></p>
-                    <p><mat-checkbox style="color:white" formControlName="desayuno">Desayuno  $5.000</mat-checkbox></p>
+                    <p><mat-checkbox style="color:white" (change)="deptoSeleccionado()" formControlName="transporte">Transporte $10.000</mat-checkbox></p>
+                    <p><mat-checkbox style="color:white" (change)="deptoSeleccionado()" formControlName="bufet">Bufet  $10.000</mat-checkbox></p>
+                    <p><mat-checkbox style="color:white" (change)="deptoSeleccionado()" formControlName="tour">Tour  $20.000</mat-checkbox></p>
+                    <p><mat-checkbox style="color:white" (change)="deptoSeleccionado()" formControlName="desayuno">Desayuno  $5.000</mat-checkbox></p>
                   </section>
                   
                 </div>
@@ -186,19 +190,21 @@
                       <mat-icon>autorenew</mat-icon> Refrescar totales </button>
 
                   </div>
-                  <mat-form-field appearance="fill" color="accent" floatLabel="always">
-                    <mat-label>Total</mat-label>
-                    <input matInput type="text" [(ngModel)]="total" formControlName="TOTAL_RESERVA" class="example-right-align" placeholder="0">
-                    <span matPrefix>$&nbsp;</span>
-                  </mat-form-field>
-                  <mat-form-field appearance="fill" color="accent" floatLabel="always">
-                    <mat-label>Monto Abono</mat-label>
-                    <input matInput type="text" [(ngModel)]="monto_abono" formControlName="MONTO_ABONADO" class="example-right-align" placeholder="0">
-                    <span matPrefix>$&nbsp;</span>
-                  </mat-form-field>
-                  <mat-form-field appearance="fill" color="accent" floatLabel="always">
+                  <mat-form-field appearance="fill" color="primary" floatLabel="always">
                     <mat-label>Monto Servicios</mat-label>
-                    <input matInput type="text" [(ngModel)]="monto_servicios" formControlName="MONTO_SERVICIOS" class="example-right-align" placeholder="0" value="0">
+                    <input matInput type="number" [(ngModel)]="monto_servicios" formControlName="MONTO_SERVICIOS" class="example-right-align" placeholder="0" value="0">
+                    <span matPrefix>$&nbsp;</span>
+                  </mat-form-field>
+                  <mat-form-field appearance="fill" color="primary" floatLabel="always">
+                    <mat-label>Total</mat-label>
+                    <input matInput type="number" [(ngModel)]="total" (change)="deptoSeleccionado()" formControlName="TOTAL_RESERVA" class="example-right-align" placeholder="0">
+                    <span matPrefix>$&nbsp;</span>
+                   
+                  </mat-form-field>
+                  <p style="color:gray; font-size:smaller;">Este valor corresponde al total por la cantidad de días de reserva y los servicios extras</p>
+                  <mat-form-field appearance="fill" color="primary" floatLabel="always">
+                    <mat-label>Monto Abono</mat-label>
+                    <input matInput type="number" [(ngModel)]="monto_abono" formControlName="MONTO_ABONADO" class="example-right-align" placeholder="0">
                     <span matPrefix>$&nbsp;</span>
                   </mat-form-field>
                 
@@ -214,4 +220,9 @@
 
         
     </div>
+    </div>
+  </div>
+</div>
+
+    
 </body>

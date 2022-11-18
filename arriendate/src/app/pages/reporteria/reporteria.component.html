@@ -1,22 +1,28 @@
-<br>
-<div class="p-3">
-  <button mat-fab id="warning" aria-label="" (click)="goBack()">
-    <mat-icon>keyboard_arrow_left</mat-icon>
-  </button>
-  <label for="" style="color:white ;"> &nbsp; Atrás</label>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-1">
+      <div class="p-3">
+        <button mat-button style="color:white" aria-label="" (click)="goBack()">
+          <mat-icon>keyboard_arrow_left</mat-icon> Atrás
+        </button>
+    </div>
+    </div>
+    <div class="col-11">
+      <section class="graphs mt-md-4 ">
+        <div class="container w-100" style="border-radius:10px ;">
+            <div class="container-graph">
+                <div class="content">
+                    <div class="row row-cols-1 row-cols-md-1 g-6">
+                        <iframe title="Dashboard 1 - Página 1" width="1140" height="600" src="https://app.powerbi.com/reportEmbed?reportId=3aec4173-76d2-4276-a843-8385abb90798&autoAuth=true&ctid=72fd0b5a-8a6a-4cff-89f6-bde961f7e250" frameborder="0" allowFullScreen="true"></iframe>
+                      </div>
+                </div>
+                
+            </div>
+          
+    
+        </div>
+    </section>
+    </div>
+  </div>
 </div>
 
-<section class="graphs">
-    <div class="container w-100" style="border-radius:10px ;">
-        <div class="container-graph">
-            <div class="content">
-                <div class="row row-cols-1 row-cols-md-1 g-6">
-                    <iframe title="Dashboard 1 - Página 1" width="1140" height="550" src="https://app.powerbi.com/reportEmbed?reportId=3aec4173-76d2-4276-a843-8385abb90798&autoAuth=true&ctid=72fd0b5a-8a6a-4cff-89f6-bde961f7e250" frameborder="0" allowFullScreen="true"></iframe>
-                  </div>
-            </div>
-            
-        </div>
-      
-
-    </div>
-</section>

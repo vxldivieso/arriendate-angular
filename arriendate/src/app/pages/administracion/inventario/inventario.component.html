@@ -1,94 +1,96 @@
-<br>
-<div class="p-3">
-    <button mat-fab id="accent" aria-label="" (click)="goBack()">
-      <mat-icon>keyboard_arrow_left</mat-icon>
-    </button>
-    <label for="" style="color:white ;"> &nbsp; Atrás</label>
-  </div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-1">
+            <div class="p-3">
+                <button mat-button style="color:white" aria-label="" (click)="goBack()">
+                  <mat-icon>keyboard_arrow_left</mat-icon> Atrás
+                </button>
+            </div>
+        </div>
+        <div class="col-11">
+            <div class="container mt-md-4">
+                <div class="container mb-3 welcome">
+                    <h4>Inventario</h4>
+                    <p>Aquí se encuentra el registro de inventario de las propiedades</p>
+                  </div>
+                <div class="mb-3">
+                    <button mat-button id="accent" style="color:white" aria-label="" (click)="openDialogAdd()" matTooltip="Añadir Depto">
+                        <mat-icon>add</mat-icon> Añadir
+                    </button>
+                </div>
+               
 
-<body>
-    <!-- Titulo con espacios  -->
-    <br>
-    <h2 class="welcome text-center">Inventario Departamentos</h2>
-    <p class="text-center" style="color:white">Puede acceder al detalle, modificación del item o eliminación de este. </p>
-    <br>
-
-
-    <!-- Comienzo del div-->
-    <div class="container w-75 data_table">
-        <button mat-button class="bg-success" style="color:white" aria-label="" (click)="openDialogAdd()" matTooltip="Añadir Depto">
-            <mat-icon>add</mat-icon> Añadir
-        </button>
-        <hr>
-        <!-- DataGrid -->
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 text-center">
-
-             <!-- Columns -->
-            <ng-container matColumnDef="ID_DEPTO" >
-                <th mat-header-cell *matHeaderCellDef > ID Depto </th>
-                <td mat-cell *matCellDef="let row" > {{row.ID_DEPTO}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="NOMBRE">
-                <th mat-header-cell *matHeaderCellDef> Nombre </th>
-                <td mat-cell *matCellDef="let row"> {{row.NOMBRE}}</td>
-            </ng-container>
-
-            <ng-container matColumnDef="DESCRIPCION">
-                <th mat-header-cell *matHeaderCellDef> Descripcion</th>
-                <td mat-cell *matCellDef="let row"> {{row.DESCRIPCION}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="UBICACION">
-                <th mat-header-cell *matHeaderCellDef> Ubicacion</th>
-                <td mat-cell *matCellDef="let row"> {{row.UBICACION}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="VALOR_DIA">
-                <th mat-header-cell *matHeaderCellDef>Valor Día</th>
-                <td mat-cell *matCellDef="let row"> ${{row.VALOR_DIA}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="TOTAL_PERSONAS">
-                <th mat-header-cell *matHeaderCellDef> Personas</th>
-                <td mat-cell *matCellDef="let row"> {{row.TOTAL_PERSONAS}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="ESTACIONAMIENTO">
-                <th mat-header-cell *matHeaderCellDef> Estacionamiento</th>
-                <td mat-cell *matCellDef="let row"> {{row.ESTACIONAMIENTO}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="ESTADO_DEPTO">
-                <th mat-header-cell *matHeaderCellDef> Estado</th>
-                <td mat-cell *matCellDef="let row"> {{row.ESTADO_DEPTO}} </td>
-            </ng-container>
-
-            <!-- Column/Acciones -->
-            <ng-container matColumnDef="acciones">
-                <th mat-header-cell *matHeaderCellDef> Acciones </th>
-                <td mat-cell *matCellDef="let row">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <a class="pointer" type="button" (click)="openDialog(row.ID_DEPTO)" style="color:#2ECC71" matTooltip="Ver Detalle">
-                                <mat-icon>visibility</mat-icon>
-                            </a>
-                        </div>
-                        <div class="col-md-6">
-                            <a class="pointer" type="button" (click)="openDialogModify(row.ID_DEPTO)" style="color:#67A4FF" matTooltip="Modificar">
-                                <mat-icon>edit</mat-icon>
-                              </a>
-                        </div>
-                    </div>         
-                </td>           
-            </ng-container>
-
-            <!-- Show Table -->
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
-        </table>
-        <mat-paginator [length]="21" [pageSizeOptions]="[7]" aria-label="Select page">
-        </mat-paginator>
+                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 text-center">
+        
+                     <!-- Columns -->
+                    <ng-container matColumnDef="ID_DEPTO" >
+                        <th mat-header-cell *matHeaderCellDef > ID Depto </th>
+                        <td mat-cell *matCellDef="let row" > {{row.ID_DEPTO}} </td>
+                    </ng-container>
+        
+                    <ng-container matColumnDef="NOMBRE">
+                        <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                        <td mat-cell *matCellDef="let row"> {{row.NOMBRE}}</td>
+                    </ng-container>
+        
+                    <ng-container matColumnDef="DESCRIPCION">
+                        <th mat-header-cell *matHeaderCellDef> Descripcion</th>
+                        <td mat-cell *matCellDef="let row"> {{row.DESCRIPCION}} </td>
+                    </ng-container>
+        
+                    <ng-container matColumnDef="UBICACION">
+                        <th mat-header-cell *matHeaderCellDef> Ubicacion</th>
+                        <td mat-cell *matCellDef="let row"> {{row.UBICACION}} </td>
+                    </ng-container>
+        
+                    <ng-container matColumnDef="VALOR_DIA">
+                        <th mat-header-cell *matHeaderCellDef>Valor Día</th>
+                        <td mat-cell *matCellDef="let row"> {{row.VALOR_DIA | currency:'CLP':'$':'4.0'}} </td>
+                    </ng-container>
+        
+                    <ng-container matColumnDef="TOTAL_PERSONAS">
+                        <th mat-header-cell *matHeaderCellDef> Personas</th>
+                        <td mat-cell *matCellDef="let row"> {{row.TOTAL_PERSONAS}} </td>
+                    </ng-container>
+        
+                    <ng-container matColumnDef="ESTACIONAMIENTO">
+                        <th mat-header-cell *matHeaderCellDef> Estacionamiento</th>
+                        <td mat-cell *matCellDef="let row"> {{row.ESTACIONAMIENTO}} </td>
+                    </ng-container>
+        
+                    <ng-container matColumnDef="ESTADO_DEPTO">
+                        <th mat-header-cell *matHeaderCellDef> Estado</th>
+                        <td mat-cell *matCellDef="let row"> {{row.ESTADO_DEPTO}} </td>
+                    </ng-container>
+        
+                    <!-- Column/Acciones -->
+                    <ng-container matColumnDef="acciones">
+                        <th mat-header-cell *matHeaderCellDef> Acciones </th>
+                        <td mat-cell *matCellDef="let row">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <a class="pointer" type="button" (click)="openDialog(row.ID_DEPTO)" style="color:#2ECC71" matTooltip="Ver Detalle">
+                                        <mat-icon>visibility</mat-icon>
+                                    </a>
+                                </div>
+                                <div class="col-md-6">
+                                    <a class="pointer" type="button" (click)="openDialogModify(row.ID_DEPTO)" style="color:#67A4FF" matTooltip="Modificar">
+                                        <mat-icon>edit</mat-icon>
+                                      </a>
+                                </div>
+                            </div>         
+                        </td>           
+                    </ng-container>
+        
+                    <!-- Show Table -->
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        
+                </table>
+                <mat-paginator [length]="21" [pageSizeOptions]="[7]" aria-label="Select page">
+                </mat-paginator>
+            </div>
+            <br>
+        </div>
     </div>
-</body>
+</div>

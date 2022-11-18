@@ -1,78 +1,89 @@
-<h1 mat-dialog-title style="font-weight:bold" *ngFor="let data of detalle">Departamento {{data.ID_DEPTO}}</h1>
+<h1 mat-dialog-title *ngFor="let data of detalle">Departamento {{data.ID_DEPTO}}</h1>
 <div mat-dialog-content class="mat-typography"  *ngFor="let data of detalle" >
     <div>
         <div class="row">
-            <div class="col-md-3 fw-bold">
-                <h3>Ubicación: </h3>
+            <div class="col-md-4">
+                <mat-form-field appearance="fill" color="primary" >
+                    <mat-label>Ubicación</mat-label>
+                    <input matInput value="{{data.UBICACION}}" readonly>
+                  </mat-form-field>
             </div>
-            <div class="col-md-3">
-                <h3>{{data.UBICACION}}</h3>
+            <div class="col-md-4">
+                <mat-form-field appearance="fill" color="primary" >
+                    <mat-label>Capacidad Personas</mat-label>
+                    <input matInput value="{{data.TOTAL_PERSONAS}}" readonly>
+                  </mat-form-field>
             </div>
-            <div class="col-md-3 fw-bold">
-                <h3>Total Personas: </h3>
-            </div>
-            <div class="col-md-3">
-                <h3>{{data.TOTAL_PERSONAS}}</h3>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 fw-bold">
-                <h3>Camas 1 plaza: </h3>
-            </div>
-            <div class="col-md-3">
-                <h3>{{data.CAMA_1PL}}</h3>
-            </div>
-            <div class="col-md-3 fw-bold" >
-                <h3>Camas 2 plazas: </h3>
-            </div>
-            <div class="col-md-3">
-                <h3>{{data.CAMA_2PL}}</h3>
+            <div class="col-md-4">
+                <mat-form-field appearance="fill" color="primary" >
+                    <mat-label>Camas 1 plaza</mat-label>
+                    <input matInput value="{{data.CAMA_1PL}}" readonly>
+                  </mat-form-field>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-3 fw-bold">
-                <h3>Refrigerador: </h3>
+            <div class="col-md-4">
+                <mat-form-field appearance="fill" color="primary" >
+                    <mat-label>Camas 2 plazas</mat-label>
+                    <input matInput value="{{data.CAMA_2PL}}" readonly>
+                  </mat-form-field>
             </div>
-            <div class="col-md-3">
-                <h3>{{data.REFRIGERADOR}}</h3>
+            <div class="col-md-4">
+                <mat-form-field appearance="fill" color="primary" >
+                    <mat-label>Refrigerador</mat-label>
+                    <input matInput value="{{data.REFRIGERADOR}}" readonly>
+                  </mat-form-field>
             </div>
-            <div class="col-md-3 fw-bold">
-                <h3>Cocina: </h3>
-            </div>
-            <div class="col-md-3">
-                <h3>{{data.COCINA}}</h3>
+            <div class="col-md-4">
+                <mat-form-field appearance="fill" color="primary" >
+                    <mat-label>Cocina</mat-label>
+                    <input matInput value="{{data.COCINA}}" readonly>
+                  </mat-form-field>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-3 fw-bold">
-                <h3>Internet: </h3>
+            <div class="col-md-4">
+                <mat-form-field appearance="fill" color="primary" >
+                    <mat-label>Internet</mat-label>
+                    <input matInput value="{{data.INTERNET}}" readonly>
+                  </mat-form-field>
             </div>
-            <div class="col-md-3">
-                <h3>{{data.INTERNET}}</h3>
+            <div class="col-md-4">
+                <mat-form-field appearance="fill" color="primary" >
+                    <mat-label>Tv</mat-label>
+                    <input matInput value="{{data.CANT_TV_DEPTO}}" readonly>
+                  </mat-form-field>
             </div>
-            <div class="col-md-3 fw-bold">
-                <h3>Tv: </h3>
+            <div class="col-md-4">
+                <mat-form-field appearance="fill" color="primary" >
+                    <mat-label>Tv cable</mat-label>
+                    <input matInput value="{{data.TV_CABLE}}" readonly>
+                  </mat-form-field>
             </div>
-            <div class="col-md-3">
-                <h3>{{data.CANT_TV_DEPTO}}</h3>
-            </div>
-            
         </div>
         <div class="row">
-            
-            <div class="col-md-3 fw-bold">
-                <h3>Tv cable: </h3>
-            </div>
-            <div class="col-md-3">
-                <h3>{{data.TV_CABLE}}</h3>
-            </div>
-            <div class="col-md-3 fw-bold">
-                <h3>Comentarios: </h3>
-            </div>
-            <div class="col-md-3">
-                <h3>{{data.COMENTARIOS}}</h3>
+            <div class="col-md-12">
+                <mat-form-field appearance="fill" style="width:100% ;" color="primary" >
+                    <mat-label>Comentarios</mat-label>
+                    <input matInput value="{{data.COMENTARIOS}}" readonly>
+                  </mat-form-field>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-6">
+                <mat-form-field appearance="fill" style="width:100% ;" color="primary" >
+                    <mat-label>Valor día</mat-label>
+                    <input matInput value="{{data.VALOR_DIA | currency:'CLP':'$':'4.0'}}" readonly>
+                  </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field appearance="fill" style="width:100% ;" color="primary" >
+                    <mat-label>Estado</mat-label>
+                    <input matInput value="{{data.ESTADO_DEPTO}}" readonly>
+                  </mat-form-field>
+            </div>
+        </div>
+        
     </div>
 </div>
 <div mat-dialog-actions [align]="'end'">

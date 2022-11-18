@@ -104,6 +104,8 @@ export class DialogElementsExampleDialog2 implements OnInit{
     this.api.getDeptoById(this.id_depto).subscribe({
       next:(res:any)=>{
         this.detalle_depto = res;
+        console.log(this.detalle_depto);
+        
       }
     })
   }

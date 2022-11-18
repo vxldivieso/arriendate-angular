@@ -1,3 +1,6 @@
+table{
+    width: 90%;
+}
 mat-form-field{
     width: 100%;
     input {
@@ -11,9 +14,6 @@ button{
     }
 }
 
-.data_table {
-    width: 100%;
-}
 .acciones{
     width: 100%;
     margin: 20px auto;
@@ -48,6 +48,26 @@ th.mat-header-cell{
 .mat-column-MONTO_PENDIENTE{
     width: auto;
 }
+
+
+.welcome{
+    h4 {
+      text-align: left;
+      font-weight: lighter;
+      letter-spacing: 1px;
+    }
+    .atras{
+      text-align: left;
+        font-weight: lighter;
+        letter-spacing: 1px;
+        color: white;
+    }
+    p{
+      color: white;
+      font-weight: lighter;
+    }
+  
+  }
 
 
 

@@ -90,6 +90,7 @@ export class ArriendosVigentesComponent implements OnInit {
 @Component({
   selector: 'dialog-elements-example-dialog',
   templateUrl: 'dialog-arriendos-vigentes.component.html',
+  styleUrls: ['./arriendos-vigentes.component.scss']
 })
 export class DialogElementsExampleDialog implements OnInit{
 

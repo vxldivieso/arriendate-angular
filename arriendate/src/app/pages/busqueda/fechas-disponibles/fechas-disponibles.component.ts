@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { ApiService } from 'src/app/services/api.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-fechas-disponibles',
@@ -16,6 +17,7 @@ export class FechasDisponiblesComponent implements OnInit {
 
   detalle : any;
   ultima_reserva:any;
+  selected!: Date | null;
 
   constructor(private acroute: ActivatedRoute, private location : Location, private api : ApiService, private fb : FormBuilder) { }
 
@@ -34,11 +36,33 @@ export class FechasDisponiblesComponent implements OnInit {
       this.api.getLastDate(this.buscarDeptoForm.controls['ID_DEPTO'].value).subscribe({
         next:(res)=>{
           this.detalle = res
-          console.log(this.detalle[0].HASTA);
-          this.ultima_reserva = this.detalle[0].HASTA
-          
+          if(this.detalle.length == 0){
+            this.messageErrorDepto()
+          }else{
+            this.ultima_reserva = this.detalle[0].HASTA
+          }
         }
       })
     }
   }
+
+  //Message Error Check in 
+  messageErrorDepto(){
+    const Toast = Swal.mixin({
+    toast: true,
+    position: 'bottom',
+    showConfirmButton: false,
+    timer: 2000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+    })
+    Toast.fire({
+    icon: 'error',
+    title: 'Ups.. Número de departamento erroneo'
+    })
+  }
+
 }

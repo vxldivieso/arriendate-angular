@@ -1,51 +1,50 @@
-<br>
-<div class="p-3">
-  <button mat-fab id="secundary" aria-label="" (click)="goBack()">
-    <mat-icon>keyboard_arrow_left</mat-icon>
-  </button>
-  <label for="" style="color:white ;"> &nbsp; Atrás</label>
-</div>
-
-<body>
-  <!-- Titulo con espacios  -->
-  <br>
-  <h2 class="welcome text-center">Fechas Disponibles de Agendamiento</h2>
-  <br>
-  <!-- Comienzo del div-->
-  <div class="container w-75">
-    <!-- Form -->
-    <form class="mb-3 mt-md-4" [formGroup]="buscarDeptoForm">
-      <div class="row">
-        
-        <div class="col-md-6 text-center">
-          <mat-form-field appearance="fill" color="accent" >
-            <mat-label>Número de Departamento</mat-label>
-            <input matInput formControlName="ID_DEPTO" id="ID_DEPTO" required>
-          </mat-form-field>
-        </div>
-        <div class="col-md-6">
-          <button mat-raised-button id="secundary" type="button" (click)="getLastDate()">
-            <mat-icon>search</mat-icon> Buscar Departamento </button>
-        </div>
-      </div>
-
-      <section>
-        <div class="row">
-          <div class="col-md-12">
-            <div *ngIf="ultima_reserva != null">
-              <mat-form-field class="example-full-width" appearance="fill" color="accent">
-                <mat-label>Presione para ver fechas disponibles</mat-label>
-                <input matInput [matDatepicker]="picker" (change)="getLastDate()" [min]="ultima_reserva">
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker touchUi #picker></mat-datepicker>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-2">
+      <div class="p-3">
+        <button mat-button style="color:white" aria-label="" (click)="goBack()">
+          <mat-icon>keyboard_arrow_left</mat-icon> Atrás
+        </button>
+    </div>
+    </div>
+    <div class="col-10">
+      <div class="container">
+        <!-- Form -->
+        <form class="mb-3 mt-md-4 w-75" [formGroup]="buscarDeptoForm">
+            <div class="container mb-3 welcome">
+              <h4>Ver Departamentos</h4>
+              <p>Visualización de departamentos disponibles</p>
+            </div>
+          <div class="row">
+            
+            <div class="col-md-6 text-center">
+              <mat-form-field appearance="fill" color="accent" >
+                <mat-label>Número de Departamento</mat-label>
+                <input matInput formControlName="ID_DEPTO" id="ID_DEPTO" required>
               </mat-form-field>
             </div>
+            <div class="col-md-6">
+              <button mat-raised-button id="secundary" type="button" (click)="getLastDate()">
+                <mat-icon>search</mat-icon> Buscar</button>
+            </div>
           </div>
-        </div>
-      </section>
-      
-    </form>
-  </div>
     
-</body>
+          <section>
+            <div class="row">
+              <div class="col-md-12">
+                <div *ngIf="ultima_reserva != null">
+                  <mat-card class="demo-inline-calendar-card">
+                    <mat-calendar [minDate]="ultima_reserva" [(selected)]="selected"></mat-calendar>
+                    
+                  </mat-card>
+                </div>
+              </div>
+            </div>
+          </section>
+          
+        </form>
+      </div>
 
+    </div>
+  </div>
+</div>

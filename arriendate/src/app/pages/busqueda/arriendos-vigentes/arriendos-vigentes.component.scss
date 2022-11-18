@@ -1,10 +1,8 @@
 .img {
     background-image: url(../arriendos-vigentes/img2/travel.jpg);
 }
-
-.data_table {
-    width: 80%;
-    margin: 20px auto;
+table, mat-paginator{
+    width: 90%;
 }
 th{
     width: 20%;
@@ -24,3 +22,22 @@ mat-form-field{
         color: white;
     }
 }
+
+.welcome{
+    h4 {
+      text-align: left;
+      font-weight: lighter;
+      letter-spacing: 1px;
+    }
+    .atras{
+      text-align: left;
+        font-weight: lighter;
+        letter-spacing: 1px;
+        color: white;
+    }
+    p{
+      color: white;
+      font-weight: lighter;
+    }
+  
+  }
