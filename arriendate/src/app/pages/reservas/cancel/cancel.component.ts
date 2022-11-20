@@ -34,7 +34,6 @@ export class CancelComponent implements OnInit {
     this.api.getReserveByID(this.searchReserveForm.controls['ID_RESERVA'].value).subscribe({
       next:(res:any)=>{
         this.reserva = res[0];
-        console.log(this.reserva);
         
       },
       error:(error)=>{

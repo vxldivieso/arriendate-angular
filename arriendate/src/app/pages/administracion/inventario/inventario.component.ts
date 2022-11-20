@@ -98,8 +98,6 @@ export class DetalleDialogComponent implements OnInit{
     this.api.getDeptoById(this.id_depto).subscribe({
       next:(res:any)=>{
         this.detalle = res
-        console.log(this.detalle);
-        
       }
     })
   }
@@ -138,7 +136,6 @@ export class ModifyDialogComponent implements OnInit{
     this.api.getDeptoById(this.id_depto).subscribe({
       next:(res:any)=>{
         this.detalle = res
-        console.log(this.detalle);
         if(this.detalle[0].ESTACIONAMIENTO == 'SI'){
           this.estac == true
         }else{
@@ -206,7 +203,6 @@ export class AddDialogComponent implements OnInit{
     this.api.getSucursal().subscribe({
       next:(res:any)=>{
         this.sucursales = res
-        console.log(this.sucursales)
       }
     })
   }

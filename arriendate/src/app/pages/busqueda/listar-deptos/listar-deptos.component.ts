@@ -6,6 +6,7 @@ import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material/dial
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-listar-deptos',
@@ -20,7 +21,7 @@ export class ListarDeptosComponent implements OnInit {
   descripcion:any;
   estacionamiento:any;
   estado_depto:any;
-  foto1:any;
+  foto1 :any
   foto2:any;
   foto3:any;
   foto4:any;
@@ -37,7 +38,8 @@ export class ListarDeptosComponent implements OnInit {
   dataSource!: MatTableDataSource<any>;
   
 
-  constructor(private dialog: MatDialog, private acroute: ActivatedRoute, private location : Location, private api : ApiService, private route : Router) { }
+  constructor(private dialog: MatDialog, private acroute: ActivatedRoute, 
+    private location : Location, private api : ApiService, private route : Router, private _sanitizer: DomSanitizer) { }
 
   openDialog(id_depto:any) {
     this.dialog.open(DialogElementsExampleDialog2);
@@ -65,6 +67,7 @@ export class ListarDeptosComponent implements OnInit {
     this.api.getDeptos().subscribe({
       next:(res:any)=>{
         this.deptos_detalle = res;
+        console.log(this.deptos_detalle);
         this.dataSource = new MatTableDataSource(this.deptos_detalle);
         
       }
@@ -104,8 +107,6 @@ export class DialogElementsExampleDialog2 implements OnInit{
     this.api.getDeptoById(this.id_depto).subscribe({
       next:(res:any)=>{
         this.detalle_depto = res;
-        console.log(this.detalle_depto);
-        
       }
     })
   }

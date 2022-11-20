@@ -45,30 +45,11 @@ export class ModuloReporteriaComponent implements OnInit {
     private apiR: ApiReportService) { }
 
   ngOnInit(): void {
-    this.getPagos()
   }
 
   goBack(){
     this.location.back()
   }
 
-  downloadPagos(id:any): void {
-    let element = document.getElementById('pagos-table');
-    const worksheet: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
-
-    const book: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(book, worksheet, 'Sheet1');
-
-    XLSX.writeFile(book, this.name);
-  }
-
-  getPagos(){
-    this.apiR.getPagos().subscribe({
-      next:(res:any)=>{
-        this.pagos = res;
-        this.dataSource1 = new MatTableDataSource(this.pagos);
-      }
-    })
-  }
 
 }

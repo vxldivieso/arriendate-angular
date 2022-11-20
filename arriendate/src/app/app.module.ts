@@ -18,7 +18,7 @@ import { FechasDisponiblesComponent } from './pages/busqueda/fechas-disponibles/
 import { ReservaComponent } from './pages/reservas/reserva/reserva.component';
 import { CheckComponent, CheckoutDialogComponent } from './pages/reservas/check/check.component';
 import { CancelComponent } from './pages/reservas/cancel/cancel.component';
-import { PayComponent } from './pages/reservas/pay/pay.component';
+import { PayComponent, PayDetailComponent } from './pages/reservas/pay/pay.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { AdministracionComponent } from './pages/administracion/administracion.component';
 import { AddDialogComponent, DetalleDialogComponent, ModifyDialogComponent, InventarioComponent } from './pages/administracion/inventario/inventario.component';
@@ -62,7 +62,8 @@ import { SummaryComponent } from './pages/reservas/summary/summary.component';
     ModifyDialogComponent,
     ReservaExternaComponent,
     SummaryComponent,
-    CheckoutDialogComponent
+    CheckoutDialogComponent,
+    PayDetailComponent
   ],
   imports: [
     CommonModule,

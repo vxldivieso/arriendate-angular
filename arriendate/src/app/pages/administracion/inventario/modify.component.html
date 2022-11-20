@@ -35,7 +35,7 @@
         <div class="col-md-6">
           <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Valor por día</mat-label>
-            <input matInput value="{{data.VALOR_DIA}}">
+            <input matInput value="{{data.VALOR_DIA | currency:'CLP':'$':'4.0'}}">
           </mat-form-field>
         </div>
       </div>

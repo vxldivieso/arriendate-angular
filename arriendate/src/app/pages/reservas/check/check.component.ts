@@ -198,8 +198,6 @@ export class CheckoutDialogComponent implements OnInit {
       next:(res:any)=>{
         this.reserva = res[0];
         this.id_depto = this.reserva.ID_DEPTO
-        console.log(this.reserva);
-        
       },
       error:(error)=>{
         this.reserva = error['error']['text']
@@ -217,6 +215,7 @@ export class CheckoutDialogComponent implements OnInit {
       this.img = this.sant.bypassSecurityTrustUrl(window.URL.createObjectURL(this.fileSelected)) as string;
       this.base64Output;
       this.convertFileToBase64()
+      console.log(this.fileSelected);
       ;
       
     }
@@ -228,9 +227,15 @@ export class CheckoutDialogComponent implements OnInit {
     if (this.fileSelected){
       reader.readAsDataURL(this.fileSelected as Blob)
       reader.onloadend = () => {this.base64Output = reader.result as string;}
-      console.log(this.fileSelected);
-      
+     
+    
     }
+    
+  }
+
+  onSubmit(){
+    let imgB64 = JSON.stringify(this.base64Output)
+    console.log(imgB64);
     
   }
 

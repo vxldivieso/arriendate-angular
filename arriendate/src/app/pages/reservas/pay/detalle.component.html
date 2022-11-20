@@ -1,0 +1,98 @@
+<h1 mat-dialog-title  *ngFor="let data of detalle_arriendos">Reserva {{data.ID_RESERVA}}</h1>
+<div mat-dialog-content class="mat-typography"  *ngFor="let data of detalle_arriendos" >
+    <div>
+        <div class="row">
+            <div class="col-md-6">
+                <mat-form-field appearance="fill" color="primary" >
+                    <mat-label>Fecha Reserva</mat-label>
+                    <input matInput value="{{data.FEC_RESERVA | date: 'dd/MM/yyyy - hh:mm:ss aa'}}" readonly> 
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field appearance="fill" color="primary" >
+                    <mat-label>Departamento</mat-label>
+                    <input matInput value="{{data.NOMBRE}} - {{data.UBICACION}}" readonly> 
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <mat-form-field appearance="fill" color="primary" >
+                    <mat-label>Cliente</mat-label>
+                    <input matInput value="{{data.FIRST_NAME}} {{data.LAST_NAME}}" readonly> 
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field appearance="fill" color="primary" >
+                    <mat-label>Rut cliente</mat-label>
+                    <input matInput value="{{data.RUT_CLI}}" readonly> 
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            
+            <div class="col-md-6">
+                <mat-form-field appearance="fill" color="primary" >
+                    <mat-label>Fecha desde</mat-label>
+                    <input matInput value="{{data.DESDE | date: 'dd/MM/yyyy'}}" readonly> 
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field appearance="fill" color="primary" >
+                    <mat-label>Fecha hasta</mat-label>
+                    <input matInput value="{{data.HASTA | date: 'dd/MM/yyyy'}}" readonly> 
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            
+            <div class="col-md-6">
+                <mat-form-field appearance="fill" color="primary" >
+                    <mat-label>Check in</mat-label>
+                    <input matInput value="{{data.CHECK_IN | date: 'dd/MM/yyyy - hh:mm:ss aa'}}" readonly> 
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field appearance="fill" color="primary" >
+                    <mat-label>Check out</mat-label>
+                    <input matInput value="{{data.CHECK_OUT | date: 'dd/MM/yyyy - hh:mm:ss aa'}}" readonly> 
+                </mat-form-field>
+            </div>
+            
+        </div>
+        <div class="row">
+            
+            <div class="col-md-6">
+                <mat-form-field appearance="fill" color="primary" >
+                    <mat-label>Total Reserva</mat-label>
+                    <input matInput value="{{data.TOTAL_ARRIENDO | currency:'CLP':'$':'4.0'}}" readonly> 
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field appearance="fill" color="primary" >
+                    <mat-label>Monto Servicios</mat-label>
+                    <input matInput value="{{data.MONTO_SERVICIOS| currency:'CLP':'$':'4.0'}}" readonly> 
+                </mat-form-field>
+            </div>
+            
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <mat-form-field appearance="fill" color="primary" >
+                    <mat-label>Monto Abonado</mat-label>
+                    <input matInput value="{{data.MONTO_ABONADO | currency:'CLP':'$':'4.0'}}" readonly> 
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field appearance="fill" color="primary" >
+                    <mat-label>Estado Reserva</mat-label>
+                    <input matInput value="{{data.ESTADO}}" readonly>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+</div>
+<div mat-dialog-actions [align]="'end'">
+    <button id="primary" mat-button  mat-dialog-close>Cerrar</button>
+</div>
+  

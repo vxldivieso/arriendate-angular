@@ -1,14 +1,18 @@
-import { Component, OnInit, ViewChildren } from '@angular/core';
+import { Component, OnInit, ViewChildren, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginComponent } from 'src/app/pages/login/login.component';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss']
+  styleUrls: ['./navbar.component.scss'],
+  providers: [
+    { provide: Window, useValue: window }
+  ]
 })
 export class NavbarComponent implements OnInit {
-  constructor(private route:Router) { }
+  constructor(private route:Router,private location : Location) { }
 
   ngOnInit(): void {
     
@@ -16,6 +20,10 @@ export class NavbarComponent implements OnInit {
 
   logout() {
     this.route.navigate([''])
+  }
+
+  refresh(){
+    window.location.reload();
   }
 
 }

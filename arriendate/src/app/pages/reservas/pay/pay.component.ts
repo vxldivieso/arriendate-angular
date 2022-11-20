@@ -8,6 +8,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import Swal from 'sweetalert2'
 import * as moment from 'moment';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-pay',
@@ -18,6 +19,7 @@ export class PayComponent implements OnInit {
 
   searchReserveForm!: FormGroup;
   reserva : any;
+  id_reserva:any;
 
   displayedColumns: string[] = ['ID_RESERVA','RUT_CLI','NOMBRE_DEPTO','UBICACION','DESDE','HASTA','TOTAL_ARRIENDO','MONTO_ABONADO','MONTO_PENDIENTE','ESTADO','acciones'];
   dataSource!: MatTableDataSource<any>;
@@ -25,12 +27,20 @@ export class PayComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!:MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private api:ApiService, private acroute: ActivatedRoute, private location : Location, private fb : FormBuilder) { }
+  constructor(private api:ApiService, private acroute: ActivatedRoute, private location : Location, 
+    private fb : FormBuilder, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.searchReserveForm = this.fb.group({
       RUT_CLI : new FormControl('',  Validators.required )
     })
+  }
+
+  openDialog(id_reserva:any) {
+    this.dialog.open(PayDetailComponent);
+
+    this.id_reserva = id_reserva;
+    localStorage.setItem('pay_detalle', this.id_reserva);
   }
 
   goBack(){
@@ -74,4 +84,34 @@ export class PayComponent implements OnInit {
     })
   }
 
+}
+
+@Component({
+  selector: 'app-detail',
+  templateUrl: './detalle.component.html',
+  styleUrls: ['./pay.component.scss']
+})
+export class PayDetailComponent implements OnInit{
+
+  detalle_arriendos : any;
+  id_reserva:any;
+  
+  constructor (public dialog: MatDialog, private api : ApiService) {}
+
+  ngOnInit(): void {
+    this.id_reserva = localStorage.getItem('pay_detalle');
+    this.getReservaDetalle()
+  }
+  
+  closeDialog(){
+    this.dialog.closeAll();
+  }
+
+  getReservaDetalle(){
+    this.api.getReserveByID(this.id_reserva).subscribe({
+      next:(res:any)=>{
+        this.detalle_arriendos = res;
+      }
+    })
+  }
 }

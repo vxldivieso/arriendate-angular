@@ -1,5 +1,5 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from "@angular/common/http";
-import { Injectable, isDevMode, OnInit } from "@angular/core";
+import { Injectable, Input, isDevMode, OnInit } from "@angular/core";
 import {  Observable, throwError} from "rxjs";
 import { map, catchError } from 'rxjs/operators';
 import { RouterModule, Routes, Router, ActivatedRoute } from '@angular/router';
@@ -13,7 +13,6 @@ export class ApiService{
     ingreso :any;
 
     idClient:any;
-
     constructor(private http: HttpClient, private router: Router){
         
     }

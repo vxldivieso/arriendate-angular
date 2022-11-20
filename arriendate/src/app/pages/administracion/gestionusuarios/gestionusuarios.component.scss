@@ -1,5 +1,5 @@
-table {
-    width: 100%;
+table, mat-paginator {
+    width: 90%;
 }
 
 th{
@@ -22,3 +22,23 @@ th{
  mat-paginator{
     background-color:transparent!important; 
  }
+
+ 
+.welcome{
+    h4 {
+      text-align: left;
+      font-weight: lighter;
+      letter-spacing: 1px;
+    }
+    .atras{
+      text-align: left;
+        font-weight: lighter;
+        letter-spacing: 1px;
+        color: white;
+    }
+    p{
+      color: white;
+      font-weight: lighter;
+    }
+  
+  }
