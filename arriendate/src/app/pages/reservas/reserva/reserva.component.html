@@ -37,30 +37,25 @@
                 <h5 class="text-center">Cliente no encontrado, ingrese los siguientes datos</h5>
                 <form action="" [formGroup]="createClientForm">
                   <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                       <mat-form-field appearance="fill" color="primary" >
                         <mat-label>Rut Cliente</mat-label>
                         <input matInput placeholder="XX.XXX.XXX-X" formControlName="RUT_CLI" id="rut_cli" required>
                       </mat-form-field>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                       <mat-form-field appearance="fill" color="primary" >
                         <mat-label>Nombre</mat-label>
                         <input matInput placeholder="John" formControlName="FIRST_NAME" id="first_name" required>
                       </mat-form-field>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                       <mat-form-field appearance="fill" color="primary" >
                         <mat-label>Apellido</mat-label>
                         <input matInput placeholder="Doe" formControlName="LAST_NAME" id="last_name" required>
                       </mat-form-field>
                     </div>
-                    <div class="col-md-3">
-                      <mat-form-field appearance="fill" color="primary" >
-                        <mat-label>Celular</mat-label>
-                        <input matInput formControlName="TELEFONO" id="telefono"  required>
-                      </mat-form-field>
-                    </div>
+                    
                   </div>
                   <div class="row mb-3">
                     <div class="col-md-4">
@@ -80,14 +75,14 @@
                     </div>
                     <div class="col-md-4">
                       <mat-form-field appearance="fill" color="primary" >
-                        <mat-label>Password</mat-label>
-                        <input type="password" matInput formControlName="PASSWORD" id="password"  required>
+                        <mat-label>Celular</mat-label>
+                        <input matInput formControlName="TELEFONO" id="telefono"  required>
                       </mat-form-field>
                     </div>
                   </div>
     
                   <div class="row mb-3">
-                    <div class="col-md-12">
+                    <div class="col-md-12 text-center">
                       <button mat-raised-button color="primary" (click)="addClient()" [disabled]="!createClientForm.valid" >Agregar Cliente</button>
                     </div>
                     

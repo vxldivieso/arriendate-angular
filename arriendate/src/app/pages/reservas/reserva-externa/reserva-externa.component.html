@@ -24,7 +24,7 @@
                 </mat-form-field>
               </div>
               <div class="col-md-6">
-                <button mat-raised-button color="accent" [disabled]="!reserveForm.controls['ID_CLI'].value" (click)="searchClient()"  >Buscar Cliente</button>
+                <button mat-raised-button id="secundary" [disabled]="!reserveForm.controls['ID_CLI'].value" (click)="searchClient()"  >Buscar Cliente</button>
                 
               </div>
             </div>
@@ -37,34 +37,29 @@
               <h5 class="text-center">Cliente no encontrado, ingrese los siguientes datos</h5>
               <form action="" [formGroup]="createClientForm">
                 <div class="row">
-                  <div class="col-md-3">
-                    <mat-form-field appearance="fill" color="accent" >
+                  <div class="col-md-4">
+                    <mat-form-field appearance="fill" color="primary" >
                       <mat-label>Rut Cliente</mat-label>
                       <input matInput placeholder="XX.XXX.XXX-X" formControlName="RUT_CLI" id="rut_cli" required>
                     </mat-form-field>
                   </div>
-                  <div class="col-md-3">
-                    <mat-form-field appearance="fill" color="accent" >
+                  <div class="col-md-4">
+                    <mat-form-field appearance="fill" color="primary" >
                       <mat-label>Nombre</mat-label>
                       <input matInput placeholder="John" formControlName="FIRST_NAME" id="first_name" required>
                     </mat-form-field>
                   </div>
-                  <div class="col-md-3">
-                    <mat-form-field appearance="fill" color="accent" >
+                  <div class="col-md-4">
+                    <mat-form-field appearance="fill" color="primary" >
                       <mat-label>Apellido</mat-label>
                       <input matInput placeholder="Doe" formControlName="LAST_NAME" id="last_name" required>
                     </mat-form-field>
                   </div>
-                  <div class="col-md-3">
-                    <mat-form-field appearance="fill" color="accent" >
-                      <mat-label>Celular</mat-label>
-                      <input matInput formControlName="TELEFONO" id="telefono"  required>
-                    </mat-form-field>
-                  </div>
+                  
                 </div>
                 <div class="row mb-3">
                   <div class="col-md-4">
-                    <mat-form-field appearance="fill" color="accent">
+                    <mat-form-field appearance="fill" color="primary">
                       <mat-label>Fecha de Nacimiento</mat-label>
                       <input formControlName="BIRTHDAY" matInput [matDatepicker]="picker">
                       <mat-hint>MM/DD/YYYY</mat-hint>
@@ -73,22 +68,22 @@
                     </mat-form-field>
                   </div>
                   <div class="col-md-4">
-                    <mat-form-field appearance="fill" color="accent" >
+                    <mat-form-field appearance="fill" color="primary" >
                       <mat-label>Email</mat-label>
                       <input matInput formControlName="EMAIL" id="email"  required>
                     </mat-form-field>
                   </div>
                   <div class="col-md-4">
-                    <mat-form-field appearance="fill" color="accent" >
-                      <mat-label>Password</mat-label>
-                      <input type="password" matInput formControlName="PASSWORD" id="password"  required>
+                    <mat-form-field appearance="fill" color="primary" >
+                      <mat-label>Celular</mat-label>
+                      <input matInput formControlName="TELEFONO" id="telefono"  required>
                     </mat-form-field>
                   </div>
                 </div>
-
+  
                 <div class="row mb-3">
-                  <div class="col-md-12">
-                    <button mat-raised-button color="accent" (click)="addClient()" [disabled]="!createClientForm.valid" >Agregar Cliente</button>
+                  <div class="col-md-12 text-center">
+                    <button mat-raised-button color="primary" (click)="addClient()" [disabled]="!createClientForm.valid" >Agregar Cliente</button>
                   </div>
                   
                 </div>
@@ -186,7 +181,7 @@
                 </div>
                 <div class="col-md-6 mb-3">
                   <div class="mb-3">
-                    <button mat-raised-button color="accent" (click)="totalReserva()">
+                    <button mat-raised-button id="secundary" (click)="totalReserva()">
                       <mat-icon>autorenew</mat-icon> Refrescar totales </button>
 
                   </div>
@@ -214,7 +209,7 @@
             </div>
             
             <div class="text-center p-3">
-            <button mat-raised-button color="accent" (click)="onSubmit()" >Generar Reserva</button>
+            <button mat-raised-button id="secundary" (click)="onSubmit()" >Generar Reserva</button>
             </div>
         </form>
 

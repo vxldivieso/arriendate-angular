@@ -124,12 +124,12 @@ export class ApiService{
     }
 
     //Agregar Cliente
-    newClient(RUT_CLI:any, FIRST_NAME:any, LAST_NAME:any, BIRTHDAY:any, TELEFONO:any, EMAIL:any, PASSWORD:any){
+    newClient(RUT_CLI:any, FIRST_NAME:any, LAST_NAME:any, BIRTHDAY:any, TELEFONO:any, EMAIL:any){
         let header = new HttpHeaders()
         .set('Type-content','aplication/json')
 
         return this.http.post<any>(`${this.apiURL}/agregarCli`,{RUT_CLI:RUT_CLI, FIRST_NAME:FIRST_NAME, LAST_NAME:LAST_NAME,
-             BIRTHDAY:BIRTHDAY, TELEFONO:TELEFONO, EMAIL:EMAIL, PASSWORD:PASSWORD},{headers:header}).pipe(
+             BIRTHDAY:BIRTHDAY, TELEFONO:TELEFONO, EMAIL:EMAIL},{headers:header}).pipe(
             catchError((error) =>{
                 return this.errorHandler(error);
             }))

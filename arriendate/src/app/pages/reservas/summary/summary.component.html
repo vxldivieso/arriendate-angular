@@ -1,15 +1,17 @@
 <body>
-    <br>
-  <div class="p-3" id="btnBack" >
-    <button mat-fab id="primary" aria-label="" (click)="goBack()"  >
-      <mat-icon>keyboard_arrow_left</mat-icon>
-    </button>
-    <label for="" style="color:white ;" > &nbsp; Atrás</label>
-  </div>
-
-  <div class="container w-75">
-
-    <section *ngFor="let data of reserva_detail" class="print-section" >
+    <div class="container-fluid" >
+        <div class="row">
+            <div class="col-md-2" id="btnBack">
+                <div class="container p-3">
+                    <button mat-button style="color:white" aria-label="" (click)="goBack()">
+                      <mat-icon>keyboard_arrow_left</mat-icon> Atrás
+                    </button>
+                  </div>
+            </div>
+    <div class="col-md-10">
+        <div class="container  mt-md-4">
+            <div class="salto"></div>
+        <section *ngFor="let data of reserva_detail" class="print-section" >
         <h1>Reserva Generada número {{data.ID_RESERVA}}</h1>
         <h2>{{data.FEC_RESERVA | date: 'dd/MM/yyyy - hh:mm:ss aa'}}</h2>
         <details open>
@@ -156,22 +158,30 @@
     
   </div>
 
-    <script>
-            
-        function print(){
-        var data = document.getElementById('print-section').innerHTML;
-        document.open();
-        document.write();
-        if (window.matchMedia('(min-width: 400px)').matches) {
-            window.print();
-            window.close();
-            document.close();
-        } else {
-            window.print();
-            document.close();
-        }
-        }
-        
+            </div>        
+        </div>
+    </div>
 
-    </script>
+
+
+    
 </body>
+
+<script>
+            
+    function print(){
+    var data = document.getElementById('print-section').innerHTML;
+    document.open();
+    document.write();
+    if (window.matchMedia('(min-width: 400px)').matches) {
+        window.print();
+        window.close();
+        document.close();
+    } else {
+        window.print();
+        document.close();
+    }
+    }
+    
+
+</script>

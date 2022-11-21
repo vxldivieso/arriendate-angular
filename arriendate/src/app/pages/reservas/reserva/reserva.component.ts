@@ -95,8 +95,7 @@ export class ReservaComponent implements OnInit {
       LAST_NAME : new FormControl('', Validators.required),
       BIRTHDAY : new FormControl<Date | null>(null),
       TELEFONO : new FormControl('', [Validators.minLength(9), Validators.maxLength(9)]),
-      EMAIL : new FormControl('', Validators.required),
-      PASSWORD : new FormControl('', Validators.required)
+      EMAIL : new FormControl('', Validators.required)
     })
     this.getDeptos()
     this.getSucursal()
@@ -181,11 +180,10 @@ export class ReservaComponent implements OnInit {
     const BIRTHDAY = moment(this.createClientForm.controls['BIRTHDAY'].value).format(format)
     const TELEFONO = this.createClientForm.controls['TELEFONO'].value
     const EMAIL = this.createClientForm.controls['EMAIL'].value
-    const PASSWORD = this.createClientForm.controls['PASSWORD'].value
 
     
     if(this.createClientForm.valid){
-      this.api.newClient(RUT_CLI, FIRST_NAME, LAST_NAME, BIRTHDAY, TELEFONO, EMAIL, PASSWORD).subscribe({
+      this.api.newClient(RUT_CLI, FIRST_NAME, LAST_NAME, BIRTHDAY, TELEFONO, EMAIL).subscribe({
         next:(res)=>{
           console.log(res);
           this.messageExitoCliente()
