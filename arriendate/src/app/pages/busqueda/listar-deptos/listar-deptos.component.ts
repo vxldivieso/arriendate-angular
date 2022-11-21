@@ -67,7 +67,6 @@ export class ListarDeptosComponent implements OnInit {
     this.api.getDeptos().subscribe({
       next:(res:any)=>{
         this.deptos_detalle = res;
-        console.log(this.deptos_detalle);
         this.dataSource = new MatTableDataSource(this.deptos_detalle);
         
       }

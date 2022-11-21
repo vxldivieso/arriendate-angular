@@ -197,6 +197,9 @@ export class AddDialogComponent implements OnInit{
   image3 = "";
   image4 = "";
   imgURL = '../../../../assets/img/no-image.jpg'
+  imgURL2 = '../../../../assets/img/no-image.jpg'
+  imgURL3 = '../../../../assets/img/no-image.jpg'
+  imgURL4 = '../../../../assets/img/no-image.jpg'
 
   
 
@@ -330,7 +333,7 @@ export class AddDialogComponent implements OnInit{
       reader.onloadend = (event:any) => 
       {
         this.base64Output2 = reader.result as string;
-        this.imgURL = this.base64Output2
+        this.imgURL2 = this.base64Output2
 
       }
       this.image2 = this.fileSelected2
@@ -343,7 +346,7 @@ export class AddDialogComponent implements OnInit{
       reader.onloadend = (event:any) => 
       {
         this.base64Output3 = reader.result as string;
-        this.imgURL = this.base64Output3
+        this.imgURL3 = this.base64Output3
 
       }
       this.image3 = this.fileSelected3
@@ -356,7 +359,7 @@ export class AddDialogComponent implements OnInit{
       reader.onloadend = (event:any) => 
       {
         this.base64Output4 = reader.result as string;
-        this.imgURL = this.base64Output4
+        this.imgURL4 = this.base64Output4
 
       }
       this.image4 = this.fileSelected4

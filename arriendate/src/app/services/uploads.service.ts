@@ -51,15 +51,19 @@ export class ApiUploadService{
 
 
     updateDeptoInventario(ID_DEPTO:any, FOTO1:any){
-        return this.http.patch(`${this.apiURL}/updateDepto/${ID_DEPTO}`, {FOTO1:FOTO1}).pipe(
+        let header = new HttpHeaders()
+        .set('Type-content','aplication/json')
+        return this.http.patch(`${this.apiURL}/updateDepto/${ID_DEPTO}`, {FOTO1:FOTO1},{headers:header}).pipe(
             catchError((error) =>{
                 return error
             }))
     }
 
-    updateStateDepto(ID_DEPTO:any, FOTO1:any, COMENTARIOS:any, DATE:any, ID_RESERVA:any){
-        return this.http.post(`${this.apiURL}/updateStateDepto`,{ID_DEPTO:ID_DEPTO, FOTO1:FOTO1, 
-            COMENTARIOS:COMENTARIOS, DATE:DATE, ID_RESERVA:ID_RESERVA}).pipe(
+    updateStateDepto(ID_DEPTO:any, FOTO1:any,FOTO2:any, FOTO3:any, FOTO4:any, COMENTARIOS:any, DATE:any, ID_RESERVA:any){
+        let header = new HttpHeaders()
+        .set('Type-content','aplication/json')
+        return this.http.post(`${this.apiURL}/updateStateDepto`,{ID_DEPTO:ID_DEPTO, FOTO1:FOTO1, FOTO2:FOTO2, FOTO3:FOTO3,
+            FOTO4:FOTO4,COMENTARIOS:COMENTARIOS, DATE:DATE, ID_RESERVA:ID_RESERVA},{headers:header}).pipe(
                 catchError((error) =>{
                     return error
                 }))

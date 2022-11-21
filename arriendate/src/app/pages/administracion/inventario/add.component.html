@@ -183,7 +183,41 @@
                 <mat-label>Comentarios extras (Opcional)</mat-label>
                 <textarea matInput formControlName="COMENTARIOS"></textarea>
             </mat-form-field>
-           
+            
+            <div class="row">
+                <div class="col-md-3">
+                    <img class="img-fluid" [src]="imgURL" width="200" (change)="onFileSelected($any($event.target).files)" alt="" id="img1">
+                    
+                </div>
+                <div class="col-md-3">
+                    <img class="img-fluid" [src]="imgURL2" width="200" (change)="onFileSelected2($any($event.target).files)" alt="" id="img2">
+                    
+                </div>
+                <div class="col-md-3">
+                    <img class="img-fluid" [src]="imgURL3" width="200" (change)="onFileSelected3($any($event.target).files)" alt="" id="img3">
+                    
+                </div>
+                <div class="col-md-3">
+                    <img class="img-fluid" [src]="imgURL4" width="200" (change)="onFileSelected4($any($event.target).files)" alt="" id="img4">
+                    
+                </div>
+
+                
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <label for="img1">Foto 1</label>
+                </div>
+                <div class="col-md-3">
+                    <label for="img2">Foto 2</label>
+                </div>
+                <div class="col-md-3">
+                    <label for="img3">Foto 3</label>
+                </div>
+                <div class="col-md-3">
+                    <label for="img4">Foto 4</label>
+                </div>
+            </div>
               
             <hr>
 

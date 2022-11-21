@@ -169,10 +169,27 @@ export class CheckoutDialogComponent implements OnInit {
   img?:string | void;
   base64Output !: string;
   fileSelected : any
-  
+
+  img2?:string | void;
+  base64Output2 !: string;
+  fileSelected2 : any
+
+  img3?:string | void;
+  base64Output3 !: string;
+  fileSelected3 : any
+
+  img4?:string | void;
+  base64Output4 !: string;
+  fileSelected4: any
 
   image1 = "";
+  image2 = "";
+  image3 = "";
+  image4 = "";
   imgURL = '../../../../assets/img/no-image.jpg'
+  imgURL2 = '../../../../assets/img/no-image.jpg'
+  imgURL3 = '../../../../assets/img/no-image.jpg'
+  imgURL4 = '../../../../assets/img/no-image.jpg'
 
   constructor(private api:ApiService, private fb : FormBuilder, private sant: DomSanitizer,
      private dialog : MatDialog, private apiUpload : ApiUploadService){}
@@ -205,7 +222,50 @@ export class CheckoutDialogComponent implements OnInit {
       this.img = this.sant.bypassSecurityTrustUrl(window.URL.createObjectURL(this.fileSelected)) as string;
       this.base64Output;
       this.convertFileToBase64()
-      console.log(this.fileSelected);
+    }
+    
+  }
+
+  onFileSelected2(files: FileList):void {
+    this.fileSelected2 = files[0]
+    let tmp_pr = 0;
+    if(this.fileSelected2.type != 'image/jpeg' && this.fileSelected2.type != 'image/png'){
+      tmp_pr = 1;
+      alert("El archivo no es una imagen.");
+    }
+    if(tmp_pr == 0){
+      this.img2 = this.sant.bypassSecurityTrustUrl(window.URL.createObjectURL(this.fileSelected2)) as string;
+      this.base64Output2;
+      this.convertFileToBase642()
+    }
+    
+  }
+  onFileSelected3(files: FileList):void {
+    this.fileSelected3 = files[0]
+    let tmp_pr = 0;
+    if(this.fileSelected3.type != 'image/jpeg' && this.fileSelected3.type != 'image/png'){
+      tmp_pr = 1;
+      alert("El archivo no es una imagen.");
+    }
+    if(tmp_pr == 0){
+      this.img3 = this.sant.bypassSecurityTrustUrl(window.URL.createObjectURL(this.fileSelected3)) as string;
+      this.base64Output3;
+      this.convertFileToBase643()
+    }
+    
+  }
+
+  onFileSelected4(files: FileList):void {
+    this.fileSelected4 = files[0]
+    let tmp_pr = 0;
+    if(this.fileSelected4.type != 'image/jpeg' && this.fileSelected4.type != 'image/png'){
+      tmp_pr = 1;
+      alert("El archivo no es una imagen.");
+    }
+    if(tmp_pr == 0){
+      this.img4 = this.sant.bypassSecurityTrustUrl(window.URL.createObjectURL(this.fileSelected4)) as string;
+      this.base64Output4;
+      this.convertFileToBase644()
     }
     
   }
@@ -223,13 +283,56 @@ export class CheckoutDialogComponent implements OnInit {
       this.image1 = this.fileSelected
     }
   }
+  convertFileToBase642(){
+    let reader = new FileReader();
+    if (this.fileSelected2){
+      reader.readAsDataURL(this.fileSelected2 as Blob)
+      reader.onloadend = (event:any) => 
+      {
+        this.base64Output2 = reader.result as string;
+        this.imgURL2 = this.base64Output2
+
+      }
+      this.image2 = this.fileSelected2
+    }
+  }
+  convertFileToBase643(){
+    let reader = new FileReader();
+    if (this.fileSelected3){
+      reader.readAsDataURL(this.fileSelected3 as Blob)
+      reader.onloadend = (event:any) => 
+      {
+        this.base64Output3 = reader.result as string;
+        this.imgURL3 = this.base64Output3
+
+      }
+      this.image3 = this.fileSelected3
+    }
+  }
+  convertFileToBase644(){
+    let reader = new FileReader();
+    if (this.fileSelected4){
+      reader.readAsDataURL(this.fileSelected4 as Blob)
+      reader.onloadend = (event:any) => 
+      {
+        this.base64Output4 = reader.result as string;
+        this.imgURL4 = this.base64Output4
+
+      }
+      this.image4 = this.fileSelected4
+    }
+  }
 
   checkout(id_depto:any, id_reserva:any){
     if (this.checkoutForm.valid){
+      
+      const foto1 = JSON.stringify(this.base64Output)
+      const foto2 = JSON.stringify(this.base64Output2)
+      const foto3 = JSON.stringify(this.base64Output3)
+      const foto4 = JSON.stringify(this.base64Output4)
       let comentario = this.checkoutForm.controls['COMENTARIOS'].value
-      let img1 = JSON.stringify(this.base64Output)
       let date = this.today
-      this.apiUpload.updateStateDepto(id_depto, img1, comentario, this.today, id_reserva).subscribe({
+      this.apiUpload.updateStateDepto(id_depto, foto1, foto2,foto3, foto4, comentario, this.today, id_reserva).subscribe({
         next:(res:any)=>{
           this.api.checkout(this.id_reserva, this.today).subscribe({
             next:(res:any)=>{
