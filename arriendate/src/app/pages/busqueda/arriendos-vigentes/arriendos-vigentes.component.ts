@@ -6,6 +6,7 @@ import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material/dial
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-arriendos-vigentes',
@@ -19,7 +20,7 @@ export class ArriendosVigentesComponent implements OnInit {
   p: number = 1;
 
   vigentes_arriendos : any;
-  
+  subscription !: Subscription;  
 
 
   fec_reserva:any;
@@ -63,6 +64,7 @@ export class ArriendosVigentesComponent implements OnInit {
   ngOnInit(): void {
     this.getArriendos()
 
+    this.subscription = this.api.refresh$.subscribe(()=>{})
     
   }
 

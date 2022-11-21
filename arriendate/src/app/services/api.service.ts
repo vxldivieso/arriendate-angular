@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Injectable, Input, isDevMode, OnInit } from "@angular/core";
-import {  Observable, throwError} from "rxjs";
-import { map, catchError } from 'rxjs/operators';
+import {  Observable, Subject, throwError} from "rxjs";
+import { map, catchError, tap } from 'rxjs/operators';
 import { RouterModule, Routes, Router, ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2'
 
@@ -10,11 +10,18 @@ import Swal from 'sweetalert2'
 })
 export class ApiService{
     private apiURL='https://api-turismoreal.azurewebsites.net/bd'
+
+    private _refresh$ = new Subject<void>()
+
     ingreso :any;
 
     idClient:any;
     constructor(private http: HttpClient, private router: Router){
         
+    }
+
+    get refresh$(){
+        return this._refresh$
     }
 
     login(rut:any, password:any){
@@ -35,7 +42,7 @@ export class ApiService{
             })))
     }
 
-    getSucursal(){
+    getSucursal(): Observable<any>{
         return this.http.get(`${this.apiURL}/listarSuc`).pipe(
             catchError((error) =>{
                 return this.errorHandler(error);
@@ -44,21 +51,26 @@ export class ApiService{
 
     
 
-    getArriendos(){
+    getArriendos(): Observable<any>{
         return this.http.get(`${this.apiURL}/listarReservas`).pipe(
             catchError((error) =>{
                 return this.errorHandler(error);
-            }))
+            }),
+            tap(()=>{
+                this._refresh$.next()
+            })
+            )
+            
     }
 
-    getReservebyRut(rut:any){
+    getReservebyRut(rut:any): Observable<any>{
         return this.http.get(`${this.apiURL}/listarReservasCliente/${rut}`).pipe(
             catchError((error) =>{
                 return this.errorHandler(error);
             }))
     }
 
-    getEmployee(){
+    getEmployee(): Observable<any>{
         return this.http.get(`${this.apiURL}/listarEmps`).pipe(
             catchError((error) =>{
                 return this.errorHandler(error);
@@ -66,21 +78,21 @@ export class ApiService{
 
     }
 
-    getDeptos(){
-        return this.http.get(`${this.apiURL}/listarDepto/`).pipe(
+    getDeptos(): Observable<any>{
+        return this.http.get(`${this.apiURL}/listarDeptos/`).pipe(
             catchError((error) =>{
                 return this.errorHandler(error);
             }))
     }
 
-    getInventario(id:any){
+    getInventario(id:any): Observable<any>{
         return this.http.get(`${this.apiURL}/infodepto/${id}`).pipe(
             catchError((error) =>{
                 return this.errorHandler(error);
             }))
     }
 
-    getServices(){
+    getServices(): Observable<any>{
         return this.http.get(`${this.apiURL}/listarServicios`).pipe(
             catchError((error) =>{
                 return this.errorHandler(error);
@@ -88,7 +100,7 @@ export class ApiService{
 
     }
 
-    getClient(){
+    getClient(): Observable<any>{
         return this.http.get(`${this.apiURL}/listarCli`).pipe(
             catchError((error) =>{
                 return this.errorHandler(error)
@@ -106,7 +118,7 @@ export class ApiService{
 
     
 
-    getClientId(rut_cli:any){
+    getClientId(rut_cli:any): Observable<any>{
         return this.http.get(`${this.apiURL}/listarCli/${rut_cli}`)
             
     }
@@ -126,24 +138,10 @@ export class ApiService{
 
 
 
-    //Añadir departamento
-
-    addDepto(NOMBRE:any, DESCRIPCION:any,UBICACION:any,VALOR_DIA:any,TOTAL_PERSONAS:any,ESTACIONAMIENTO:any,MASCOTAS:any, INVENTARIO_ID:any, SUCURSAL_ID_SUC:any){
-        let header = new HttpHeaders()
-        .set('Type-content','aplication/json')
-
-        return this.http.post<any>(`${this.apiURL}/crearDepto`,{NOMBRE:NOMBRE, DESCRIPCION:DESCRIPCION,
-        UBICACION:UBICACION,VALOR_DIA:VALOR_DIA,TOTAL_PERSONAS:TOTAL_PERSONAS, ESTACIONAMIENTO:ESTACIONAMIENTO,
-        MASCOTAS:MASCOTAS, INVENTARIO_ID:INVENTARIO_ID, SUCURSAL_ID_SUC:SUCURSAL_ID_SUC},{headers:header}).pipe(
-           catchError((error) =>{
-               return this.errorHandler(error);
-           }))
-
-    }
-
+    
     //Listar ultima reserva
 
-    getLastReserve(){
+    getLastReserve(): Observable<any>{
         return this.http.get<any>(`${this.apiURL}/lastReserve`).pipe(
             catchError((error) =>{
                 return this.errorHandler(error);
@@ -215,7 +213,7 @@ export class ApiService{
     }
     
     //Buscar reserva por id
-    getReserveByID(id:any){
+    getReserveByID(id:any): Observable<any>{
         return this.http.get(`${this.apiURL}/listarReservas/${id}`).pipe(
             catchError((error) =>{
                 return this.errorHandler(error);
@@ -225,16 +223,20 @@ export class ApiService{
 
     //Buscar depto por id
 
-    getDeptoById(id:any){
+    getDeptoById(id:any): Observable<any>{
         return this.http.get(`${this.apiURL}/listarDepto/${id}`).pipe(
             catchError((error) =>{
                 return this.errorHandler(error)
-            }))
+            }),
+            tap(()=>{
+                this._refresh$.next()
+            })
+            )
     }
 
     //Listar ultima fecha reservada por id depto
 
-    getLastDate(id:any){
+    getLastDate(id:any): Observable<any>{
         return this.http.get(`${this.apiURL}/fechaDisponible/${id}`).pipe(
             catchError((error) =>{
                 return this.errorHandler(error)
@@ -242,7 +244,7 @@ export class ApiService{
     }
 
     //obtener services por id
-    getServicesById(id:any){
+    getServicesById(id:any): Observable<any>{
         return this.http.get(`${this.apiURL}/getServices/${id}`).pipe(
             catchError((error) =>{
                 return this.errorHandler(error)

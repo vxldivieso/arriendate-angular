@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HomeRoutingModule } from './pages/home/home-routing.module';
 import { CommonModule } from '@angular/common';
 import { ListarDeptosComponent, DialogElementsExampleDialog2 } from './pages/busqueda/listar-deptos/listar-deptos.component';
@@ -35,6 +35,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ReservaExternaComponent } from './pages/reservas/reserva-externa/reserva-externa.component';
 import { MatSortModule } from '@angular/material/sort';
 import { SummaryComponent } from './pages/reservas/summary/summary.component';
+import { SpinnerComponent } from './shared/spinner/spinner.component';
+import { SpinnerModule } from './shared/spinner/spinner.module';
+import { SpinnerInterceptor } from './shared/interceptors/spinner.interceptor';
 
 @NgModule({
   declarations: [
@@ -74,9 +77,12 @@ import { SummaryComponent } from './pages/reservas/summary/summary.component';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    SpinnerModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass:SpinnerInterceptor, multi:true}
+  ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

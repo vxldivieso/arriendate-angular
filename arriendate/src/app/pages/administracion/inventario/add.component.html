@@ -3,59 +3,35 @@
     <div class="container">
         <form action="" [formGroup]="addForm">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <mat-form-field appearance="fill" color="primary" >
                         <mat-label>Nombre Depto</mat-label>
                         <input matInput formControlName="NOMBRE" id="NOMBRE" required>
                       </mat-form-field>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <mat-form-field appearance="fill" color="primary" >
                         <mat-label>Ubicación</mat-label>
                         <input matInput formControlName="UBICACION" id="UBICACION" required>
                       </mat-form-field>
+                </div>
+                <div class="col-md-3">
+                    <mat-form-field appearance="fill" color="primary" >
+                        <mat-label>Valor día</mat-label>
+                        <input type="number" matInput formControlName="VALOR_DIA" id="VALOR_DIA"  required>
+                      </mat-form-field>
+                </div>
+                <div class="col-md-3">
+                    <mat-form-field appearance="fill" color="primary" >
+                        <mat-label>Capacidad personas</mat-label>
+                        <input type="number" matInput formControlName="TOTAL_PERSONAS" id="TOTAL_PERSONAS"  required>
+                    </mat-form-field>
                 </div>
             </div>
             <mat-form-field class="example-full-width" appearance="fill" color="primary">
             <mat-label>Descripción</mat-label>
             <textarea matInput formControlName="DESCRIPCION"></textarea>
             </mat-form-field>
-            <div class="row">
-                <div class="col-md-6">
-                    <mat-form-field appearance="fill" color="primary" >
-                        <mat-label>Valor día</mat-label>
-                        <input matInput formControlName="VALOR_DIA" id="VALOR_DIA"  required>
-                      </mat-form-field>
-                </div>
-                <div class="col-md-6">
-                    <mat-form-field appearance="fill" color="primary" >
-                        <mat-label>Capacidad personas</mat-label>
-                        <input matInput formControlName="TOTAL_PERSONAS" id="TOTAL_PERSONAS"  required>
-                    </mat-form-field>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <label id="example-radio-group-label">Estacionamiento</label>
-                    <mat-radio-group formControlName="ESTACIONAMIENTO"
-                    aria-labelledby="example-radio-group-label"
-                    class="example-radio-group">
-                    <mat-radio-button class="example-radio-button" *ngFor="let data of estacionamiento" [value]="data">
-                        {{data}}
-                    </mat-radio-button>
-                    </mat-radio-group>
-                </div>
-                <div class="col-md-6">
-                    <label id="example-radio-group-label">Mascotas</label>
-                    <mat-radio-group formControlName="MASCOTAS"
-                    aria-labelledby="example-radio-group-label"
-                    class="example-radio-group">
-                    <mat-radio-button  class="example-radio-button" *ngFor="let data of mascotas" [value]="data">
-                        {{data}}
-                    </mat-radio-button>
-                    </mat-radio-group>
-                </div>
-            </div>
             <div class="row">
                 <div class="col-md-6">
                     <mat-form-field appearance="fill">
@@ -81,31 +57,157 @@
                     </mat-form-field>
                 </div>
             </div>
+            
+            <div class="row">
+                <div class="col-md-4">
+                    <label id="example-radio-group-label">TV</label>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Cantidad</mat-label>
+                        <mat-select formControlName="CANT_TV_DEPTO">
+                            <mat-option value=0>
+                                0
+                            </mat-option>
+                            <mat-option value=1>
+                                1
+                            </mat-option>
+                            <mat-option value=2>
+                                2
+                            </mat-option>
+                            <mat-option value=3>
+                                3
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-2">
+                    <label id="example-radio-group-label">TV Cable</label>
+                    <mat-radio-group formControlName="TV_CABLE"
+                    aria-labelledby="example-radio-group-label"
+                    class="example-radio-group">
+                    <mat-radio-button  class="example-radio-button" *ngFor="let data of tv_cable" [value]="data">
+                        {{data}}
+                    </mat-radio-button>
+                    </mat-radio-group>
+                </div>
+                <div class="col-md-2">
+                    <label id="example-radio-group-label">Internet</label>
+                    <mat-radio-group formControlName="INTERNET"
+                    aria-labelledby="example-radio-group-label"
+                    class="example-radio-group">
+                    <mat-radio-button  class="example-radio-button" *ngFor="let data of internet" [value]="data">
+                        {{data}}
+                    </mat-radio-button>
+                    </mat-radio-group>
+                </div>
+                <div class="col-md-2">
+                    <label id="example-radio-group-label">Cocina</label>
+                    <mat-radio-group formControlName="COCINA"
+                    aria-labelledby="example-radio-group-label"
+                    class="example-radio-group">
+                    <mat-radio-button class="example-radio-button" *ngFor="let data of cocina" [value]="data">
+                        {{data}}
+                    </mat-radio-button>
+                    </mat-radio-group>
+                </div>
+                <div class="col-md-2">
+                    <label id="example-radio-group-label">Refrigerador</label>
+                    <mat-radio-group formControlName="REFRIGERADOR"
+                    aria-labelledby="example-radio-group-label"
+                    class="example-radio-group">
+                    <mat-radio-button  class="example-radio-button" *ngFor="let data of refrigerador" [value]="data">
+                        {{data}}
+                    </mat-radio-button>
+                    </mat-radio-group>
+                </div>
+                
+                
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <label id="example-radio-group-label">Camas de 1 plaza</label>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Cantidad</mat-label>
+                        <mat-select formControlName="CAMA_1PL" >
+                            <mat-option value=0 >
+                                0
+                            </mat-option>
+                            <mat-option value=1 >
+                                1
+                            </mat-option>
+                            <mat-option value=2 >
+                                2
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-3">
+                    <label id="example-radio-group-label">Camas de 2 plazas</label>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Cantidad</mat-label>
+                        <mat-select formControlName="CAMA_2PL">
+                            <mat-option value=0>
+                                0
+                            </mat-option>
+                            <mat-option value=1>
+                                1
+                            </mat-option>
+                            <mat-option value=2>
+                                2
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-3">
+                    <label id="example-radio-group-label">Estacionamiento</label>
+                    <mat-radio-group formControlName="ESTACIONAMIENTO"
+                    aria-labelledby="example-radio-group-label"
+                    class="example-radio-group">
+                    <mat-radio-button class="example-radio-button" *ngFor="let data of estacionamiento" [value]="data">
+                        {{data}}
+                    </mat-radio-button>
+                    </mat-radio-group>
+                </div>
+                <div class="col-md-3">
+                    <label id="example-radio-group-label">Mascotas</label>
+                    <mat-radio-group formControlName="MASCOTAS"
+                    aria-labelledby="example-radio-group-label"
+                    class="example-radio-group">
+                    <mat-radio-button  class="example-radio-button" *ngFor="let data of mascotas" [value]="data">
+                        {{data}}
+                    </mat-radio-button>
+                    </mat-radio-group>
+                </div>
+                
+            </div>
+            <mat-form-field class="example-full-width" appearance="fill" color="primary">
+                <mat-label>Comentarios extras (Opcional)</mat-label>
+                <textarea matInput formControlName="COMENTARIOS"></textarea>
+            </mat-form-field>
+           
               
+            <hr>
+
             <label for="img"> &nbsp;Adjunte foto 1</label>
-            <input class="form-control" [src]="img" accept="image/png,image/jpeg" type="file" id="img"
-            name="img" (change)="onFileSelected($any($event.target).files)" 
+            <input class="form-control" formControlName="FOTO1" accept="image/png,image/jpeg" type="file" id="img1"
+            name="img" (change)="onFileSelected($any($event.target).files)"
             data-validation-error-msg="Elija una imagen con formato JPG." data-validation-max-size="1M" data-validation="required"/> 
             
-
             <label for="img"> &nbsp;Adjunte foto 2</label>
-            <input class="form-control" [src]="img" accept="image/png,image/jpeg" type="file" id="img"
-            name="img" (change)="onFileSelected($any($event.target).files)" 
+            <input class="form-control" formControlName="FOTO2" accept="image/png,image/jpeg" type="file" id="img2"
+            name="img" (change)="onFileSelected2($any($event.target).files)"
             data-validation-error-msg="Elija una imagen con formato JPG." data-validation-max-size="1M" data-validation="required"/> 
             
-
             <label for="img"> &nbsp;Adjunte foto 3</label>
-            <input class="form-control" [src]="img" accept="image/png,image/jpeg" type="file" id="img"
-            name="img" (change)="onFileSelected($any($event.target).files)" 
+            <input class="form-control" formControlName="FOTO3" accept="image/png,image/jpeg" type="file" id="img3"
+            name="img" (change)="onFileSelected3($any($event.target).files)"
             data-validation-error-msg="Elija una imagen con formato JPG." data-validation-max-size="1M" data-validation="required"/> 
             
-
             <label for="img"> &nbsp;Adjunte foto 4</label>
-            <input class="form-control" [src]="img" accept="image/png,image/jpeg" type="file" id="img"
-            name="img" (change)="onFileSelected($any($event.target).files)" 
+            <input class="form-control" formControlName="FOTO4" accept="image/png,image/jpeg" type="file" id="img4"
+            name="img" (change)="onFileSelected4($any($event.target).files)"
             data-validation-error-msg="Elija una imagen con formato JPG." data-validation-max-size="1M" data-validation="required"/> 
-            <small style="font-size:0.8em">Tamaño máximo permitido 1MB </small>
             
+            <small style="font-size:0.8em">Tamaño máximo permitido 1MB </small>
           </form>
     </div>
 </div>

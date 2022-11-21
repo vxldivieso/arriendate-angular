@@ -7,6 +7,8 @@ import Swal from 'sweetalert2'
 import * as moment from 'moment';
 import { MatDialog } from '@angular/material/dialog';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Observable } from 'rxjs';
+import { ApiUploadService } from 'src/app/services/uploads.service';
 
 
 @Component({
@@ -162,23 +164,27 @@ export class CheckoutDialogComponent implements OnInit {
   today = moment().format() ;
 
   checkoutForm !: FormGroup;
+  sucursales : any;
 
   img?:string | void;
   base64Output !: string;
-  fileSelected!: Blob
-  sucursales : any;
+  fileSelected : any
+  
 
-  constructor(private api:ApiService, private fb : FormBuilder, private sant: DomSanitizer, private dialog : MatDialog){}
+  image1 = "";
+  imgURL = '../../../../assets/img/no-image.jpg'
+
+  constructor(private api:ApiService, private fb : FormBuilder, private sant: DomSanitizer,
+     private dialog : MatDialog, private apiUpload : ApiUploadService){}
 
   ngOnInit(): void {
     this.id_reserva = localStorage.getItem('id_checkout');
 
     this.checkoutForm = this.fb.group({
-      FOTO1 : new FormControl(''),
-      FOTO2 : new FormControl(''),
-      FOTO3 : new FormControl(''),
-      FOTO4 : new FormControl(''),
-      FOTO5 : new FormControl(''),
+      FOTO1 : new FormControl('', Validators.required),
+      FOTO2 : new FormControl('', Validators.required),
+      FOTO3 : new FormControl('', Validators.required),
+      FOTO4 : new FormControl('', Validators.required),
       COMENTARIOS : new FormControl('',Validators.required)
     })
     this.searchReserve()
@@ -188,9 +194,64 @@ export class CheckoutDialogComponent implements OnInit {
     this.dialog.closeAll()
   }
 
-  checkout(){
+  onFileSelected(files: FileList):void {
+    this.fileSelected = files[0]
+    let tmp_pr = 0;
+    if(this.fileSelected.type != 'image/jpeg' && this.fileSelected.type != 'image/png'){
+      tmp_pr = 1;
+      alert("El archivo no es una imagen.");
+    }
+    if(tmp_pr == 0){
+      this.img = this.sant.bypassSecurityTrustUrl(window.URL.createObjectURL(this.fileSelected)) as string;
+      this.base64Output;
+      this.convertFileToBase64()
+      console.log(this.fileSelected);
+    }
     
-    this.messageSuccessfullCheckout()
+  }
+
+  convertFileToBase64(){
+    let reader = new FileReader();
+    if (this.fileSelected){
+      reader.readAsDataURL(this.fileSelected as Blob)
+      reader.onloadend = (event:any) => 
+      {
+        this.base64Output = reader.result as string;
+        this.imgURL = this.base64Output
+
+      }
+      this.image1 = this.fileSelected
+    }
+  }
+
+  checkout(id_depto:any, id_reserva:any){
+    if (this.checkoutForm.valid){
+      let comentario = this.checkoutForm.controls['COMENTARIOS'].value
+      let img1 = JSON.stringify(this.base64Output)
+      let date = this.today
+      this.apiUpload.updateStateDepto(id_depto, img1, comentario, this.today, id_reserva).subscribe({
+        next:(res:any)=>{
+          this.api.checkout(this.id_reserva, this.today).subscribe({
+            next:(res:any)=>{
+              this.closeDialog()
+              this.messageExito();
+            },
+            error:(error)=>{
+              console.log(error);
+                this.messageErrorCheckout()
+            }
+          })
+          
+        },
+        error:(error)=>{
+          error;
+          
+        }
+      })
+      
+    } else{
+      this.messageErrorForm()
+    }
   }
 
   searchReserve(){
@@ -204,42 +265,31 @@ export class CheckoutDialogComponent implements OnInit {
       }
     })
   }
-  onFileSelected(files: FileList):void {
-    this.fileSelected = files[0]
-    let tmp_pr = 0;
-    if(this.fileSelected.type != 'image/jpeg' && this.fileSelected.type != 'image/png'){
-      tmp_pr = 1;
-      alert("El archivo no es una imagen.");
+  
+  
+
+ 
+
+  //Message Error Form
+  messageErrorForm(){
+    const Toast = Swal.mixin({
+    toast: true,
+    position: 'bottom',
+    showConfirmButton: false,
+    timer: 2000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
     }
-    if(tmp_pr == 0){
-      this.img = this.sant.bypassSecurityTrustUrl(window.URL.createObjectURL(this.fileSelected)) as string;
-      this.base64Output;
-      this.convertFileToBase64()
-      console.log(this.fileSelected);
-      ;
-      
-    }
-    
+    })
+    Toast.fire({
+    icon: 'error',
+    title: 'Complete los campos requeridos'
+    })
   }
 
-  convertFileToBase64(){
-    let reader = new FileReader();
-    if (this.fileSelected){
-      reader.readAsDataURL(this.fileSelected as Blob)
-      reader.onloadend = () => {this.base64Output = reader.result as string;}
-     
-    
-    }
-    
-  }
-
-  onSubmit(){
-    let imgB64 = JSON.stringify(this.base64Output)
-    console.log(imgB64);
-    
-  }
-
-  messageSuccessfullCheckout(){
+  messageSuccessfullCheckout(id_depto:any, id_reserva:any){
     Swal.fire({
       icon: 'info',
       title: '¿Desea realizar Check out?',
@@ -250,16 +300,8 @@ export class CheckoutDialogComponent implements OnInit {
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        this.api.checkout(this.id_reserva, this.today).subscribe({
-          next:(res:any)=>{
-            this.closeDialog()
-            this.messageExito();
-          },
-          error:(error)=>{
-            console.log(error);
-              this.messageErrorCheckout()
-          }
-        })
+        
+        
       }
     })
   }
