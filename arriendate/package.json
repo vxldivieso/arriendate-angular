@@ -26,10 +26,12 @@
     "electron-store": "^8.1.0",
     "jquery": "^3.6.1",
     "moment": "^2.29.4",
+    "ngx-pagination": "^6.0.3",
     "rxjs": "~7.5.0",
     "sweetalert": "^2.1.2",
     "sweetalert2": "^11.5.2",
     "tslib": "^2.3.0",
+    "xlsx": "^0.18.5",
     "xng-breadcrumb": "^8.0.2",
     "zone.js": "~0.11.4"
   },

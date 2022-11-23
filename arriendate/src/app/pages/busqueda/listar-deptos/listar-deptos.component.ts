@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, OnDestroy, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { ApiService } from 'src/app/services/api.service';
@@ -7,6 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-listar-deptos',
@@ -15,13 +16,15 @@ import { DomSanitizer } from '@angular/platform-browser';
   
 })
 
-export class ListarDeptosComponent implements OnInit {
+export class ListarDeptosComponent implements OnInit{
+
+  p:number = 1;
   deptos_detalle : any;
   
   descripcion:any;
   estacionamiento:any;
   estado_depto:any;
-  foto1 :any
+  foto1:any
   foto2:any;
   foto3:any;
   foto4:any;
@@ -34,11 +37,9 @@ export class ListarDeptosComponent implements OnInit {
   valor_dia:any;
 
   @Input() id_depto:any;
+  dataSource!: MatTableDataSource<any>
 
-  dataSource!: MatTableDataSource<any>;
-  
-
-  constructor(private dialog: MatDialog, private acroute: ActivatedRoute, 
+  constructor(private changeDetectorRef: ChangeDetectorRef, private dialog: MatDialog, private acroute: ActivatedRoute, 
     private location : Location, private api : ApiService, private route : Router, private _sanitizer: DomSanitizer) { }
 
   openDialog(id_depto:any) {
@@ -48,10 +49,8 @@ export class ListarDeptosComponent implements OnInit {
     localStorage.setItem('deptos_detalle', this.id_depto);
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void { 
     this.getDeptos()
-    
-
   }
 
   goBack(){
@@ -68,7 +67,6 @@ export class ListarDeptosComponent implements OnInit {
       next:(res:any)=>{
         this.deptos_detalle = res;
         this.dataSource = new MatTableDataSource(this.deptos_detalle);
-        
       }
     })
   }

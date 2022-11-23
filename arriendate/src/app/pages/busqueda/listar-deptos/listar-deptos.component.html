@@ -20,13 +20,10 @@
             <input matInput (keyup)="filtrar($event)">
           </mat-form-field>
         </div>
-        
-      
-        <div class="container" >
-      
+        <div class="container">
           <div class="row g-3">
-            <div class="col-4" *ngFor="let data of deptos_detalle">
-              <mat-card class="example-card" >
+            <div class="col-4" *ngFor="let data of deptos_detalle | paginate: { itemsPerPage: 6, currentPage: p }">
+              <mat-card class="example-card">
                 <mat-card-header>
                   <mat-card-title>Departamento {{data.ID_DEPTO}} ({{data.TOTAL_PERSONAS}} personas)</mat-card-title>
                 </mat-card-header>
@@ -40,18 +37,17 @@
                 </mat-card-content>
                 <mat-card-actions>
                   <button mat-raised-button id="secundary" (click)="reservarDepto(data.ID_DEPTO)" cdkFocusInitial >Reservar</button>
-      
-      
-      
                   <button mat-button (click)="openDialog(data.ID_DEPTO)">Ver detalle</button>
                 </mat-card-actions>
               </mat-card>
             </div>
           </div>
         </div>
+        <br>
       </div>
-      
-    
+      <div class="text-center">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </div>
     </div>
   </div>
 </div>

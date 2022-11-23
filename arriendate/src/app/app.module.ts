@@ -38,6 +38,7 @@ import { SummaryComponent } from './pages/reservas/summary/summary.component';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { SpinnerModule } from './shared/spinner/spinner.module';
 import { SpinnerInterceptor } from './shared/interceptors/spinner.interceptor';
+import {NgxPaginationModule} from 'ngx-pagination'; 
 
 @NgModule({
   declarations: [
@@ -78,7 +79,8 @@ import { SpinnerInterceptor } from './shared/interceptors/spinner.interceptor';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    SpinnerModule
+    SpinnerModule,
+    NgxPaginationModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass:SpinnerInterceptor, multi:true}

@@ -28,3 +28,39 @@ mat-form-field{
     }
   
   }
+
+  ::ng-deep {
+    .ngx-pagination{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  
+    .ngx-pagination li {
+      width: 35px;
+      height: 35px;
+      border-radius: 50% !important;
+      background: rgb(255, 255, 255);
+      display: flex !important;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+
+      &.small-screen{
+        display: none !important;
+      }
+
+      &.pagination-previus,
+      &.pagination-next{
+        a,span{
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          overflow: hidden;
+          color:rgb(255, 255, 255);
+        } 
+      }
+
+    }
+  }
+ 
